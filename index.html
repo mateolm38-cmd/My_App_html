@@ -209,11 +209,64 @@
 
     <script>
         // === ZONA DE CONFIGURACIÓN DEL DESARROLLADOR ===
-        const CORRECT_PASSWORD = '1234'; // Mantener la contraseña de eliminación
-        const LOGO_ESE = 'data:image/png;base64,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X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wD/L/8L/t8E/9/lAAAAAElFTkSuQmCC'; // URL Base64 del logo de la ESE
-        const LOGO_ALCALDIA = 'data:image/png;base64,...'; // URL Base64 del logo de la Alcaldía
+        const CORRECT_PASSWORD = '1234';
+        const LOGO_ESE = 'data:image/png;base64,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/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wH/n/4f//v3/+D/v/nf4f8L/g/3f7f8f/n+X/b/n/n/x/6/6f9P/n/r/v/r/f/n/z/8f8X/H/r/t/x/+f/f/j/j/5/0/8P/B/3/3/0/6f/X/j/yf8X/X/j/4f/H/p/5/9P+n/X/x/wD/L/8L/t8E/9/lAAAAAElFTkSuQmCC';
+        const LOGO_ALCALDIA = 'data:image/png;base64,...';
+        
+        let db;
+        const DB_NAME = 'MaintenanceNotesDB';
+        const STORE_NAME = 'notes';
 
-        // === ZONA DE VARIABLES Y ELEMENTOS DEL DOM (NO CAMBIAR) ===
+        function openDatabase() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(DB_NAME, 1);
+                request.onupgradeneeded = (e) => {
+                    const db = e.target.result;
+                    if (!db.objectStoreNames.contains(STORE_NAME)) {
+                        db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
+                    }
+                };
+                request.onsuccess = (e) => {
+                    db = e.target.result;
+                    resolve(db);
+                };
+                request.onerror = (e) => {
+                    console.error('Error opening database:', e.target.error);
+                    reject(e.target.error);
+                };
+            });
+        }
+        
+        async function saveNoteToDB(note) {
+            const transaction = db.transaction([STORE_NAME], 'readwrite');
+            const store = transaction.objectStore(STORE_NAME);
+            await store.add(note);
+            return new Promise(resolve => transaction.oncomplete = resolve);
+        }
+
+        async function loadNotesFromDB() {
+            const transaction = db.transaction([STORE_NAME], 'readonly');
+            const store = transaction.objectStore(STORE_NAME);
+            const request = store.getAll();
+            return new Promise((resolve, reject) => {
+                request.onsuccess = (e) => {
+                    state.notes = e.target.result;
+                    resolve();
+                };
+                request.onerror = (e) => {
+                    console.error('Error loading notes:', e.target.error);
+                    reject(e.target.error);
+                };
+            });
+        }
+
+        async function deleteNoteFromDB(id) {
+            const transaction = db.transaction([STORE_NAME], 'readwrite');
+            const store = transaction.objectStore(STORE_NAME);
+            await store.delete(id);
+            return new Promise(resolve => transaction.oncomplete = resolve);
+        }
+
         const noteForm = document.getElementById('noteForm');
         const notesList = document.getElementById('notesList');
         const exportPdfBtn = document.getElementById('exportPdfBtn');
@@ -237,7 +290,6 @@
         const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
         const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
         
-        // El estado global de la aplicación
         const state = {
             notes: [],
             isDrawing: false,
@@ -247,96 +299,163 @@
             noteToDeleteIndex: null,
         };
 
-        // Arreglo de los campos de foto
         const photoFields = [
             { input: document.getElementById('photo1-input'), addBtn: document.getElementById('photo1-add-btn'), preview: document.getElementById('photo1-preview'), date: document.getElementById('photo1-date'), placeholder: document.getElementById('photo1-placeholder'), removeBtn: document.getElementById('photo1-remove-btn') },
             { input: document.getElementById('photo2-input'), addBtn: document.getElementById('photo2-add-btn'), preview: document.getElementById('photo2-preview'), date: document.getElementById('photo2-date'), placeholder: document.getElementById('photo2-placeholder'), removeBtn: document.getElementById('photo2-remove-btn') },
             { input: document.getElementById('photo3-input'), addBtn: document.getElementById('photo3-add-btn'), preview: document.getElementById('photo3-preview'), date: document.getElementById('photo3-date'), placeholder: document.getElementById('photo3-placeholder'), removeBtn: document.getElementById('photo3-remove-btn') }
         ];
 
-        // === ZONA DE LÓGICA CORE (EL DESARROLLADOR DEBE COMPLETAR AQUÍ) ===
+        function getMousePos(canvas, evt) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: evt.clientX - rect.left,
+                y: evt.clientY - rect.top
+            };
+        }
 
-        // *** CAMBIO CLAVE 1: Persistencia de Datos con IndexedDB ***
-        let db;
-        const DB_NAME = 'MaintenanceNotesDB';
-        const STORE_NAME = 'notes';
+        function draw(canvas, context, x, y) {
+            if (!state.isDrawing) return;
+            context.beginPath();
+            context.moveTo(state.lastX, state.lastY);
+            context.lineTo(x, y);
+            context.stroke();
+            [state.lastX, state.lastY] = [x, y];
+        }
 
-        function openDatabase() {
-            return new Promise((resolve, reject) => {
-                const request = indexedDB.open(DB_NAME, 1);
-
-                request.onupgradeneeded = (e) => {
-                    const db = e.target.result;
-                    if (!db.objectStoreNames.contains(STORE_NAME)) {
-                        db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
-                    }
-                };
-
-                request.onsuccess = (e) => {
-                    db = e.target.result;
-                    resolve(db);
-                };
-
-                request.onerror = (e) => {
-                    console.error('Error opening database:', e.target.error);
-                    reject(e.target.error);
-                };
+        function setupCanvasListeners(canvas, context) {
+            canvas.addEventListener('mousedown', (e) => {
+                state.isDrawing = true;
+                [state.lastX, state.lastY] = [e.offsetX, e.offsetY];
             });
-        }
+            canvas.addEventListener('mousemove', (e) => draw(canvas, context, e.offsetX, e.offsetY));
+            canvas.addEventListener('mouseup', () => state.isDrawing = false);
+            canvas.addEventListener('mouseout', () => state.isDrawing = false);
 
-        async function saveNoteToDB(note) {
-            const transaction = db.transaction([STORE_NAME], 'readwrite');
-            const store = transaction.objectStore(STORE_NAME);
-            await store.add(note);
-            return new Promise(resolve => transaction.oncomplete = resolve);
-        }
-
-        async function loadNotesFromDB() {
-            const transaction = db.transaction([STORE_NAME], 'readonly');
-            const store = transaction.objectStore(STORE_NAME);
-            const request = store.getAll();
-            
-            return new Promise((resolve, reject) => {
-                request.onsuccess = (e) => {
-                    state.notes = e.target.result;
-                    renderNotes();
-                    resolve();
-                };
-                request.onerror = reject;
+            canvas.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                state.isDrawing = true;
+                const touch = e.touches[0];
+                const pos = getMousePos(canvas, touch);
+                [state.lastX, state.lastY] = [pos.x, pos.y];
             });
-        }
-
-        async function deleteNoteFromDB(id) {
-            const transaction = db.transaction([STORE_NAME], 'readwrite');
-            const store = transaction.objectStore(STORE_NAME);
-            await store.delete(id);
-            return new Promise(resolve => transaction.oncomplete = resolve);
-        }
-
-        async function findNoteByNumber(noteNumber) {
-            const transaction = db.transaction([STORE_NAME], 'readonly');
-            const store = transaction.objectStore(STORE_NAME);
-            const request = store.getAll();
-            
-            return new Promise((resolve, reject) => {
-                request.onsuccess = (e) => {
-                    const notes = e.target.result;
-                    const note = notes.find(n => n.noteNumber === noteNumber);
-                    resolve(note);
-                };
-                request.onerror = reject;
+            canvas.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                const touch = e.touches[0];
+                const pos = getMousePos(canvas, touch);
+                draw(canvas, context, pos.x, pos.y);
             });
+            canvas.addEventListener('touchend', () => state.isDrawing = false);
         }
 
-        openDatabase().then(() => {
-            loadNotesFromDB();
+        setupCanvasListeners(signatureCanvas, ctx);
+        setupCanvasListeners(signatureModalCanvas, modalCtx);
+
+        document.getElementById('clearSignatureBtn').addEventListener('click', () => {
+            ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
         });
+
+        document.getElementById('fullscreenSignBtn').addEventListener('click', () => {
+            signatureModal.style.display = 'flex';
+            modalCtx.drawImage(signatureCanvas, 0, 0);
+        });
+
+        saveModalBtn.addEventListener('click', () => {
+            ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
+            ctx.drawImage(signatureModalCanvas, 0, 0, signatureCanvas.width, signatureCanvas.height);
+            signatureModal.style.display = 'none';
+        });
+
+        clearModalBtn.addEventListener('click', () => {
+            modalCtx.clearRect(0, 0, signatureModalCanvas.width, signatureModalCanvas.height);
+        });
+
+        cancelModalBtn.addEventListener('click', () => {
+            signatureModal.style.display = 'none';
+        });
+
+        eseBtn.addEventListener('click', () => {
+            state.selectedEntity = 'E.S.E SaludYa Yacuanquer-Nariño';
+            eseBtn.classList.remove('bg-gray-300', 'text-gray-800');
+            eseBtn.classList.add('bg-blue-500', 'text-white');
+            alcaldiaBtn.classList.remove('bg-blue-500', 'text-white');
+            alcaldiaBtn.classList.add('bg-gray-300', 'text-gray-800');
+        });
+
+        alcaldiaBtn.addEventListener('click', () => {
+            state.selectedEntity = 'Alcaldía de Yacuanquer-Nariño';
+            alcaldiaBtn.classList.remove('bg-gray-300', 'text-gray-800');
+            alcaldiaBtn.classList.add('bg-blue-500', 'text-white');
+            eseBtn.classList.remove('bg-blue-500', 'text-white');
+            eseBtn.classList.add('bg-gray-300', 'text-gray-800');
+        });
+
+        photoFields.forEach(field => {
+            field.addBtn.addEventListener('click', () => field.input.click());
+            field.removeBtn.addEventListener('click', () => {
+                field.preview.src = '#';
+                field.preview.style.display = 'none';
+                field.date.textContent = '';
+                field.date.style.display = 'none';
+                field.placeholder.style.display = 'block';
+                field.addBtn.textContent = `Añadir Foto ${photoFields.indexOf(field) + 1}`;
+                field.removeBtn.style.display = 'none';
+                field.input.value = null;
+            });
+            field.input.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        field.preview.src = e.target.result;
+                        field.preview.style.display = 'block';
+                        field.placeholder.style.display = 'none';
+                        field.date.textContent = new Date().toLocaleString();
+                        field.date.style.display = 'block';
+                        field.addBtn.textContent = `Cambiar Foto ${photoFields.indexOf(field) + 1}`;
+                        field.removeBtn.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+
+        function showCustomAlert(message) {
+            customAlert.textContent = message;
+            customAlert.style.display = 'block';
+            setTimeout(() => {
+                customAlert.style.display = 'none';
+            }, 3000);
+        }
+
+        function renderNotes() {
+            notesList.innerHTML = '';
+            if (state.notes.length === 0) {
+                noNotesMessage.style.display = 'block';
+            } else {
+                noNotesMessage.style.display = 'none';
+                state.notes.forEach((note, index) => {
+                    const noteElement = document.createElement('div');
+                    noteElement.className = 'bg-gray-50 p-4 rounded-lg shadow-sm flex items-center justify-between transition-transform transform hover:scale-[1.01]';
+                    noteElement.innerHTML = `
+                        <div>
+                            <p class="text-sm font-semibold text-gray-800">Nota #${note.noteNumber}</p>
+                            <p class="text-xs text-gray-600">Fecha: ${note.date}</p>
+                            <p class="text-xs text-gray-600">Área: ${note.area}</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="view-btn bg-blue-500 text-white px-3 py-1 rounded-full text-sm hover:bg-blue-600 transition-colors" data-index="${index}">Ver</button>
+                            <button class="delete-btn bg-red-500 text-white px-3 py-1 rounded-full text-sm hover:bg-red-600 transition-colors" data-id="${note.id}">Eliminar</button>
+                        </div>
+                    `;
+                    notesList.appendChild(noteElement);
+                });
+            }
+        }
 
         noteForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const newNote = {
+            const noteData = {
                 noteNumber: document.getElementById('noteNumber').value,
-                entity: state.selectedEntity,
                 date: document.getElementById('date').value,
                 time: document.getElementById('time').value,
                 performedBy: document.getElementById('performedBy').value,
@@ -346,86 +465,55 @@
                 conclusion: document.getElementById('conclusion').value,
                 participants: document.getElementById('participants').value,
                 presentName: document.getElementById('presentName').value,
-                signature: isCanvasEmpty(signatureCanvas) ? null : signatureCanvas.toDataURL(),
-                photos: photoFields.map(f => ({ data: f.preview.src, date: f.date.textContent })).filter(p => p.data !== '#'),
+                signature: signatureCanvas.toDataURL(),
+                entity: state.selectedEntity,
+                photos: photoFields.map(field => ({
+                    src: field.preview.src !== '#' ? field.preview.src : null,
+                    date: field.date.textContent || null
+                })).filter(p => p.src !== null)
             };
 
-            await saveNoteToDB(newNote);
+            await saveNoteToDB(noteData);
             await loadNotesFromDB();
+            renderNotes();
+            showCustomAlert('¡Nota guardada con éxito!');
             noteForm.reset();
             ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
-            photoFields.forEach(p => {
-                p.preview.src = '#';
-                p.preview.style.display = 'none';
-                p.date.style.display = 'none';
-                p.placeholder.style.display = 'block';
-                p.removeBtn.style.display = 'none';
-                p.addBtn.textContent = `Añadir Foto ${photoFields.indexOf(p) + 1}`;
+            photoFields.forEach(field => {
+                field.preview.src = '#';
+                field.preview.style.display = 'none';
+                field.date.textContent = '';
+                field.date.style.display = 'none';
+                field.placeholder.style.display = 'block';
+                field.addBtn.textContent = `Añadir Foto ${photoFields.indexOf(field) + 1}`;
+                field.removeBtn.style.display = 'none';
             });
-            showCustomAlert('¡Nota guardada con éxito!');
         });
 
-        function renderNotes() {
-            notesList.innerHTML = '';
-            if (state.notes.length === 0) {
-                noNotesMessage.classList.remove('hidden');
-            } else {
-                noNotesMessage.classList.add('hidden');
-                state.notes.forEach((note, index) => {
-                    const noteElement = document.createElement('div');
-                    noteElement.classList.add('bg-gray-50', 'p-4', 'rounded-lg', 'border', 'border-gray-200', 'shadow-sm');
-                    noteElement.innerHTML = `
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-bold text-lg text-blue-800">Nota #${note.noteNumber}</h3>
-                            <div class="flex space-x-2">
-                                <button class="view-note-btn text-sm text-blue-600 hover:text-blue-800 transition-colors duration-200" data-id="${note.id}">Ver</button>
-                                <button class="delete-note-btn text-sm text-red-500 hover:text-red-700 transition-colors duration-200" data-id="${note.id}">Eliminar</button>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600"><strong>Entidad:</strong> ${note.entity}</p>
-                        <p class="text-sm text-gray-600"><strong>Área:</strong> ${note.area}</p>
-                        <p class="text-sm text-gray-600"><strong>Fecha:</strong> ${note.date}</p>
-                        <p class="text-sm text-gray-600"><strong>Realizado por:</strong> ${note.performedBy}</p>
-                    `;
-                    notesList.appendChild(noteElement);
-                });
-
-                document.querySelectorAll('.delete-note-btn').forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        const id = e.target.getAttribute('data-id');
-                        state.noteToDeleteId = parseInt(id, 10);
-                        showPasswordModal();
-                    });
-                });
-
-                document.querySelectorAll('.view-note-btn').forEach(button => {
-                    button.addEventListener('click', async (e) => {
-                        const id = parseInt(e.target.getAttribute('data-id'), 10);
-                        const note = state.notes.find(n => n.id === id);
-                        if (note) {
-                            exportToPdf(note);
-                        }
-                    });
-                });
+        notesList.addEventListener('click', async (e) => {
+            if (e.target.classList.contains('view-btn')) {
+                const index = e.target.getAttribute('data-index');
+                const note = state.notes[index];
+                if (note) {
+                    await exportNoteToPdf(note);
+                }
+            } else if (e.target.classList.contains('delete-btn')) {
+                state.noteToDeleteId = e.target.getAttribute('data-id');
+                passwordModal.style.display = 'flex';
+                passwordInput.value = '';
+                passwordError.style.display = 'none';
             }
-        }
-        
-        // Lógica para mostrar y ocultar el modal de contraseña
-        function showPasswordModal() {
-            passwordInput.value = '';
-            passwordError.classList.add('hidden');
-            passwordModal.style.display = 'flex';
-        }
+        });
 
-        // Lógica del botón de confirmar eliminación
         confirmDeleteBtn.addEventListener('click', async () => {
             if (passwordInput.value === CORRECT_PASSWORD) {
-                await deleteNoteFromDB(state.noteToDeleteId);
+                await deleteNoteFromDB(parseInt(state.noteToDeleteId));
                 await loadNotesFromDB();
+                renderNotes();
                 passwordModal.style.display = 'none';
                 showCustomAlert('¡Nota eliminada con éxito!');
             } else {
-                passwordError.classList.remove('hidden');
+                passwordError.style.display = 'block';
             }
         });
 
@@ -433,325 +521,265 @@
             passwordModal.style.display = 'none';
         });
 
-        // *** CAMBIO CLAVE 2: Exportar a PDF con Diseño Estético y Fotos ***
-        exportPdfBtn.addEventListener('click', () => {
-            if (state.notes.length === 0) {
-                showCustomAlert('No hay notas guardadas para exportar.');
+        // *** CAMBIO CLAVE 2: Lógica de Exportación a PDF para todas las notas ***
+        exportPdfBtn.addEventListener('click', async () => {
+            const allNotes = await new Promise(resolve => {
+                const transaction = db.transaction([STORE_NAME], 'readonly');
+                const store = transaction.objectStore(STORE_NAME);
+                const request = store.getAll();
+                request.onsuccess = (e) => resolve(e.target.result);
+                request.onerror = (e) => {
+                    console.error('Error al obtener todas las notas:', e.target.error);
+                    resolve([]);
+                };
+            });
+
+            if (allNotes.length === 0) {
+                alert('No hay notas guardadas para exportar.');
                 return;
             }
-            const noteToExport = state.notes[state.notes.length - 1]; // Exporta la última nota guardada
-            exportToPdf(noteToExport);
-        });
 
-        function exportToPdf(note) {
             const { jsPDF } = window.jspdf;
-            const doc = new jsPDF('p', 'mm', 'a4');
-            const pageWidth = doc.internal.pageSize.getWidth();
-            const margin = 15;
-            let y = 15;
+            const doc = new jsPDF();
+            let y = 10;
+            const margin = 10;
+            const pageHeight = doc.internal.pageSize.height;
 
-            // Header and Title
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(18);
-            doc.text("Reporte de Mantenimiento - Nota #" + note.noteNumber, pageWidth / 2, y, { align: 'center' });
-            y += 10;
+            for (const note of allNotes) {
+                if (y > pageHeight - 40) { // Si queda poco espacio, añadir nueva página
+                    doc.addPage();
+                    y = 10;
+                }
 
-            // General Info
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(10);
-            const generalInfo = [
-                `Entidad: ${note.entity}`,
-                `Fecha: ${note.date} - Hora de inicio: ${note.time}`,
-                `Realizado por: ${note.performedBy}`,
-                `Área: ${note.area}`
-            ];
-            generalInfo.forEach(line => {
-                doc.text(line, margin, y);
-                y += 6;
+                // Título de la nota
+                doc.setFontSize(16);
+                doc.setFont("helvetica", "bold");
+                doc.text(`Nota de Mantenimiento #${note.noteNumber}`, 105, y, null, null, 'center');
+                y += 10;
+
+                // Detalles de la nota con jspdf-autotable
+                const tableData = [
+                    ['Número de Nota', note.noteNumber],
+                    ['Entidad', note.entity],
+                    ['Fecha', note.date],
+                    ['Hora de Inicio', note.time],
+                    ['Realizado por', note.performedBy],
+                    ['Área', note.area],
+                    ['Actividad Realizada', note.activity],
+                    ['Observación', note.observation],
+                    ['Conclusión', note.conclusion],
+                    ['Participantes', note.participants],
+                    ['Nombre de quien firma', note.presentName]
+                ];
+                
+                doc.autoTable({
+                    startY: y,
+                    body: tableData,
+                    theme: 'striped',
+                    styles: { fontSize: 10, cellPadding: 2, overflow: 'linebreak', tableWidth: 'auto' },
+                    columnStyles: { 0: { fontStyle: 'bold' } }
+                });
+
+                y = doc.autoTable.previous.finalY + 10;
+
+                // Si hay firma, añadirla
+                if (note.signature) {
+                    const signatureImg = new Image();
+                    signatureImg.src = note.signature;
+                    const imgHeight = (signatureImg.height * 50) / signatureImg.width;
+                    if (y + imgHeight > pageHeight - 20) {
+                        doc.addPage();
+                        y = 10;
+                    }
+                    doc.setFontSize(12);
+                    doc.setFont("helvetica", "normal");
+                    doc.text("Firma:", margin, y);
+                    y += 5;
+                    doc.addImage(note.signature, 'PNG', margin, y, 50, imgHeight);
+                    y += imgHeight + 10;
+                }
+                
+                y += 20; // Espacio entre notas
+
+                if (y > pageHeight - 40 && allNotes.indexOf(note) < allNotes.length - 1) {
+                    doc.addPage();
+                    y = 10;
+                }
+            }
+
+            doc.save('Todas_las_actas.pdf');
+            showCustomAlert('¡PDF de actas exportado con éxito!');
+        });
+        
+        // *** CAMBIO CLAVE 3: Lógica de Exportación a PDF para todas las fotos ***
+        exportImagesPdfBtn.addEventListener('click', async () => {
+            const allNotes = await new Promise(resolve => {
+                const transaction = db.transaction([STORE_NAME], 'readonly');
+                const store = transaction.objectStore(STORE_NAME);
+                const request = store.getAll();
+                request.onsuccess = (e) => resolve(e.target.result);
+                request.onerror = (e) => {
+                    console.error('Error al obtener todas las notas:', e.target.error);
+                    resolve([]);
+                };
             });
-            y += 5;
 
-            // Table Header
-            const tableHeaders = [["Campo", "Descripción"]];
+            if (allNotes.length === 0) {
+                alert('No hay fotos guardadas para exportar.');
+                return;
+            }
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            let y = 10;
+            const margin = 10;
+            const pageHeight = doc.internal.pageSize.height;
+            const imgWidth = 180;
+
+            let firstPage = true;
+
+            for (const note of allNotes) {
+                if (note.photos && note.photos.length > 0) {
+                    if (!firstPage) {
+                        doc.addPage();
+                        y = 10;
+                    }
+                    firstPage = false;
+                    
+                    doc.setFontSize(16);
+                    doc.setFont("helvetica", "bold");
+                    doc.text(`Fotos de la Nota #${note.noteNumber}`, 105, y, null, null, 'center');
+                    y += 10;
+
+                    for (const photo of note.photos) {
+                        if (y > pageHeight - 50) {
+                            doc.addPage();
+                            y = 10;
+                        }
+
+                        const photoImg = new Image();
+                        photoImg.src = photo.src;
+                        
+                        // Esperar a que la imagen se cargue
+                        await new Promise(resolve => photoImg.onload = resolve);
+                        
+                        const imgHeight = (photoImg.height * imgWidth) / photoImg.width;
+                        
+                        doc.addImage(photo.src, 'PNG', margin, y, imgWidth, imgHeight);
+                        y += imgHeight + 5;
+                        
+                        if (photo.date) {
+                            doc.setFontSize(10);
+                            doc.setFont("helvetica", "normal");
+                            doc.text(`Fecha y Hora: ${photo.date}`, margin, y);
+                            y += 10;
+                        }
+                    }
+                    y += 10; // Espacio entre grupos de fotos
+                }
+            }
+
+            if (firstPage) {
+                alert('No hay fotos para exportar.');
+                return;
+            }
+
+            doc.save('Todas_las_fotos.pdf');
+            showCustomAlert('¡PDF de fotos exportado con éxito!');
+        });
+        
+        // Función para exportar una sola nota (botón "Ver")
+        async function exportNoteToPdf(note) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            let y = 10;
+            const margin = 10;
+            const pageHeight = doc.internal.pageSize.height;
+            const imgWidth = 180;
+            const logo = state.selectedEntity === 'E.S.E SaludYa Yacuanquer-Nariño' ? LOGO_ESE : LOGO_ALCALDIA;
+            
+            if (logo) {
+                doc.addImage(logo, 'PNG', 10, 10, 20, 20);
+            }
+            
+            doc.setFontSize(18);
+            doc.setFont("helvetica", "bold");
+            doc.text("Acta de Mantenimiento", 105, 20, null, null, 'center');
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "normal");
+            doc.text(state.selectedEntity, 105, 27, null, null, 'center');
+            y = 40;
+
             const tableData = [
-                ["Actividad Realizada", note.activity],
-                ["Observación", note.observation],
-                ["Conclusión", note.conclusion],
-                ["Participantes", note.participants],
-                ["Persona que Firma", note.presentName]
+                ['Número de Nota', note.noteNumber],
+                ['Fecha', note.date],
+                ['Hora de Inicio', note.time],
+                ['Realizado por', note.performedBy],
+                ['Área', note.area],
+                ['Actividad Realizada', note.activity],
+                ['Observación', note.observation],
+                ['Conclusión', note.conclusion],
+                ['Participantes', note.participants],
+                ['Nombre de quien firma', note.presentName]
             ];
-
+            
             doc.autoTable({
                 startY: y,
-                head: tableHeaders,
                 body: tableData,
                 theme: 'striped',
-                headStyles: { fillColor: [59, 130, 246] },
-                columnStyles: {
-                    0: { fontStyle: 'bold', cellWidth: 40 },
-                    1: { cellWidth: 'auto', minCellWidth: 120 }
-                },
-                didDrawPage: (data) => {
-                    // This is where you'd handle headers/footers on new pages
-                }
+                styles: { fontSize: 10, cellPadding: 2, overflow: 'linebreak', tableWidth: 'auto' },
+                columnStyles: { 0: { fontStyle: 'bold' } }
             });
 
             y = doc.autoTable.previous.finalY + 10;
 
-            // Photos Section
-            const photoHeight = 40; // in mm
-            const photoWidth = 60; // in mm
-            const photoMargin = 5;
-            const photoStartX = (pageWidth - (photoWidth * 3 + photoMargin * 2)) / 2;
-
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(10);
-            doc.text("Fotos de Evidencia", margin, y);
-            y += 5;
-
-            // If photos exist, add them
-            if (note.photos && note.photos.length > 0) {
-                y += 5;
-                let currentX = photoStartX;
-                note.photos.forEach((photo, index) => {
-                    const img = new Image();
-                    img.src = photo.data;
-                    const imgRatio = img.height / img.width;
-                    const finalImgHeight = photoWidth * imgRatio;
-
-                    doc.text(`Foto ${index + 1}: ${photo.date}`, currentX, y);
-                    doc.addImage(img.src, 'JPEG', currentX, y + 2, photoWidth, finalImgHeight > photoHeight ? photoHeight : finalImgHeight);
-                    currentX += photoWidth + photoMargin;
-                });
-                y += photoHeight + 10;
-            } else {
-                doc.text("No hay fotos de evidencia.", margin, y + 5);
-                y += 15;
-            }
-
-            // Signature Section
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(10);
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "bold");
             doc.text("Firma:", margin, y);
-            if (note.signature) {
-                const img = new Image();
-                img.src = note.signature;
-                const sigHeight = 20;
-                const sigWidth = (img.width * sigHeight) / img.height;
-                doc.addImage(img.src, 'PNG', margin + 15, y - 5, sigWidth, sigHeight);
-            }
-            y += 20;
+            y += 5;
+            doc.addImage(note.signature, 'PNG', margin, y, 50, 25);
+            y += 30;
 
-            doc.save(`Reporte_Mantenimiento_Nota_${note.noteNumber}.pdf`);
-        }
+            if (note.photos && note.photos.length > 0) {
+                doc.setFontSize(12);
+                doc.setFont("helvetica", "bold");
+                doc.text("Fotos de Evidencia:", margin, y);
+                y += 5;
 
-        // *** CAMBIO CLAVE 3: Botón de Exportar Fotos a PDF ***
-        exportImagesPdfBtn.addEventListener('click', async () => {
-            const noteNumber = prompt('Por favor, ingresa el número de nota para exportar las fotos:');
-            if (noteNumber) {
-                const note = await findNoteByNumber(noteNumber);
-                if (note && note.photos.length > 0) {
-                    exportPhotosToPdf(note.photos, note.noteNumber);
-                } else {
-                    showCustomAlert('No se encontraron fotos para el número de nota especificado.');
+                for (const photo of note.photos) {
+                    if (y > pageHeight - 50) {
+                        doc.addPage();
+                        y = 10;
+                    }
+                    
+                    const photoImg = new Image();
+                    photoImg.src = photo.src;
+                    
+                    await new Promise(resolve => photoImg.onload = resolve);
+                    
+                    const imgHeight = (photoImg.height * imgWidth) / photoImg.width;
+
+                    doc.addImage(photo.src, 'PNG', margin, y, imgWidth, imgHeight);
+                    y += imgHeight + 5;
+                    
+                    if (photo.date) {
+                        doc.setFontSize(10);
+                        doc.setFont("helvetica", "normal");
+                        doc.text(`Fecha y Hora: ${photo.date}`, margin, y);
+                        y += 10;
+                    }
                 }
             }
-        });
 
-        function exportPhotosToPdf(photos, noteNumber) {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            const pageWidth = doc.internal.pageSize.getWidth();
-            const pageHeight = doc.internal.pageSize.getHeight();
-            const margin = 10;
-            let y = margin;
-            const imgWidth = pageWidth - 2 * margin;
-
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(20);
-            doc.text(`Fotos de Acta #${noteNumber}`, pageWidth / 2, y, { align: 'center' });
-            y += 10;
-
-            photos.forEach((photoData, index) => {
-                const img = new Image();
-                img.src = photoData.data;
-                const imgHeight = (img.height * imgWidth) / img.width;
-
-                if (y + imgHeight + margin > pageHeight) { 
-                    doc.addPage();
-                    y = margin;
-                    doc.text(`Fotos de Acta #${noteNumber} (Cont.)`, pageWidth / 2, y, { align: 'center' });
-                    y += 10;
-                }
-                
-                doc.addImage(img.src, 'JPEG', margin, y, imgWidth, imgHeight);
-                y += imgHeight;
-
-                doc.setFontSize(10);
-                doc.setFont('helvetica', 'normal');
-                doc.text(`Foto ${index + 1}: ${photoData.date}`, margin, y + 4);
-                y += 10; // Space for text and between photos
-            });
-            doc.save(`Fotos_Acta_${noteNumber}.pdf`);
-        }
-
-        // --- Resto de las funciones (se mantienen sin cambios importantes) ---
-        function showCustomAlert(message) {
-            customAlert.textContent = message;
-            customAlert.style.display = 'block';
-        }
-
-        // --- Signature Pad Logic ---
-        function setupCanvas(canvas, context) {
-            let rect = canvas.getBoundingClientRect();
-            canvas.width = rect.width;
-            canvas.height = rect.height;
-            context.lineCap = 'round';
-            context.lineWidth = 2;
-            context.strokeStyle = '#000';
-        }
-
-        function draw(e, canvas, context) {
-            if (!state.isDrawing) return;
-            e.preventDefault();
-            const rect = canvas.getBoundingClientRect();
-            const x = (e.clientX || (e.touches[0] && e.touches[0].clientX)) - rect.left;
-            const y = (e.clientY || (e.touches[0] && e.touches[0].clientY)) - rect.top;
-            context.beginPath();
-            context.moveTo(state.lastX, state.lastY);
-            context.lineTo(x, y);
-            context.stroke();
-            [state.lastX, state.lastY] = [x, y];
-        }
-
-        function startDrawing(e, canvas) {
-            state.isDrawing = true;
-            const rect = canvas.getBoundingClientRect();
-            [state.lastX, state.lastY] = [(e.clientX || (e.touches[0] && e.touches[0].clientX)) - rect.left, (e.clientY || (e.touches[0] && e.touches[0].clientY)) - rect.top];
-        }
-
-        function stopDrawing() {
-            state.isDrawing = false;
+            doc.save(`acta_${note.noteNumber}.pdf`);
         }
         
-        function isCanvasEmpty(canvas) {
-            const blank = document.createElement('canvas');
-            blank.width = canvas.width;
-            blank.height = canvas.height;
-            return canvas.toDataURL() === blank.toDataURL();
-        }
-
-        // Initial setup for main canvas
-        setupCanvas(signatureCanvas, ctx);
-        signatureCanvas.addEventListener('mousedown', (e) => startDrawing(e, signatureCanvas));
-        signatureCanvas.addEventListener('touchstart', (e) => startDrawing(e, signatureCanvas));
-        signatureCanvas.addEventListener('mousemove', (e) => draw(e, signatureCanvas, ctx));
-        signatureCanvas.addEventListener('touchmove', (e) => draw(e, signatureCanvas, ctx));
-        signatureCanvas.addEventListener('mouseup', stopDrawing);
-        signatureCanvas.addEventListener('touchend', stopDrawing);
-        signatureCanvas.addEventListener('mouseout', stopDrawing);
-
-        // Clear signature button
-        document.getElementById('clearSignatureBtn').addEventListener('click', () => {
-            ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
-        });
-
-        // Fullscreen signature modal
-        document.getElementById('fullscreenSignBtn').addEventListener('click', () => {
-            signatureModal.style.display = 'flex';
-            mainApp.style.display = 'none';
-            setupCanvas(signatureModalCanvas, modalCtx);
-        });
-
-        saveModalBtn.addEventListener('click', () => {
-            if (!isCanvasEmpty(signatureModalCanvas)) {
-                ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
-                ctx.drawImage(signatureModalCanvas, 0, 0, signatureCanvas.width, signatureCanvas.height);
-            }
-            signatureModal.style.display = 'none';
-            mainApp.style.display = 'block';
-            modalCtx.clearRect(0, 0, signatureModalCanvas.width, signatureModalCanvas.height);
-        });
-
-        clearModalBtn.addEventListener('click', () => {
-            modalCtx.clearRect(0, 0, signatureModalCanvas.width, signatureModalCanvas.height);
-        });
-        
-        cancelModalBtn.addEventListener('click', () => {
-            signatureModal.style.display = 'none';
-            mainApp.style.display = 'block';
-            modalCtx.clearRect(0, 0, signatureModalCanvas.width, signatureModalCanvas.height);
-        });
-
-        // Event listeners for modal canvas
-        signatureModalCanvas.addEventListener('mousedown', (e) => startDrawing(e, signatureModalCanvas));
-        signatureModalCanvas.addEventListener('touchstart', (e) => startDrawing(e, signatureModalCanvas));
-        signatureModalCanvas.addEventListener('mousemove', (e) => draw(e, signatureModalCanvas, modalCtx));
-        signatureModalCanvas.addEventListener('touchmove', (e) => draw(e, signatureModalCanvas, modalCtx));
-        signatureModalCanvas.addEventListener('mouseup', stopDrawing);
-        signatureModalCanvas.addEventListener('touchend', stopDrawing);
-        signatureModalCanvas.addEventListener('mouseout', stopDrawing);
-
-        // --- Photo upload logic ---
-        photoFields.forEach((field, index) => {
-            field.addBtn.addEventListener('click', () => {
-                field.input.click();
-            });
-
-            field.removeBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                field.preview.src = '#';
-                field.preview.style.display = 'none';
-                field.date.style.display = 'none';
-                field.placeholder.style.display = 'block';
-                field.removeBtn.style.display = 'none';
-                field.input.value = null; // Clear input field
-                field.addBtn.textContent = `Añadir Foto ${index + 1}`;
-            });
-
-            field.input.addEventListener('change', (e) => {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (event) => {
-                        field.preview.src = event.target.result;
-                        field.preview.style.display = 'block';
-                        field.placeholder.style.display = 'none';
-                        field.removeBtn.style.display = 'block';
-                        field.addBtn.textContent = `Cambiar Foto ${index + 1}`;
-                        
-                        const now = new Date();
-                        const dateText = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`;
-                        field.date.textContent = dateText;
-                        field.date.style.display = 'block';
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-        });
-        
-        // --- Entity Selection Logic ---
-        function updateEntitySelection(selected) {
-            if (selected === 'ese') {
-                state.selectedEntity = 'E.S.E SaludYa Yacuanquer-Nariño';
-                eseBtn.classList.add('bg-blue-500', 'text-white');
-                eseBtn.classList.remove('bg-gray-300', 'text-gray-800');
-                alcaldiaBtn.classList.add('bg-gray-300', 'text-gray-800');
-                alcaldiaBtn.classList.remove('bg-blue-500', 'text-white');
-            } else {
-                state.selectedEntity = 'Alcaldía Yacuanquer-Nariño';
-                alcaldiaBtn.classList.add('bg-blue-500', 'text-white');
-                alcaldiaBtn.classList.remove('bg-gray-300', 'text-gray-800');
-                eseBtn.classList.add('bg-gray-300', 'text-gray-800');
-                eseBtn.classList.remove('bg-blue-500', 'text-white');
-            }
-        }
-        
-        eseBtn.addEventListener('click', () => updateEntitySelection('ese'));
-        alcaldiaBtn.addEventListener('click', () => updateEntitySelection('alcaldia'));
-
-        // Set initial date
-        document.getElementById('date').valueAsDate = new Date();
+        // Iniciar la app
+        window.onload = async () => {
+            await openDatabase();
+            await loadNotesFromDB();
+            renderNotes();
+        };
     </script>
 </body>
 </html>
