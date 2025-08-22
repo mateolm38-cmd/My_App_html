@@ -301,7 +301,7 @@
 
     <!-- Full-screen signature modal -->
     <div id="signature-modal">
-        <div class="bg-white p-4 rounded-lg shadow-xl w-11/12 max-w-lg text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-500">
+        <div class="bg-white p-4 rounded-lg shadow-xl w-11/12 max-w-lg text-center">
             <h3 class="text-xl font-bold text-gray-800 mb-4">Firmar aquí</h3>
             <canvas id="signature-modal-canvas" class="w-full h-80 rounded-md mb-4"></canvas>
             <div class="flex justify-center space-x-4">
@@ -337,7 +337,6 @@
             lastY: 0,
             selectedEntity: 'E.S.E SaludYa Yacuanquer-Nariño', // Default initial value
             noteToDeleteIndex: null, // To store the index of the note to be deleted
-            isRotated: false, // New state variable for signature modal
         };
 
         // DOM element references
@@ -412,54 +411,19 @@
         }
 
         // Initial canvas setup for signatures
-        function setupCanvas() {
-            const rect = signatureCanvas.getBoundingClientRect();
-            signatureCanvas.width = rect.width * scale;
-            signatureCanvas.height = rect.height * scale;
-            ctx.scale(scale, scale);
+        function setupCanvas(canvas) {
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            const ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
             ctx.lineJoin = 'round';
             ctx.lineCap = 'round';
             ctx.lineWidth = 3;
             ctx.strokeStyle = '#000000';
-            ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
-
-        // Full-screen signature modal setup
-        function setupModalCanvas() {
-            const dpr = window.devicePixelRatio || 1;
-            signatureModalCanvas.width = signatureModal.clientWidth * dpr;
-            signatureModalCanvas.height = signatureModal.clientHeight * dpr;
-            modalCtx.scale(dpr, dpr);
-            modalCtx.lineJoin = 'round';
-            modalCtx.lineCap = 'round';
-            modalCtx.lineWidth = 4;
-            modalCtx.strokeStyle = '#000000';
-            modalCtx.clearRect(0, 0, signatureModalCanvas.width, signatureModalCanvas.height);
-        }
-
-        // Handle full-screen signature mode
-        function enterSignatureMode() {
-            signatureModal.style.display = 'flex';
-            mainApp.style.display = 'none';
-            
-            // Wait for the modal to be visible before setting up the canvas
-            setTimeout(() => {
-                setupModalCanvas();
-                if (!isCanvasEmpty(signatureCanvas)) {
-                    const img = new Image();
-                    img.onload = () => {
-                        modalCtx.drawImage(img, 0, 0, signatureModalCanvas.width, signatureModalCanvas.height);
-                    };
-                    img.src = signatureCanvas.toDataURL('image/png');
-                }
-            }, 50);
-        }
-
-        function exitSignatureMode() {
-            signatureModal.style.display = 'none';
-            mainApp.style.display = 'block';
-        }
-
 
         // Universal drawing function
         function draw(e, canvas, context) {
@@ -478,6 +442,7 @@
                 clientY = e.clientY;
             }
             
+            // Calculate coordinates relative to the canvas
             let x = clientX - rect.left;
             let y = clientY - rect.top;
             
@@ -506,6 +471,7 @@
                 clientY = e.clientY;
             }
 
+            // Set the starting point relative to the canvas
             state.lastX = clientX - rect.left;
             state.lastY = clientY - rect.top;
         }
@@ -533,6 +499,31 @@
         signatureModalCanvas.addEventListener('touchstart', (e) => startDrawing(e, signatureModalCanvas, modalCtx), { passive: false });
         signatureModalCanvas.addEventListener('touchmove', (e) => draw(e, signatureModalCanvas, modalCtx), { passive: false });
         signatureModalCanvas.addEventListener('touchend', stopDrawing);
+
+
+        // Handle full-screen signature mode
+        function enterSignatureMode() {
+            signatureModal.style.display = 'flex';
+            mainApp.style.display = 'none';
+            
+            // Set up modal canvas after it's visible to get correct dimensions
+            setTimeout(() => {
+                setupCanvas(signatureModalCanvas);
+                // Draw existing signature to the modal canvas
+                if (!isCanvasEmpty(signatureCanvas)) {
+                    const img = new Image();
+                    img.onload = () => {
+                        modalCtx.drawImage(img, 0, 0, signatureModalCanvas.width / window.devicePixelRatio, signatureModalCanvas.height / window.devicePixelRatio);
+                    };
+                    img.src = signatureCanvas.toDataURL('image/png');
+                }
+            }, 50);
+        }
+
+        function exitSignatureMode() {
+            signatureModal.style.display = 'none';
+            mainApp.style.display = 'block';
+        }
 
         // Function to clear the signature on the preview canvas
         function clearSignature() {
@@ -1050,7 +1041,7 @@
 
         // Initialize the app
         window.addEventListener('load', () => {
-            setupCanvas();
+            setupCanvas(signatureCanvas);
             loadNotes();
             renderNotes();
             updateEntityButtons();
@@ -1058,10 +1049,10 @@
 
         // Resize canvas on window resize
         window.addEventListener('resize', () => {
-            setupCanvas();
+            setupCanvas(signatureCanvas);
             // Also resize modal canvas if it's visible
             if (signatureModal.style.display === 'flex') {
-                setupModalCanvas();
+                setupCanvas(signatureModalCanvas);
             }
         });
     </script>
