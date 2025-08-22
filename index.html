@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notas de Mantenimiento</title>
-    <!-- Tailwind CSS CDN for a modern and responsive look -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- jsPDF to generate PDF files -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <!-- jsPDF-Autotable to create tables in the PDF -->
     <script src="https://unpkg.com/jspdf-autotable@3.5.25/dist/jspdf.plugin.autotable.js"></script>
-    <!-- Inter font for a clean design -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -128,14 +124,11 @@
 </head>
 <body class="bg-gray-100 p-4 min-h-screen flex items-center justify-center">
 
-    <!-- Custom Alert Box -->
     <div id="customAlert" class="custom-alert"></div>
 
-    <!-- Main application container -->
     <div id="main-app" class="bg-white p-6 rounded-3xl shadow-2xl w-full container">
         <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">📝 Notas de Mantenimiento</h1>
         
-        <!-- Entity selection container -->
         <div class="mb-6 text-center">
             <h2 class="text-xl font-semibold text-gray-700 mb-2">Seleccione la Entidad</h2>
             <div class="inline-flex rounded-lg shadow-sm" role="group">
@@ -148,20 +141,16 @@
             </div>
         </div>
 
-        <!-- Annotation form -->
         <form id="noteForm" class="space-y-4">
-            <!-- Form section title -->
             <div class="border-b border-gray-200 pb-2 mb-4">
                 <h2 class="text-xl font-semibold text-gray-700">Detalles de la Nota</h2>
             </div>
             
-            <!-- Note Number field -->
             <div>
                 <label for="noteNumber" class="block text-sm font-medium text-gray-700">Número de Nota</label>
                 <input type="text" id="noteNumber" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
             </div>
 
-            <!-- Date and Time fields -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label for="date" class="block text-sm font-medium text-gray-700">Fecha</label>
@@ -173,42 +162,35 @@
                 </div>
             </div>
 
-            <!-- Performed By field -->
             <div>
                 <label for="performedBy" class="block text-sm font-medium text-gray-700">Realizado por</label>
                 <input type="text" id="performedBy" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
             </div>
 
-            <!-- Area field -->
             <div>
                 <label for="area" class="block text-sm font-medium text-gray-700">Área donde se realizó la actividad</label>
                 <input type="text" id="area" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
             </div>
 
-            <!-- Activity field -->
             <div>
                 <label for="activity" class="block text-sm font-medium text-gray-700">Actividad Realizada</label>
                 <textarea id="activity" rows="3" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"></textarea>
             </div>
 
-            <!-- Observation field -->
             <div>
                 <label for="observation" class="block text-sm font-medium text-gray-700">Observación</label>
                 <textarea id="observation" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"></textarea>
             </div>
 
-            <!-- Conclusion field -->
             <div>
                 <label for="conclusion" class="block text-sm font-medium text-gray-700">Conclusión</label>
                 <textarea id="conclusion" rows="3" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"></textarea>
             </div>
             
-            <!-- Photo Uploads Section -->
             <div class="border-b border-gray-200 pb-2 pt-4 mb-4">
                 <h2 class="text-xl font-semibold text-gray-700">Fotos de Evidencia</h2>
             </div>
 
-            <!-- Photo Field 1 -->
             <div class="photo-field">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Foto 1</label>
                 <div class="photo-preview-container">
@@ -220,7 +202,6 @@
                 <input type="file" id="photo1-input" accept="image/*" capture="camera" class="sr-only">
             </div>
 
-            <!-- Photo Field 2 -->
             <div class="photo-field">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Foto 2</label>
                 <div class="photo-preview-container">
@@ -232,7 +213,6 @@
                 <input type="file" id="photo2-input" accept="image/*" capture="camera" class="sr-only">
             </div>
 
-            <!-- Photo Field 3 -->
             <div class="photo-field">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Foto 3</label>
                 <div class="photo-preview-container">
@@ -244,24 +224,20 @@
                 <input type="file" id="photo3-input" accept="image/*" capture="camera" class="sr-only">
             </div>
             
-            <!-- Client Details Section -->
             <div class="border-b border-gray-200 pb-2 pt-4 mb-4">
                 <h2 class="text-xl font-semibold text-gray-700">Detalles del Cliente</h2>
             </div>
 
-            <!-- Participants field -->
             <div>
                 <label for="participants" class="block text-sm font-medium text-gray-700">Participantes</label>
                 <input type="text" id="participants" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
             </div>
             
-            <!-- Name of Signer field -->
             <div>
                 <label for="presentName" class="block text-sm font-medium text-gray-700">Nombre de quién firma</label>
                 <input type="text" id="presentName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
             </div>
 
-            <!-- Signature area -->
             <div class="relative bg-gray-50 p-4 rounded-lg border border-gray-200">
                 <label for="signatureCanvas" class="block text-sm font-medium text-gray-700 mb-2">Firma</label>
                 <canvas id="signatureCanvas" class="signature-canvas w-full h-40 rounded-md"></canvas>
@@ -271,17 +247,14 @@
                 </div>
             </div>
 
-            <!-- Save button -->
             <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform transform hover:scale-105">
                 Guardar Anotación
             </button>
         </form>
 
-        <!-- Container for saved notes list and export button -->
         <div class="mt-8 pt-6 border-t border-gray-200">
             <h2 class="text-xl font-semibold text-gray-700 mb-4">Notas Guardadas</h2>
             
-            <!-- Export buttons -->
             <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
                 <button id="exportPdfBtn" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-xl hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-transform transform hover:scale-105">
                     Exportar a PDF
@@ -291,19 +264,16 @@
                 </button>
             </div>
             
-            <!-- Saved notes list -->
             <div id="notesList" class="space-y-4">
-                <!-- Notes will be rendered here -->
                 <p id="noNotesMessage" class="text-center text-gray-500 italic hidden">No hay notas guardadas aún.</p>
             </div>
         </div>
     </div>
 
-    <!-- Full-screen signature modal -->
     <div id="signature-modal">
         <div class="bg-white p-4 rounded-lg shadow-xl w-11/12 max-w-lg text-center">
             <h3 class="text-xl font-bold text-gray-800 mb-4">Firmar aquí</h3>
-            <canvas id="signature-modal-canvas" class="w-full h-80 rounded-md mb-4"></canvas>
+            <canvas id="signature-modal-canvas" class="w-full h-80 rounded-md"></canvas>
             <div class="flex justify-center space-x-4">
                 <button id="save-modal-btn" class="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">Guardar Firma</button>
                 <button id="clear-modal-btn" class="px-6 py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition-colors">Limpiar</button>
@@ -312,8 +282,6 @@
         </div>
     </div>
 
-
-    <!-- Password confirmation modal -->
     <div id="passwordModal" class="modal">
         <div class="bg-white p-6 rounded-xl shadow-2xl max-w-sm w-full text-center">
             <h3 class="text-xl font-bold text-gray-800 mb-4">Confirmar Eliminación</h3>
@@ -327,7 +295,6 @@
         </div>
     </div>
 
-    <!-- Application Script -->
     <script>
         // Global object to store data
         const state = {
@@ -350,11 +317,10 @@
         const eseBtn = document.getElementById('eseBtn');
         const alcaldiaBtn = document.getElementById('alcaldiaBtn');
         const customAlert = document.getElementById('customAlert');
-        
+
         // Original signature canvas (preview)
         const signatureCanvas = document.getElementById('signatureCanvas');
         const ctx = signatureCanvas.getContext('2d');
-        const scale = window.devicePixelRatio;
 
         // New signature modal elements
         const signatureModal = document.getElementById('signature-modal');
@@ -372,7 +338,7 @@
         const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
         const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
         const CORRECT_PASSWORD = '1234';
-        
+
         // Photo field references
         const photoFields = [
             {
@@ -441,11 +407,11 @@
                 clientX = e.clientX;
                 clientY = e.clientY;
             }
-            
+
             // Calculate coordinates relative to the canvas
-            let x = clientX - rect.left;
-            let y = clientY - rect.top;
-            
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
+
             context.beginPath();
             context.moveTo(state.lastX, state.lastY);
             context.lineTo(x, y);
@@ -456,12 +422,12 @@
         }
 
         // Universal start drawing function
-        function startDrawing(e, canvas, context) {
+        function startDrawing(e, canvas) {
             e.preventDefault();
             state.isDrawing = true;
             const rect = canvas.getBoundingClientRect();
             let clientX, clientY;
-            
+
             if (e.type.includes('touch')) {
                 const touch = e.touches[0];
                 clientX = touch.clientX;
@@ -481,6 +447,14 @@
             state.isDrawing = false;
         }
 
+        // Function to check if a canvas is empty
+        function isCanvasEmpty(canvas) {
+            const blank = document.createElement('canvas');
+            blank.width = canvas.width;
+            blank.height = canvas.height;
+            return canvas.toDataURL() === blank.toDataURL();
+        }
+
 
         // Original canvas events (preview)
         signatureCanvas.addEventListener('mousedown', (e) => startDrawing(e, signatureCanvas, ctx));
@@ -492,28 +466,26 @@
         signatureCanvas.addEventListener('touchend', stopDrawing);
 
         // Modal canvas events (full-screen)
-        signatureModalCanvas.addEventListener('mousedown', (e) => startDrawing(e, signatureModalCanvas, modalCtx));
+        signatureModalCanvas.addEventListener('mousedown', (e) => startDrawing(e, signatureModalCanvas));
         signatureModalCanvas.addEventListener('mousemove', (e) => draw(e, signatureModalCanvas, modalCtx));
         signatureModalCanvas.addEventListener('mouseup', stopDrawing);
         signatureModalCanvas.addEventListener('mouseout', stopDrawing);
-        signatureModalCanvas.addEventListener('touchstart', (e) => startDrawing(e, signatureModalCanvas, modalCtx), { passive: false });
+        signatureModalCanvas.addEventListener('touchstart', (e) => startDrawing(e, signatureModalCanvas), { passive: false });
         signatureModalCanvas.addEventListener('touchmove', (e) => draw(e, signatureModalCanvas, modalCtx), { passive: false });
         signatureModalCanvas.addEventListener('touchend', stopDrawing);
-
 
         // Handle full-screen signature mode
         function enterSignatureMode() {
             signatureModal.style.display = 'flex';
             mainApp.style.display = 'none';
-            
             // Set up modal canvas after it's visible to get correct dimensions
             setTimeout(() => {
                 setupCanvas(signatureModalCanvas);
-                // Draw existing signature to the modal canvas
+                // Draw existing signature to the modal canvas if it's not empty
                 if (!isCanvasEmpty(signatureCanvas)) {
                     const img = new Image();
                     img.onload = () => {
-                        modalCtx.drawImage(img, 0, 0, signatureModalCanvas.width / window.devicePixelRatio, signatureModalCanvas.height / window.devicePixelRatio);
+                        modalCtx.drawImage(img, 0, 0, signatureModalCanvas.width / (window.devicePixelRatio || 1), signatureModalCanvas.height / (window.devicePixelRatio || 1));
                     };
                     img.src = signatureCanvas.toDataURL('image/png');
                 }
@@ -542,16 +514,15 @@
 
         saveModalBtn.addEventListener('click', () => {
             const signatureData = signatureModalCanvas.toDataURL('image/png');
+            const dpr = window.devicePixelRatio || 1;
             // Draw the signature from the modal onto the main canvas
             const img = new Image();
             img.onload = () => {
                 clearSignature(); // Clear the preview canvas first
-                const imgWidth = signatureCanvas.width / scale;
-                const imgHeight = signatureCanvas.height / scale;
-                ctx.drawImage(img, 0, 0, imgWidth, imgHeight);
+                // Draw the image scaled down for the preview canvas
+                ctx.drawImage(img, 0, 0, signatureCanvas.width / dpr, signatureCanvas.height / dpr);
             };
             img.src = signatureData;
-            
             showCustomAlert('¡Firma guardada en la vista previa!');
             exitSignatureMode();
         });
@@ -650,160 +621,217 @@
         // Function to show the confirmation modal
         function showPasswordModal(index) {
             state.noteToDeleteIndex = index;
-            passwordModal.style.display = 'flex';
             passwordInput.value = '';
             passwordError.classList.add('hidden');
-            passwordInput.focus();
+            passwordModal.style.display = 'flex';
         }
 
-        // Modal confirmation button handler
+        // Event listener for password confirmation
         confirmDeleteBtn.addEventListener('click', () => {
             if (passwordInput.value === CORRECT_PASSWORD) {
-                deleteNote(state.noteToDeleteIndex);
+                if (state.noteToDeleteIndex !== null) {
+                    state.notes.splice(state.noteToDeleteIndex, 1);
+                    saveNotes();
+                    renderNotes();
+                    showCustomAlert('¡Nota eliminada exitosamente!');
+                }
                 passwordModal.style.display = 'none';
                 state.noteToDeleteIndex = null;
-                showCustomAlert('¡Nota eliminada con éxito!');
             } else {
                 passwordError.classList.remove('hidden');
+                passwordInput.value = '';
             }
         });
 
-        // Modal cancel button handler
+        // Event listener for password modal cancellation
         cancelDeleteBtn.addEventListener('click', () => {
             passwordModal.style.display = 'none';
             state.noteToDeleteIndex = null;
         });
 
-        // Function to delete a note
-        function deleteNote(index) {
-            state.notes.splice(index, 1);
-            saveNotes();
-            renderNotes();
+        // Function to generate a formatted date string for photos
+        function getFormattedDateTime() {
+            const now = new Date();
+            const date = now.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+            const time = now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+            return `${date} - ${time}`;
         }
 
-        // Function to view a note and pre-fill the form
-        function viewNote(index) {
-            const note = state.notes[index];
-            document.getElementById('noteNumber').value = note.noteNumber;
-            document.getElementById('date').value = note.date;
-            document.getElementById('time').value = note.time;
-            document.getElementById('performedBy').value = note.performedBy;
-            document.getElementById('area').value = note.area;
-            document.getElementById('activity').value = note.activity;
-            document.getElementById('observation').value = note.observation;
-            document.getElementById('conclusion').value = note.conclusion;
-            document.getElementById('participants').value = note.participants;
-            document.getElementById('presentName').value = note.presentName;
-            
-            // Update entity buttons
-            state.selectedEntity = note.entity;
-            updateEntityButtons();
-
-            // Reset and load photos
-            photoFields.forEach(field => {
-                field.preview.src = '';
-                field.preview.style.display = 'none';
-                field.date.style.display = 'none';
-                field.placeholder.style.display = 'block';
-                field.removeBtn.style.display = 'none';
-            });
-
-            if (note.photo1 && note.photo1.dataURL) {
-                photoFields[0].preview.src = note.photo1.dataURL;
-                photoFields[0].preview.style.display = 'block';
-                photoFields[0].date.textContent = note.photo1.date;
-                photoFields[0].date.style.display = 'block';
-                photoFields[0].placeholder.style.display = 'none';
-                photoFields[0].removeBtn.style.display = 'block';
-            }
-            if (note.photo2 && note.photo2.dataURL) {
-                photoFields[1].preview.src = note.photo2.dataURL;
-                photoFields[1].preview.style.display = 'block';
-                photoFields[1].date.textContent = note.photo2.date;
-                photoFields[1].date.style.display = 'block';
-                photoFields[1].placeholder.style.display = 'none';
-                photoFields[1].removeBtn.style.display = 'block';
-            }
-            if (note.photo3 && note.photo3.dataURL) {
-                photoFields[2].preview.src = note.photo3.dataURL;
-                photoFields[2].preview.style.display = 'block';
-                photoFields[2].date.textContent = note.photo3.date;
-                photoFields[2].date.style.display = 'block';
-                photoFields[2].placeholder.style.display = 'none';
-                photoFields[2].removeBtn.style.display = 'block';
-            }
-
-            clearSignature();
-            if (note.signature) {
-                const img = new Image();
-                img.onload = function() {
-                    const imgWidth = signatureCanvas.width / scale;
-                    const imgHeight = signatureCanvas.height / scale;
-                    ctx.drawImage(img, 0, 0, imgWidth, imgHeight);
-                };
-                img.src = note.signature;
-            }
-            showCustomAlert('Nota cargada, puedes previsualizarla o editarla.');
-        }
-        
-        // Function to check if the canvas is empty
-        function isCanvasEmpty(canvas) {
-            const data = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
-            for (let i = 0; i < data.length; i++) {
-                if (data[i] !== 0) {
-                    return false;
-                }
-            }
-            return true;
+        // Function to generate a random ID
+        function generateId() {
+            return Math.random().toString(36).substr(2, 9);
         }
 
-        // Photo file input and remove button listeners
+        // Photo field event listeners
         photoFields.forEach(field => {
-            field.input.addEventListener('change', (e) => {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (event) => {
-                        const date = new Date().toLocaleDateString();
-                        field.preview.src = event.target.result;
-                        field.preview.style.display = 'block';
-                        field.date.textContent = date;
-                        field.date.style.display = 'block';
-                        field.placeholder.style.display = 'none';
-                        field.removeBtn.style.display = 'block';
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-
-            // Handle the click on the preview area to trigger the file input
             field.container.addEventListener('click', () => {
                 field.input.click();
             });
 
             field.removeBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevents the parent from triggering the file input
-                field.input.value = ''; // Clear the input value
+                e.stopPropagation(); // Prevents the container's click event from firing
                 field.preview.src = '';
                 field.preview.style.display = 'none';
-                field.date.textContent = '';
                 field.date.style.display = 'none';
-                field.placeholder.style.display = 'block';
                 field.removeBtn.style.display = 'none';
+                field.placeholder.style.display = 'block';
+                field.input.value = null; // Clear the file input
+            });
+
+            field.input.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        field.preview.src = event.target.result;
+                        field.preview.style.display = 'block';
+                        field.date.textContent = getFormattedDateTime();
+                        field.date.style.display = 'block';
+                        field.removeBtn.style.display = 'block';
+                        field.placeholder.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                }
             });
         });
 
-        // Form handler to save the note
-        noteForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            if (isCanvasEmpty(signatureCanvas)) {
-                showCustomAlert('Por favor, no olvide la firma.');
+        // Function to export to PDF with jsPDF
+        async function exportToPdf(includeImages = true) {
+            if (state.notes.length === 0) {
+                showCustomAlert("¡No hay notas para exportar!");
                 return;
             }
 
-            // Create the note object
-            const newNote = {
+            const doc = new window.jspdf.jsPDF();
+            let y = 10;
+            const margin = 10;
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
+
+            for (const [index, note] of state.notes.entries()) {
+                if (y > pageHeight - 30) {
+                    doc.addPage();
+                    y = 10;
+                }
+
+                // Title and header
+                doc.setFontSize(16);
+                doc.setFont("helvetica", "bold");
+                doc.text(`Nota de Mantenimiento #${note.noteNumber}`, pageWidth / 2, y, { align: 'center' });
+                y += 8;
+                doc.line(margin, y, pageWidth - margin, y);
+                y += 5;
+
+                doc.setFontSize(12);
+                doc.setFont("helvetica", "normal");
+                const lines = [
+                    `Entidad: ${note.entity}`,
+                    `Fecha: ${note.date}`,
+                    `Hora de inicio: ${note.time}`,
+                    `Realizado por: ${note.performedBy}`,
+                    `Área: ${note.area}`,
+                    `Actividad: ${note.activity}`,
+                    `Conclusión: ${note.conclusion}`,
+                    note.observation ? `Observación: ${note.observation}` : '',
+                    `Nombre de quién firma: ${note.presentName}`
+                ].filter(Boolean); // Filter out empty lines
+
+                lines.forEach(line => {
+                    const splitText = doc.splitTextToSize(line, pageWidth - 2 * margin);
+                    doc.text(splitText, margin, y);
+                    y += doc.getTextDimensions(splitText).h + 2;
+                });
+
+                // Add signature image
+                if (note.signature) {
+                    try {
+                        const signatureImg = new Image();
+                        signatureImg.src = note.signature;
+                        await new Promise(resolve => signatureImg.onload = resolve);
+                        const imgWidth = 60;
+                        const imgHeight = (signatureImg.height * imgWidth) / signatureImg.width;
+                        if (y + imgHeight > pageHeight - 10) {
+                            doc.addPage();
+                            y = 10;
+                        }
+                        doc.text("Firma:", margin, y);
+                        doc.addImage(signatureImg, 'PNG', margin, y + 2, imgWidth, imgHeight);
+                        y += imgHeight + 10;
+                    } catch (error) {
+                        console.error("Error loading signature image:", error);
+                    }
+                }
+
+                // Add photos if requested
+                if (includeImages && note.photos && note.photos.length > 0) {
+                    doc.text("Fotos de evidencia:", margin, y);
+                    y += 5;
+
+                    for (const photo of note.photos) {
+                        if (y + 50 > pageHeight) { // Check if new page is needed for a photo
+                            doc.addPage();
+                            y = 10;
+                        }
+                        try {
+                            const photoImg = new Image();
+                            photoImg.src = photo.src;
+                            await new Promise(resolve => photoImg.onload = resolve);
+                            const photoWidth = pageWidth - 2 * margin;
+                            const photoHeight = (photoImg.height * photoWidth) / photoImg.width;
+
+                            if (y + photoHeight + 10 > pageHeight) {
+                                doc.addPage();
+                                y = 10;
+                            }
+
+                            doc.addImage(photoImg, 'JPEG', margin, y, photoWidth, photoHeight);
+                            doc.setFontSize(10);
+                            doc.text(photo.date, margin, y + photoHeight + 4);
+                            y += photoHeight + 10;
+
+                        } catch (error) {
+                            console.error("Error loading image:", error);
+                        }
+                    }
+                }
+
+                // Add a line break if it's not the last note
+                if (index < state.notes.length - 1) {
+                    doc.line(margin, y, pageWidth - margin, y);
+                    y += 5;
+                }
+            }
+
+            doc.save("Notas_Mantenimiento.pdf");
+        }
+
+        exportPdfBtn.addEventListener('click', () => exportToPdf(false));
+        exportImagesPdfBtn.addEventListener('click', () => exportToPdf(true));
+
+        // Function to handle form submission
+        noteForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Check if the signature canvas is empty
+            if (isCanvasEmpty(signatureCanvas)) {
+                showCustomAlert("Por favor, firme en el recuadro.");
+                return;
+            }
+
+            // Get photo data, including a timestamp
+            const photos = photoFields.map(field => {
+                if (field.preview.src && field.preview.style.display !== 'none') {
+                    return {
+                        src: field.preview.src,
+                        date: field.date.textContent,
+                    };
+                }
+                return null;
+            }).filter(Boolean); // Filter out null values
+
+            const note = {
+                id: generateId(), // Unique ID for each note
+                entity: state.selectedEntity,
                 noteNumber: document.getElementById('noteNumber').value,
                 date: document.getElementById('date').value,
                 time: document.getElementById('time').value,
@@ -812,245 +840,111 @@
                 activity: document.getElementById('activity').value,
                 observation: document.getElementById('observation').value,
                 conclusion: document.getElementById('conclusion').value,
-                participants: document.getElementById('participants').value,
                 presentName: document.getElementById('presentName').value,
-                signature: signatureCanvas.toDataURL('image/png'),
-                entity: state.selectedEntity, // Add entity to the note
-                photo1: photoFields[0].preview.src ? { dataURL: photoFields[0].preview.src, date: photoFields[0].date.textContent } : null,
-                photo2: photoFields[1].preview.src ? { dataURL: photoFields[1].preview.src, date: photoFields[1].date.textContent } : null,
-                photo3: photoFields[2].preview.src ? { dataURL: photoFields[2].preview.src, date: photoFields[2].date.textContent } : null,
+                signature: signatureCanvas.toDataURL('image/png'), // Save signature as data URL
+                photos: photos,
             };
 
-            state.notes.push(newNote); // Add the new note to the array
-            saveNotes(); // Save the updated array
-            renderNotes(); // Update the list on the interface
-            noteForm.reset(); // Clear the form
-            clearSignature(); // Clear the signature canvas
-            
-            // Clear photo previews
+            state.notes.push(note);
+            saveNotes();
+            renderNotes();
+            noteForm.reset();
+            clearSignature();
+            clearModalSignature();
             photoFields.forEach(field => {
                 field.preview.src = '';
                 field.preview.style.display = 'none';
-                field.date.textContent = '';
                 field.date.style.display = 'none';
-                field.placeholder.style.display = 'block';
                 field.removeBtn.style.display = 'none';
+                field.placeholder.style.display = 'block';
             });
-            showCustomAlert('¡Anotación guardada con éxito!');
+
+            showCustomAlert('¡Nota guardada exitosamente!');
         });
 
-        // Function to generate and export the PDF
-        exportPdfBtn.addEventListener('click', () => {
-            if (state.notes.length === 0) {
-                showCustomAlert('No hay notas para exportar.');
-                return;
-            }
-            
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF('p', 'pt', 'a4');
+        // Function to view a saved note
+        function viewNote(index) {
+            const note = state.notes[index];
+            if (!note) return;
+
+            // Create a new PDF and display it or open in a new window/tab
+            const doc = new window.jspdf.jsPDF();
+            let y = 10;
+            const margin = 10;
             const pageWidth = doc.internal.pageSize.getWidth();
             const pageHeight = doc.internal.pageSize.getHeight();
-            let y = 40;
 
-            const loadingMessage = document.createElement('div');
-            loadingMessage.textContent = 'Generando PDF...';
-            loadingMessage.classList.add('text-center', 'text-gray-500', 'font-semibold', 'italic', 'my-4');
-            document.body.appendChild(loadingMessage);
+            // Re-use PDF generation logic for a single note
+            doc.setFontSize(16);
+            doc.setFont("helvetica", "bold");
+            doc.text(`Nota de Mantenimiento #${note.noteNumber}`, pageWidth / 2, y, { align: 'center' });
+            y += 8;
+            doc.line(margin, y, pageWidth - margin, y);
+            y += 5;
 
-            state.notes.forEach((note, index) => {
-                if (index > 0) {
-                    doc.addPage();
-                    y = 40;
-                }
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "normal");
+            const lines = [
+                `Entidad: ${note.entity}`,
+                `Fecha: ${note.date}`,
+                `Hora de inicio: ${note.time}`,
+                `Realizado por: ${note.performedBy}`,
+                `Área: ${note.area}`,
+                `Actividad: ${note.activity}`,
+                `Conclusión: ${note.conclusion}`,
+                note.observation ? `Observación: ${note.observation}` : '',
+                `Nombre de quién firma: ${note.presentName}`
+            ].filter(Boolean);
 
-                doc.setFontSize(22);
-                doc.setTextColor(51, 51, 51);
-                doc.text(`Reporte de Mantenimiento - Nota #${note.noteNumber}`, pageWidth / 2, y, { align: 'center' });
-                y += 30;
-
-                doc.setFontSize(14);
-                doc.setTextColor(102, 102, 102);
-                doc.text(`Entidad: ${note.entity}`, 40, y);
-                y += 20;
-                doc.text(`Fecha: ${note.date} - Hora de inicio: ${note.time}`, 40, y);
-                y += 20;
-                doc.text(`Realizado por: ${note.performedBy}`, 40, y);
-                y += 20;
-                doc.text(`Área: ${note.area}`, 40, y);
-                y += 20;
-
-
-                doc.setFontSize(12);
-                doc.setTextColor(51, 51, 51);
-                
-                const tableData = [
-                    ['Actividad Realizada', note.activity],
-                    ['Observación', note.observation || 'N/A'],
-                    ['Conclusión', note.conclusion],
-                    ['Participantes', note.participants || 'N/A'],
-                    ['Persona que Firma', note.presentName]
-                ];
-
-                doc.autoTable({
-                    startY: y + 10,
-                    head: [['Campo', 'Descripción']],
-                    body: tableData,
-                    styles: {
-                        font: 'Inter',
-                        cellPadding: 8,
-                        fontSize: 10,
-                        valign: 'middle',
-                        halign: 'left'
-                    },
-                    headStyles: {
-                        fillColor: [59, 130, 246],
-                        textColor: 255,
-                        fontStyle: 'bold'
-                    },
-                    alternateRowStyles: {
-                        fillColor: [243, 244, 246]
-                    },
-                    didDrawPage: function (data) {
-                        doc.text('© Anotaciones de Mantenimiento', data.settings.margin.left, doc.internal.pageSize.height - 10);
-                    }
-                });
-                
-                let finalY = doc.autoTable.previous.finalY;
-
-                // Set fixed image dimensions and spacing for side-by-side placement
-                const imgWidth = 150;
-                const imgHeight = 100;
-                const imgMargin = 10;
-                let currentX = 40;
-                let imagesAdded = false;
-
-                // Add photos side-by-side
-                if (note.photo1 && note.photo1.dataURL) {
-                    if (finalY + 120 > pageHeight) {
-                        doc.addPage();
-                        finalY = 40;
-                    }
-                    doc.setFontSize(10);
-                    doc.text(`Foto 1: ${note.photo1.date}`, currentX, finalY + 15);
-                    doc.addImage(note.photo1.dataURL, 'PNG', currentX, finalY + 20, imgWidth, imgHeight);
-                    currentX += imgWidth + imgMargin;
-                    imagesAdded = true;
-                }
-
-                if (note.photo2 && note.photo2.dataURL) {
-                    if (finalY + 120 > pageHeight) {
-                        doc.addPage();
-                        finalY = 40;
-                        currentX = 40; // Reset X position on a new page
-                    }
-                    doc.setFontSize(10);
-                    doc.text(`Foto 2: ${note.photo2.date}`, currentX, finalY + 15);
-                    doc.addImage(note.photo2.dataURL, 'PNG', currentX, finalY + 20, imgWidth, imgHeight);
-                    currentX += imgWidth + imgMargin;
-                    imagesAdded = true;
-                }
-
-                if (note.photo3 && note.photo3.dataURL) {
-                    if (finalY + 120 > pageHeight) {
-                        doc.addPage();
-                        finalY = 40;
-                        currentX = 40; // Reset X position on a new page
-                    }
-                    doc.setFontSize(10);
-                    doc.text(`Foto 3: ${note.photo3.date}`, currentX, finalY + 15);
-                    doc.addImage(note.photo3.dataURL, 'PNG', currentX, finalY + 20, imgWidth, imgHeight);
-                    imagesAdded = true;
-                }
-                
-                if (imagesAdded) {
-                    finalY += imgHeight + 40; // Add space below photos
-                }
-                
-                // Add signature
-                if (note.signature) {
-                    if (finalY + 120 > pageHeight) {
-                        doc.addPage();
-                        finalY = 40;
-                    }
-                    doc.setFontSize(14);
-                    doc.text('Firma:', 40, finalY + 20);
-                    doc.addImage(note.signature, 'PNG', 40, finalY + 30, 200, 80);
-                }
+            lines.forEach(line => {
+                const splitText = doc.splitTextToSize(line, pageWidth - 2 * margin);
+                doc.text(splitText, margin, y);
+                y += doc.getTextDimensions(splitText).h + 2;
             });
 
-            document.body.removeChild(loadingMessage);
-            doc.save('Reporte_Mantenimiento.pdf');
-        });
-
-        // NEW: Function to generate a PDF with only the photos
-        exportImagesPdfBtn.addEventListener('click', () => {
-            if (state.notes.length === 0) {
-                showCustomAlert('No hay notas para exportar.');
-                return;
-            }
-            
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF('p', 'pt', 'a4');
-            const pageWidth = doc.internal.pageSize.getWidth();
-            let y = 40;
-
-            const loadingMessage = document.createElement('div');
-            loadingMessage.textContent = 'Generando PDF de fotos...';
-            loadingMessage.classList.add('text-center', 'text-gray-500', 'font-semibold', 'italic', 'my-4');
-            document.body.appendChild(loadingMessage);
-
-            let firstImage = true;
-
-            state.notes.forEach(note => {
-                const photos = [
-                    { data: note.photo1, name: 'Foto 1' },
-                    { data: note.photo2, name: 'Foto 2' },
-                    { data: note.photo3, name: 'Foto 3' }
-                ];
-
-                photos.forEach(photo => {
-                    if (photo.data && photo.data.dataURL) {
-                        if (!firstImage) {
+            // Add signature image
+            if (note.signature) {
+                try {
+                    const signatureImg = new Image();
+                    signatureImg.src = note.signature;
+                    signatureImg.onload = () => {
+                        const imgWidth = 60;
+                        const imgHeight = (signatureImg.height * imgWidth) / signatureImg.width;
+                        if (y + imgHeight > pageHeight - 10) {
                             doc.addPage();
-                            y = 40;
+                            y = 10;
                         }
-                        
-                        doc.setFontSize(16);
-                        doc.setTextColor(51, 51, 51);
-                        doc.text(`Nota #${note.noteNumber} - ${photo.name}`, pageWidth / 2, y, { align: 'center' });
-                        y += 20;
+                        doc.text("Firma:", margin, y);
+                        doc.addImage(signatureImg, 'PNG', margin, y + 2, imgWidth, imgHeight);
+                        y += imgHeight + 10;
+                        // Since this is asynchronous, we open the PDF inside the onload
+                        const pdfBlob = doc.output('blob');
+                        const pdfUrl = URL.createObjectURL(pdfBlob);
+                        window.open(pdfUrl, '_blank');
+                    };
+                } catch (error) {
+                    console.error("Error loading signature image for view:", error);
+                }
+            } else {
+                // If no signature, just open the PDF
+                const pdfBlob = doc.output('blob');
+                const pdfUrl = URL.createObjectURL(pdfBlob);
+                window.open(pdfUrl, '_blank');
+            }
+        }
 
-                        doc.setFontSize(10);
-                        doc.setTextColor(102, 102, 102);
-                        doc.text(`Entidad: ${note.entity} | Fecha: ${note.date}`, pageWidth / 2, y, { align: 'center' });
-                        y += 20;
-                        
-                        const imgWidth = 500;
-                        const imgHeight = 350; // Use a fixed height for consistency
-                        const imgX = (pageWidth - imgWidth) / 2;
-                        
-                        doc.addImage(photo.data.dataURL, 'PNG', imgX, y, imgWidth, imgHeight);
-                        firstImage = false;
-                    }
-                });
-            });
-
-            document.body.removeChild(loadingMessage);
-            doc.save('Reporte_Fotos.pdf');
-        });
-
-        // Initialize the app
-        window.addEventListener('load', () => {
+        // Initial setup
+        window.onload = () => {
             setupCanvas(signatureCanvas);
             loadNotes();
             renderNotes();
             updateEntityButtons();
-        });
+        };
 
-        // Resize canvas on window resize
         window.addEventListener('resize', () => {
+            // Re-setup the main canvas on window resize
             setupCanvas(signatureCanvas);
-            // Also resize modal canvas if it's visible
+            // If the modal is open, re-setup it as well
             if (signatureModal.style.display === 'flex') {
                 setupCanvas(signatureModalCanvas);
             }
