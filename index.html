@@ -196,9 +196,12 @@
                 <div class="photo-preview-container">
                     <img id="photo1-preview" src="#" alt="Photo Preview 1">
                     <span id="photo1-date" class="photo-date"></span>
-                    <span id="photo1-placeholder" class="text-sm text-gray-500">Haz clic para añadir una foto</span>
+                    <span id="photo1-placeholder" class="text-sm text-gray-500">No hay foto</span>
                     <button type="button" id="photo1-remove-btn" class="photo-remove-btn">✖</button>
                 </div>
+                <button type="button" id="photo1-add-btn" class="w-full bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-md mt-2 hover:bg-gray-300 transition-colors">
+                    Añadir Foto 1
+                </button>
                 <input type="file" id="photo1-input" accept="image/*" capture="camera" class="sr-only">
             </div>
 
@@ -207,9 +210,12 @@
                 <div class="photo-preview-container">
                     <img id="photo2-preview" src="#" alt="Photo Preview 2">
                     <span id="photo2-date" class="photo-date"></span>
-                    <span id="photo2-placeholder" class="text-sm text-gray-500">Haz clic para añadir una foto</span>
+                    <span id="photo2-placeholder" class="text-sm text-gray-500">No hay foto</span>
                     <button type="button" id="photo2-remove-btn" class="photo-remove-btn">✖</button>
                 </div>
+                <button type="button" id="photo2-add-btn" class="w-full bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-md mt-2 hover:bg-gray-300 transition-colors">
+                    Añadir Foto 2
+                </button>
                 <input type="file" id="photo2-input" accept="image/*" capture="camera" class="sr-only">
             </div>
 
@@ -218,9 +224,12 @@
                 <div class="photo-preview-container">
                     <img id="photo3-preview" src="#" alt="Photo Preview 3">
                     <span id="photo3-date" class="photo-date"></span>
-                    <span id="photo3-placeholder" class="text-sm text-gray-500">Haz clic para añadir una foto</span>
+                    <span id="photo3-placeholder" class="text-sm text-gray-500">No hay foto</span>
                     <button type="button" id="photo3-remove-btn" class="photo-remove-btn">✖</button>
                 </div>
+                <button type="button" id="photo3-add-btn" class="w-full bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-md mt-2 hover:bg-gray-300 transition-colors">
+                    Añadir Foto 3
+                </button>
                 <input type="file" id="photo3-input" accept="image/*" capture="camera" class="sr-only">
             </div>
             
@@ -339,31 +348,31 @@
         const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
         const CORRECT_PASSWORD = '1234';
 
-        // Photo field references
+        // Photo field references (updated to include the add button)
         const photoFields = [
             {
                 input: document.getElementById('photo1-input'),
+                addBtn: document.getElementById('photo1-add-btn'),
                 preview: document.getElementById('photo1-preview'),
                 date: document.getElementById('photo1-date'),
                 placeholder: document.getElementById('photo1-placeholder'),
                 removeBtn: document.getElementById('photo1-remove-btn'),
-                container: document.getElementById('photo1-preview').parentElement,
             },
             {
                 input: document.getElementById('photo2-input'),
+                addBtn: document.getElementById('photo2-add-btn'),
                 preview: document.getElementById('photo2-preview'),
                 date: document.getElementById('photo2-date'),
                 placeholder: document.getElementById('photo2-placeholder'),
                 removeBtn: document.getElementById('photo2-remove-btn'),
-                container: document.getElementById('photo2-preview').parentElement,
             },
             {
                 input: document.getElementById('photo3-input'),
+                addBtn: document.getElementById('photo3-add-btn'),
                 preview: document.getElementById('photo3-preview'),
                 date: document.getElementById('photo3-date'),
                 placeholder: document.getElementById('photo3-placeholder'),
                 removeBtn: document.getElementById('photo3-remove-btn'),
-                container: document.getElementById('photo3-preview').parentElement,
             }
         ];
 
@@ -662,9 +671,10 @@
             return Math.random().toString(36).substr(2, 9);
         }
 
-        // Photo field event listeners
+        // Photo field event listeners (updated)
         photoFields.forEach(field => {
-            field.container.addEventListener('click', () => {
+            // New event listener for the add button
+            field.addBtn.addEventListener('click', () => {
                 field.input.click();
             });
 
