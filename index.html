@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* Estilos CSS personalizados para la aplicación */
         body { font-family: 'Inter', sans-serif; background-color: #f0f4f8; }
         .container { max-width: 600px; }
         .signature-canvas { border: 2px solid #3b82f6; background-color: #ffffff; touch-action: none; }
@@ -207,591 +208,487 @@
         </div>
     </div>
 
-    <script>
-        const CORRECT_PASSWORD = '1234';
-        const LOGO_ESE = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAHr0lEQVR4nO2ce2wUVRzHf7XdVhC+l7bQlhbUlpYFwT+yAkgkRBTBExP9A8QjEkwkRERMAkmIxCSiCQRjiEkgIgaUoGjQ9t6WrtC2lraUdnf37nC7zG5bttvuLrdzJvnnzdy8t3Pfm/nOzHszW41Go9FoNBqNRqPRaDQajfI2A/wT4AcQ+A0E/gD+hEChQ+B9EHgWAn9g9+n0H2z8A38Ege8Q+B+E/gc8Xz4+5yqCvxH8v7iH2rS+iF/i8fG7p023c/4H8O8Q+BGEfgL+E/1L+f0d4P8k8D0I/Af8lvyb/v5/3mOQvwH/K+K/D/w+v/NnEfgEgn8m+vD/T+zN/xX8I/h/Bv1/0Yd0Gv9v4F+C/1+C+1X9k+4r+AfjS2j/A/8hYd2m+b0H/0cI73n5j+c4jQn4XyP4f9X6Lw0nQWj9+Yk8Q+h1g/b/27y+jT8n4P8I/qX/b+n5g/mE2h2E/hX+j/337gQ1h/2H4G+oM/A9Wd9g/i8I/r/r9y+t98/s56b+gDqA7f/gX5xL7t+BvzUf6+N/3T/R/5n/67eAPx2Bny2R1kFwJ8b/x1oP+W4f2p/n78L4d8C/6D/R+/t8A8k/wT6N/470X9bvw/8m8B/1P/H/0LgP3oHjF+gXzCugn/T/n/q/Uf9P/n/r/f/n/z/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wL/f/P/n/r/f/n/z/4/8P8H/H/n/4//n/3/4/0/+P+D/gf8/+/+f/v/P/n/g/wD/L/8L/t8E/9/lAAAAAElFTkSuQmCC';
-        const LOGO_ALCALDIA = 'data:image/png;base64,...';
-        
-        let db;
-        const DB_NAME = 'MaintenanceNotesDB';
-        const STORE_NAME = 'notes';
+    ---
+    ### **Lógica JavaScript Detallada**
 
-        function openDatabase() {
-            return new Promise((resolve, reject) => {
-                const request = indexedDB.open(DB_NAME, 1);
-                request.onupgradeneeded = (e) => {
-                    const db = e.target.result;
-                    if (!db.objectStoreNames.contains(STORE_NAME)) {
-                        db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
-                    }
+    ```javascript
+    const CORRECT_PASSWORD = '1234';
+    // Logotipos codificados en Base64 para ser incrustados en el PDF
+    const LOGO_ESE = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAHr0lEQVR4nO2ce2wUVRzHd...'; // Reemplazar con el Base64 de la Alcaldía
+    const LOGO_ALCALDIA = 'data:image/png;base64,...'; // Reemplazar con el Base64 de la Alcaldía
+    
+    let db;
+    const DB_NAME = 'MaintenanceNotesDB';
+    const STORE_NAME = 'notes';
+
+    // Función para inicializar la base de datos IndexedDB
+    function openDatabase() {
+        return new Promise((resolve, reject) => {
+            const request = indexedDB.open(DB_NAME, 1);
+            request.onupgradeneeded = (e) => {
+                const db = e.target.result;
+                if (!db.objectStoreNames.contains(STORE_NAME)) {
+                    db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
+                }
+            };
+            request.onsuccess = (e) => {
+                db = e.target.result;
+                resolve(db);
+            };
+            request.onerror = (e) => {
+                console.error('Error opening database:', e.target.error);
+                reject(e.target.error);
+            };
+        });
+    }
+    
+    // Funciones CRUD para interactuar con IndexedDB
+    async function saveNoteToDB(note) {
+        const transaction = db.transaction([STORE_NAME], 'readwrite');
+        const store = transaction.objectStore(STORE_NAME);
+        await store.add(note);
+        return new Promise(resolve => transaction.oncomplete = resolve);
+    }
+
+    async function loadNotesFromDB() {
+        const transaction = db.transaction([STORE_NAME], 'readonly');
+        const store = transaction.objectStore(STORE_NAME);
+        const request = store.getAll();
+        return new Promise((resolve, reject) => {
+            request.onsuccess = (e) => {
+                state.notes = e.target.result;
+                resolve();
+            };
+            request.onerror = (e) => {
+                console.error('Error loading notes:', e.target.error);
+                reject(e.target.error);
+            };
+        });
+    }
+
+    async function deleteNoteFromDB(id) {
+        const transaction = db.transaction([STORE_NAME], 'readwrite');
+        const store = transaction.objectStore(STORE_NAME);
+        await store.delete(id);
+        return new Promise(resolve => transaction.oncomplete = resolve);
+    }
+
+    // Referencias a los elementos del DOM
+    const noteForm = document.getElementById('noteForm');
+    const notesList = document.getElementById('notesList');
+    const exportPdfBtn = document.getElementById('exportPdfBtn');
+    const exportImagesPdfBtn = document.getElementById('exportImagesPdfBtn');
+    const noNotesMessage = document.getElementById('noNotesMessage');
+    const eseBtn = document.getElementById('eseBtn');
+    const alcaldiaBtn = document.getElementById('alcaldiaBtn');
+    const customAlert = document.getElementById('customAlert');
+    const signatureCanvas = document.getElementById('signatureCanvas');
+    const ctx = signatureCanvas.getContext('2d');
+    const signatureModal = document.getElementById('signature-modal');
+    const signatureModalCanvas = document.getElementById('signature-modal-canvas');
+    const modalCtx = signatureModalCanvas.getContext('2d');
+    const saveModalBtn = document.getElementById('save-modal-btn');
+    const clearModalBtn = document.getElementById('clear-modal-btn');
+    const cancelModalBtn = document.getElementById('cancel-modal-btn');
+    const passwordModal = document.getElementById('passwordModal');
+    const passwordInput = document.getElementById('passwordInput');
+    const passwordError = document.getElementById('passwordError');
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+    
+    // Estado global de la aplicación
+    const state = {
+        notes: [],
+        isDrawing: false,
+        lastX: 0,
+        lastY: 0,
+        selectedEntity: 'E.S.E SaludYa Yacuanquer-Nariño',
+        noteToDeleteId: null,
+    };
+
+    // Referencias a los elementos de las fotos
+    const photoFields = [
+        { input: document.getElementById('photo1-input'), addBtn: document.getElementById('photo1-add-btn'), preview: document.getElementById('photo1-preview'), date: document.getElementById('photo1-date'), placeholder: document.getElementById('photo1-placeholder'), removeBtn: document.getElementById('photo1-remove-btn') },
+        { input: document.getElementById('photo2-input'), addBtn: document.getElementById('photo2-add-btn'), preview: document.getElementById('photo2-preview'), date: document.getElementById('photo2-date'), placeholder: document.getElementById('photo2-placeholder'), removeBtn: document.getElementById('photo2-remove-btn') },
+        { input: document.getElementById('photo3-input'), addBtn: document.getElementById('photo3-add-btn'), preview: document.getElementById('photo3-preview'), date: document.getElementById('photo3-date'), placeholder: document.getElementById('photo3-placeholder'), removeBtn: document.getElementById('photo3-remove-btn') }
+    ];
+
+    // Lógica para dibujar en el canvas de firma (mouse y táctil)
+    function getMousePos(canvas, evt) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+        };
+    }
+
+    function draw(canvas, context, x, y) {
+        if (!state.isDrawing) return;
+        context.beginPath();
+        context.moveTo(state.lastX, state.lastY);
+        context.lineTo(x, y);
+        context.stroke();
+        [state.lastX, state.lastY] = [x, y];
+    }
+
+    function setupCanvasListeners(canvas, context) {
+        // Eventos para mouse
+        canvas.addEventListener('mousedown', (e) => {
+            state.isDrawing = true;
+            [state.lastX, state.lastY] = [e.offsetX, e.offsetY];
+        });
+        canvas.addEventListener('mousemove', (e) => draw(canvas, context, e.offsetX, e.offsetY));
+        canvas.addEventListener('mouseup', () => state.isDrawing = false);
+        canvas.addEventListener('mouseout', () => state.isDrawing = false);
+
+        // Eventos para dispositivos táctiles
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            state.isDrawing = true;
+            const touch = e.touches[0];
+            const pos = getMousePos(canvas, touch);
+            [state.lastX, state.lastY] = [pos.x, pos.y];
+        });
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const pos = getMousePos(canvas, touch);
+            draw(canvas, context, pos.x, pos.y);
+        });
+        canvas.addEventListener('touchend', () => state.isDrawing = false);
+    }
+
+    // Inicializar los listeners para ambos canvas
+    setupCanvasListeners(signatureCanvas, ctx);
+    setupCanvasListeners(signatureModalCanvas, modalCtx);
+
+    // Manejo de eventos de botones y modales
+    document.getElementById('clearSignatureBtn').addEventListener('click', () => {
+        ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
+    });
+
+    document.getElementById('fullscreenSignBtn').addEventListener('click', () => {
+        signatureModal.style.display = 'flex';
+        modalCtx.drawImage(signatureCanvas, 0, 0);
+    });
+
+    saveModalBtn.addEventListener('click', () => {
+        ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
+        ctx.drawImage(signatureModalCanvas, 0, 0, signatureCanvas.width, signatureCanvas.height);
+        signatureModal.style.display = 'none';
+    });
+
+    clearModalBtn.addEventListener('click', () => {
+        modalCtx.clearRect(0, 0, signatureModalCanvas.width, signatureModalCanvas.height);
+    });
+
+    cancelModalBtn.addEventListener('click', () => {
+        signatureModal.style.display = 'none';
+    });
+
+    eseBtn.addEventListener('click', () => {
+        state.selectedEntity = 'E.S.E SaludYa Yacuanquer-Nariño';
+        eseBtn.classList.remove('bg-gray-300', 'text-gray-800');
+        eseBtn.classList.add('bg-blue-500', 'text-white');
+        alcaldiaBtn.classList.remove('bg-blue-500', 'text-white');
+        alcaldiaBtn.classList.add('bg-gray-300', 'text-gray-800');
+    });
+
+    alcaldiaBtn.addEventListener('click', () => {
+        state.selectedEntity = 'Alcaldía de Yacuanquer-Nariño';
+        alcaldiaBtn.classList.remove('bg-gray-300', 'text-gray-800');
+        alcaldiaBtn.classList.add('bg-blue-500', 'text-white');
+        eseBtn.classList.remove('bg-blue-500', 'text-white');
+        eseBtn.classList.add('bg-gray-300', 'text-gray-800');
+    });
+
+    // Manejo de la subida de fotos y su visualización
+    photoFields.forEach(field => {
+        field.addBtn.addEventListener('click', () => field.input.click());
+        field.removeBtn.addEventListener('click', () => {
+            field.preview.src = '#';
+            field.preview.style.display = 'none';
+            field.date.textContent = '';
+            field.date.style.display = 'none';
+            field.placeholder.style.display = 'block';
+            field.addBtn.textContent = `Añadir Foto ${photoFields.indexOf(field) + 1}`;
+            field.removeBtn.style.display = 'none';
+            field.input.value = null;
+        });
+        field.input.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    field.preview.src = e.target.result;
+                    field.preview.style.display = 'block';
+                    field.placeholder.style.display = 'none';
+                    field.date.textContent = new Date().toLocaleString();
+                    field.date.style.display = 'block';
+                    field.addBtn.textContent = `Cambiar Foto ${photoFields.indexOf(field) + 1}`;
+                    field.removeBtn.style.display = 'block';
                 };
-                request.onsuccess = (e) => {
-                    db = e.target.result;
-                    resolve(db);
-                };
-                request.onerror = (e) => {
-                    console.error('Error opening database:', e.target.error);
-                    reject(e.target.error);
-                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+
+    // Función para mostrar alertas personalizadas
+    function showCustomAlert(message) {
+        customAlert.textContent = message;
+        customAlert.style.display = 'block';
+        setTimeout(() => {
+            customAlert.style.display = 'none';
+        }, 3000);
+    }
+
+    // Renderizar las notas guardadas en la lista
+    function renderNotes() {
+        notesList.innerHTML = '';
+        if (state.notes.length === 0) {
+            noNotesMessage.style.display = 'block';
+        } else {
+            noNotesMessage.style.display = 'none';
+            state.notes.forEach((note) => {
+                const noteElement = document.createElement('div');
+                noteElement.className = 'bg-gray-50 p-4 rounded-lg shadow-sm flex items-center justify-between transition-transform transform hover:scale-[1.01]';
+                noteElement.innerHTML = `
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800">Nota #${note.noteNumber}</p>
+                        <p class="text-xs text-gray-600">Fecha: ${note.date}</p>
+                        <p class="text-xs text-gray-600">Área: ${note.area}</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="view-btn bg-blue-500 text-white px-3 py-1 rounded-full text-sm hover:bg-blue-600 transition-colors" data-id="${note.id}">Ver</button>
+                        <button class="delete-btn bg-red-500 text-white px-3 py-1 rounded-full text-sm hover:bg-red-600 transition-colors" data-id="${note.id}">Eliminar</button>
+                    </div>
+                `;
+                notesList.appendChild(noteElement);
             });
         }
-        
-        async function saveNoteToDB(note) {
-            const transaction = db.transaction([STORE_NAME], 'readwrite');
-            const store = transaction.objectStore(STORE_NAME);
-            await store.add(note);
-            return new Promise(resolve => transaction.oncomplete = resolve);
-        }
+    }
 
-        async function loadNotesFromDB() {
-            const transaction = db.transaction([STORE_NAME], 'readonly');
-            const store = transaction.objectStore(STORE_NAME);
-            const request = store.getAll();
-            return new Promise((resolve, reject) => {
-                request.onsuccess = (e) => {
-                    state.notes = e.target.result;
-                    resolve();
-                };
-                request.onerror = (e) => {
-                    console.error('Error loading notes:', e.target.error);
-                    reject(e.target.error);
-                };
-            });
-        }
-
-        async function deleteNoteFromDB(id) {
-            const transaction = db.transaction([STORE_NAME], 'readwrite');
-            const store = transaction.objectStore(STORE_NAME);
-            await store.delete(id);
-            return new Promise(resolve => transaction.oncomplete = resolve);
-        }
-
-        const noteForm = document.getElementById('noteForm');
-        const notesList = document.getElementById('notesList');
-        const exportPdfBtn = document.getElementById('exportPdfBtn');
-        const exportImagesPdfBtn = document.getElementById('exportImagesPdfBtn');
-        const noNotesMessage = document.getElementById('noNotesMessage');
-        const eseBtn = document.getElementById('eseBtn');
-        const alcaldiaBtn = document.getElementById('alcaldiaBtn');
-        const customAlert = document.getElementById('customAlert');
-        const signatureCanvas = document.getElementById('signatureCanvas');
-        const ctx = signatureCanvas.getContext('2d');
-        const signatureModal = document.getElementById('signature-modal');
-        const signatureModalCanvas = document.getElementById('signature-modal-canvas');
-        const modalCtx = signatureModalCanvas.getContext('2d');
-        const saveModalBtn = document.getElementById('save-modal-btn');
-        const clearModalBtn = document.getElementById('clear-modal-btn');
-        const cancelModalBtn = document.getElementById('cancel-modal-btn');
-        const mainApp = document.getElementById('main-app');
-        const passwordModal = document.getElementById('passwordModal');
-        const passwordInput = document.getElementById('passwordInput');
-        const passwordError = document.getElementById('passwordError');
-        const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-        const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
-        
-        const state = {
-            notes: [],
-            isDrawing: false,
-            lastX: 0,
-            lastY: 0,
-            selectedEntity: 'E.S.E SaludYa Yacuanquer-Nariño',
-            noteToDeleteIndex: null,
+    // Manejar el envío del formulario
+    noteForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const noteData = {
+            noteNumber: document.getElementById('noteNumber').value,
+            date: document.getElementById('date').value,
+            time: document.getElementById('time').value,
+            performedBy: document.getElementById('performedBy').value,
+            area: document.getElementById('area').value,
+            activity: document.getElementById('activity').value,
+            observation: document.getElementById('observation').value,
+            conclusion: document.getElementById('conclusion').value,
+            participants: document.getElementById('participants').value,
+            presentName: document.getElementById('presentName').value,
+            signature: signatureCanvas.toDataURL(),
+            entity: state.selectedEntity,
+            photos: photoFields.map(field => ({
+                src: field.preview.src !== '#' ? field.preview.src : null,
+                date: field.date.textContent || null
+            })).filter(p => p.src !== null)
         };
 
-        const photoFields = [
-            { input: document.getElementById('photo1-input'), addBtn: document.getElementById('photo1-add-btn'), preview: document.getElementById('photo1-preview'), date: document.getElementById('photo1-date'), placeholder: document.getElementById('photo1-placeholder'), removeBtn: document.getElementById('photo1-remove-btn') },
-            { input: document.getElementById('photo2-input'), addBtn: document.getElementById('photo2-add-btn'), preview: document.getElementById('photo2-preview'), date: document.getElementById('photo2-date'), placeholder: document.getElementById('photo2-placeholder'), removeBtn: document.getElementById('photo2-remove-btn') },
-            { input: document.getElementById('photo3-input'), addBtn: document.getElementById('photo3-add-btn'), preview: document.getElementById('photo3-preview'), date: document.getElementById('photo3-date'), placeholder: document.getElementById('photo3-placeholder'), removeBtn: document.getElementById('photo3-remove-btn') }
-        ];
-
-        function getMousePos(canvas, evt) {
-            const rect = canvas.getBoundingClientRect();
-            return {
-                x: evt.clientX - rect.left,
-                y: evt.clientY - rect.top
-            };
-        }
-
-        function draw(canvas, context, x, y) {
-            if (!state.isDrawing) return;
-            context.beginPath();
-            context.moveTo(state.lastX, state.lastY);
-            context.lineTo(x, y);
-            context.stroke();
-            [state.lastX, state.lastY] = [x, y];
-        }
-
-        function setupCanvasListeners(canvas, context) {
-            canvas.addEventListener('mousedown', (e) => {
-                state.isDrawing = true;
-                [state.lastX, state.lastY] = [e.offsetX, e.offsetY];
-            });
-            canvas.addEventListener('mousemove', (e) => draw(canvas, context, e.offsetX, e.offsetY));
-            canvas.addEventListener('mouseup', () => state.isDrawing = false);
-            canvas.addEventListener('mouseout', () => state.isDrawing = false);
-
-            canvas.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                state.isDrawing = true;
-                const touch = e.touches[0];
-                const pos = getMousePos(canvas, touch);
-                [state.lastX, state.lastY] = [pos.x, pos.y];
-            });
-            canvas.addEventListener('touchmove', (e) => {
-                e.preventDefault();
-                const touch = e.touches[0];
-                const pos = getMousePos(canvas, touch);
-                draw(canvas, context, pos.x, pos.y);
-            });
-            canvas.addEventListener('touchend', () => state.isDrawing = false);
-        }
-
-        setupCanvasListeners(signatureCanvas, ctx);
-        setupCanvasListeners(signatureModalCanvas, modalCtx);
-
-        document.getElementById('clearSignatureBtn').addEventListener('click', () => {
-            ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
-        });
-
-        document.getElementById('fullscreenSignBtn').addEventListener('click', () => {
-            signatureModal.style.display = 'flex';
-            modalCtx.drawImage(signatureCanvas, 0, 0);
-        });
-
-        saveModalBtn.addEventListener('click', () => {
-            ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
-            ctx.drawImage(signatureModalCanvas, 0, 0, signatureCanvas.width, signatureCanvas.height);
-            signatureModal.style.display = 'none';
-        });
-
-        clearModalBtn.addEventListener('click', () => {
-            modalCtx.clearRect(0, 0, signatureModalCanvas.width, signatureModalCanvas.height);
-        });
-
-        cancelModalBtn.addEventListener('click', () => {
-            signatureModal.style.display = 'none';
-        });
-
-        eseBtn.addEventListener('click', () => {
-            state.selectedEntity = 'E.S.E SaludYa Yacuanquer-Nariño';
-            eseBtn.classList.remove('bg-gray-300', 'text-gray-800');
-            eseBtn.classList.add('bg-blue-500', 'text-white');
-            alcaldiaBtn.classList.remove('bg-blue-500', 'text-white');
-            alcaldiaBtn.classList.add('bg-gray-300', 'text-gray-800');
-        });
-
-        alcaldiaBtn.addEventListener('click', () => {
-            state.selectedEntity = 'Alcaldía de Yacuanquer-Nariño';
-            alcaldiaBtn.classList.remove('bg-gray-300', 'text-gray-800');
-            alcaldiaBtn.classList.add('bg-blue-500', 'text-white');
-            eseBtn.classList.remove('bg-blue-500', 'text-white');
-            eseBtn.classList.add('bg-gray-300', 'text-gray-800');
-        });
-
+        await saveNoteToDB(noteData);
+        await loadNotesFromDB();
+        renderNotes();
+        showCustomAlert('¡Nota guardada con éxito!');
+        noteForm.reset();
+        ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
         photoFields.forEach(field => {
-            field.addBtn.addEventListener('click', () => field.input.click());
-            field.removeBtn.addEventListener('click', () => {
-                field.preview.src = '#';
-                field.preview.style.display = 'none';
-                field.date.textContent = '';
-                field.date.style.display = 'none';
-                field.placeholder.style.display = 'block';
-                field.addBtn.textContent = `Añadir Foto ${photoFields.indexOf(field) + 1}`;
-                field.removeBtn.style.display = 'none';
-                field.input.value = null;
-            });
-            field.input.addEventListener('change', (event) => {
-                const file = event.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        field.preview.src = e.target.result;
-                        field.preview.style.display = 'block';
-                        field.placeholder.style.display = 'none';
-                        field.date.textContent = new Date().toLocaleString();
-                        field.date.style.display = 'block';
-                        field.addBtn.textContent = `Cambiar Foto ${photoFields.indexOf(field) + 1}`;
-                        field.removeBtn.style.display = 'block';
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
+            field.preview.src = '#';
+            field.preview.style.display = 'none';
+            field.date.textContent = '';
+            field.date.style.display = 'none';
+            field.placeholder.style.display = 'block';
+            field.addBtn.textContent = `Añadir Foto ${photoFields.indexOf(field) + 1}`;
+            field.removeBtn.style.display = 'none';
         });
+    });
 
-        function showCustomAlert(message) {
-            customAlert.textContent = message;
-            customAlert.style.display = 'block';
-            setTimeout(() => {
-                customAlert.style.display = 'none';
-            }, 3000);
-        }
-
-        function renderNotes() {
-            notesList.innerHTML = '';
-            if (state.notes.length === 0) {
-                noNotesMessage.style.display = 'block';
-            } else {
-                noNotesMessage.style.display = 'none';
-                state.notes.forEach((note, index) => {
-                    const noteElement = document.createElement('div');
-                    noteElement.className = 'bg-gray-50 p-4 rounded-lg shadow-sm flex items-center justify-between transition-transform transform hover:scale-[1.01]';
-                    noteElement.innerHTML = `
-                        <div>
-                            <p class="text-sm font-semibold text-gray-800">Nota #${note.noteNumber}</p>
-                            <p class="text-xs text-gray-600">Fecha: ${note.date}</p>
-                            <p class="text-xs text-gray-600">Área: ${note.area}</p>
-                        </div>
-                        <div class="flex space-x-2">
-                            <button class="view-btn bg-blue-500 text-white px-3 py-1 rounded-full text-sm hover:bg-blue-600 transition-colors" data-index="${index}">Ver</button>
-                            <button class="delete-btn bg-red-500 text-white px-3 py-1 rounded-full text-sm hover:bg-red-600 transition-colors" data-id="${note.id}">Eliminar</button>
-                        </div>
-                    `;
-                    notesList.appendChild(noteElement);
-                });
+    // Delegación de eventos para los botones de la lista de notas
+    notesList.addEventListener('click', async (e) => {
+        if (e.target.classList.contains('view-btn')) {
+            const noteId = parseInt(e.target.dataset.id);
+            const note = state.notes.find(n => n.id === noteId);
+            if (note) {
+                generatePdf(note);
             }
+        } else if (e.target.classList.contains('delete-btn')) {
+            state.noteToDeleteId = parseInt(e.target.dataset.id);
+            passwordInput.value = '';
+            passwordError.style.display = 'none';
+            passwordModal.style.display = 'flex';
         }
+    });
 
-        noteForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const noteData = {
-                noteNumber: document.getElementById('noteNumber').value,
-                date: document.getElementById('date').value,
-                time: document.getElementById('time').value,
-                performedBy: document.getElementById('performedBy').value,
-                area: document.getElementById('area').value,
-                activity: document.getElementById('activity').value,
-                observation: document.getElementById('observation').value,
-                conclusion: document.getElementById('conclusion').value,
-                participants: document.getElementById('participants').value,
-                presentName: document.getElementById('presentName').value,
-                signature: signatureCanvas.toDataURL(),
-                entity: state.selectedEntity,
-                photos: photoFields.map(field => ({
-                    src: field.preview.src !== '#' ? field.preview.src : null,
-                    date: field.date.textContent || null
-                })).filter(p => p.src !== null)
-            };
-
-            await saveNoteToDB(noteData);
+    // Lógica para el modal de contraseña
+    confirmDeleteBtn.addEventListener('click', async () => {
+        if (passwordInput.value === CORRECT_PASSWORD) {
+            await deleteNoteFromDB(state.noteToDeleteId);
             await loadNotesFromDB();
             renderNotes();
-            showCustomAlert('¡Nota guardada con éxito!');
-            noteForm.reset();
-            ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
-            photoFields.forEach(field => {
-                field.preview.src = '#';
-                field.preview.style.display = 'none';
-                field.date.textContent = '';
-                field.date.style.display = 'none';
-                field.placeholder.style.display = 'block';
-                field.addBtn.textContent = `Añadir Foto ${photoFields.indexOf(field) + 1}`;
-                field.removeBtn.style.display = 'none';
-            });
-        });
-
-        notesList.addEventListener('click', async (e) => {
-            if (e.target.classList.contains('view-btn')) {
-                const index = e.target.getAttribute('data-index');
-                const note = state.notes[index];
-                if (note) {
-                    await exportNoteToPdf(note);
-                }
-            } else if (e.target.classList.contains('delete-btn')) {
-                state.noteToDeleteId = e.target.getAttribute('data-id');
-                passwordModal.style.display = 'flex';
-                passwordInput.value = '';
-                passwordError.style.display = 'none';
-            }
-        });
-
-        confirmDeleteBtn.addEventListener('click', async () => {
-            if (passwordInput.value === CORRECT_PASSWORD) {
-                await deleteNoteFromDB(parseInt(state.noteToDeleteId));
-                await loadNotesFromDB();
-                renderNotes();
-                passwordModal.style.display = 'none';
-                showCustomAlert('¡Nota eliminada con éxito!');
-            } else {
-                passwordError.style.display = 'block';
-            }
-        });
-
-        cancelDeleteBtn.addEventListener('click', () => {
             passwordModal.style.display = 'none';
-        });
+            showCustomAlert('¡Nota eliminada con éxito!');
+        } else {
+            passwordError.style.display = 'block';
+        }
+    });
 
-        exportPdfBtn.addEventListener('click', async () => {
-            try {
-                const allNotes = await new Promise(resolve => {
-                    const transaction = db.transaction([STORE_NAME], 'readonly');
-                    const store = transaction.objectStore(STORE_NAME);
-                    const request = store.getAll();
-                    request.onsuccess = (e) => resolve(e.target.result);
-                    request.onerror = (e) => {
-                        console.error('Error al obtener todas las notas:', e.target.error);
-                        resolve([]);
-                    };
-                });
+    cancelDeleteBtn.addEventListener('click', () => {
+        passwordModal.style.display = 'none';
+        state.noteToDeleteId = null;
+    });
 
-                if (allNotes.length === 0) {
-                    showCustomAlert('No hay notas guardadas para exportar.');
-                    return;
-                }
+    // Eventos para los botones de exportación
+    exportPdfBtn.addEventListener('click', () => {
+        if (state.notes.length === 0) {
+            showCustomAlert('¡No hay notas para exportar!');
+            return;
+        }
+        generateAllNotesPdf();
+    });
 
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-                let y = 10;
-                const margin = 10;
-                const pageHeight = doc.internal.pageSize.height;
+    exportImagesPdfBtn.addEventListener('click', () => {
+        if (state.notes.length === 0) {
+            showCustomAlert('¡No hay notas para exportar!');
+            return;
+        }
+        generateImagesPdf();
+    });
 
-                for (const note of allNotes) {
-                    if (y > pageHeight - 40) {
-                        doc.addPage();
-                        y = 10;
-                    }
-                    
-                    doc.setFontSize(16);
-                    doc.setFont("helvetica", "bold");
-                    doc.text(`Nota de Mantenimiento #${note.noteNumber}`, 105, y, null, null, 'center');
-                    y += 10;
-
-                    const tableData = [
-                        ['Número de Nota', note.noteNumber],
-                        ['Entidad', note.entity],
-                        ['Fecha', note.date],
-                        ['Hora de Inicio', note.time],
-                        ['Realizado por', note.performedBy],
-                        ['Área', note.area],
-                        ['Actividad Realizada', note.activity],
-                        ['Observación', note.observation],
-                        ['Conclusión', note.conclusion],
-                        ['Participantes', note.participants],
-                        ['Nombre de quien firma', note.presentName]
-                    ];
-                    
-                    doc.autoTable({
-                        startY: y,
-                        body: tableData,
-                        theme: 'striped',
-                        styles: { fontSize: 10, cellPadding: 2, overflow: 'linebreak', tableWidth: 'auto' },
-                        columnStyles: { 0: { fontStyle: 'bold' } }
-                    });
-
-                    y = doc.autoTable.previous.finalY + 10;
-
-                    if (note.signature) {
-                        try {
-                            const signatureImg = new Image();
-                            signatureImg.src = note.signature;
-                            await new Promise(resolve => signatureImg.onload = resolve);
-                            const imgHeight = (signatureImg.height * 50) / signatureImg.width;
-                            if (y + imgHeight > pageHeight - 20) {
-                                doc.addPage();
-                                y = 10;
-                            }
-                            doc.setFontSize(12);
-                            doc.setFont("helvetica", "normal");
-                            doc.text("Firma:", margin, y);
-                            y += 5;
-                            doc.addImage(note.signature, 'PNG', margin, y, 50, imgHeight);
-                            y += imgHeight + 10;
-                        } catch (e) {
-                            console.error('Error al añadir la firma al PDF:', e);
-                        }
-                    }
-                    
-                    y += 20;
-
-                    if (y > pageHeight - 40 && allNotes.indexOf(note) < allNotes.length - 1) {
-                        doc.addPage();
-                        y = 10;
-                    }
-                }
-
-                doc.save('Todas_las_actas.pdf');
-                showCustomAlert('¡PDF de actas exportado con éxito!');
-
-            } catch (error) {
-                console.error('Error general al exportar PDF de actas:', error);
-                showCustomAlert('Error al exportar el PDF. Revisa la consola para más detalles.');
-            }
-        });
+    // Funciones para generar PDFs usando jsPDF
+    function generatePdf(note) {
+        const doc = new window.jspdf.jsPDF();
+        const logoBase64 = note.entity.includes('E.S.E') ? LOGO_ESE : LOGO_ALCALDIA;
         
-        exportImagesPdfBtn.addEventListener('click', async () => {
-            try {
-                const allNotes = await new Promise(resolve => {
-                    const transaction = db.transaction([STORE_NAME], 'readonly');
-                    const store = transaction.objectStore(STORE_NAME);
-                    const request = store.getAll();
-                    request.onsuccess = (e) => resolve(e.target.result);
-                    request.onerror = (e) => {
-                        console.error('Error al obtener todas las notas:', e.target.error);
-                        resolve([]);
-                    };
-                });
+        if (logoBase64) {
+            doc.addImage(logoBase64, 'PNG', 10, 10, 25, 25);
+        }
+        doc.setFontSize(16);
+        doc.text(`Nota de Mantenimiento - ${note.entity}`, 105, 25, null, null, 'center');
 
-                if (allNotes.length === 0) {
-                    showCustomAlert('No hay fotos guardadas para exportar.');
-                    return;
-                }
-
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-                let y = 10;
-                const margin = 10;
-                const pageHeight = doc.internal.pageSize.height;
-                const imgWidth = 180;
-
-                let hasExportedPhotos = false;
-
-                for (const note of allNotes) {
-                    if (note.photos && note.photos.length > 0) {
-                        if (hasExportedPhotos) {
-                            doc.addPage();
-                            y = 10;
-                        }
-                        hasExportedPhotos = true;
-                        
-                        doc.setFontSize(16);
-                        doc.setFont("helvetica", "bold");
-                        doc.text(`Fotos de la Nota #${note.noteNumber}`, 105, y, null, null, 'center');
-                        y += 10;
-
-                        for (const photo of note.photos) {
-                            try {
-                                if (y > pageHeight - 50) {
-                                    doc.addPage();
-                                    y = 10;
-                                }
-
-                                const photoImg = new Image();
-                                photoImg.src = photo.src;
-                                
-                                await new Promise(resolve => photoImg.onload = resolve);
-                                
-                                const imgHeight = (photoImg.height * imgWidth) / photoImg.width;
-                                
-                                doc.addImage(photo.src, 'PNG', margin, y, imgWidth, imgHeight);
-                                y += imgHeight + 5;
-                                
-                                if (photo.date) {
-                                    doc.setFontSize(10);
-                                    doc.setFont("helvetica", "normal");
-                                    doc.text(`Fecha y Hora: ${photo.date}`, margin, y);
-                                    y += 10;
-                                }
-                            } catch (e) {
-                                console.error('Error al añadir una foto al PDF:', e);
-                                y += 10;
-                            }
-                        }
-                        y += 10;
-                    }
-                }
-
-                if (!hasExportedPhotos) {
-                    showCustomAlert('No hay fotos para exportar.');
-                    return;
-                }
-
-                doc.save('Todas_las_fotos.pdf');
-                showCustomAlert('¡PDF de fotos exportado con éxito!');
-            } catch (error) {
-                console.error('Error general al exportar PDF de fotos:', error);
-                showCustomAlert('Error al exportar el PDF. Revisa la consola para más detalles.');
-            }
-        });
-        
-        async function exportNoteToPdf(note) {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            let y = 10;
-            const margin = 10;
-            const pageHeight = doc.internal.pageSize.height;
-            const imgWidth = 180;
-            const logo = state.selectedEntity === 'E.S.E SaludYa Yacuanquer-Nariño' ? LOGO_ESE : LOGO_ALCALDIA;
-            
-            if (logo) {
-                doc.addImage(logo, 'PNG', 10, 10, 20, 20);
-            }
-            
-            doc.setFontSize(18);
-            doc.setFont("helvetica", "bold");
-            doc.text("Acta de Mantenimiento", 105, 20, null, null, 'center');
-            doc.setFontSize(12);
-            doc.setFont("helvetica", "normal");
-            doc.text(state.selectedEntity, 105, 27, null, null, 'center');
-            y = 40;
-
-            const tableData = [
+        doc.setFontSize(12);
+        doc.autoTable({
+            startY: 45,
+            head: [['Campo', 'Detalle']],
+            body: [
                 ['Número de Nota', note.noteNumber],
                 ['Fecha', note.date],
                 ['Hora de Inicio', note.time],
                 ['Realizado por', note.performedBy],
                 ['Área', note.area],
-                ['Actividad Realizada', note.activity],
+                ['Actividad', note.activity],
                 ['Observación', note.observation],
                 ['Conclusión', note.conclusion],
                 ['Participantes', note.participants],
-                ['Nombre de quien firma', note.presentName]
-            ];
+                ['Nombre de quien firma', note.presentName],
+            ],
+            theme: 'striped',
+            styles: { fontSize: 10, cellPadding: 2, overflow: 'linebreak' },
+            columnStyles: { 0: { fontStyle: 'bold' } }
+        });
+
+        let finalY = doc.lastAutoTable.finalY + 10;
+        
+        doc.setFontSize(14);
+        doc.text('Firma:', 14, finalY);
+        if (note.signature) {
+            doc.addImage(note.signature, 'PNG', 14, finalY + 5, 50, 25);
+        }
+
+        doc.save(`Nota-${note.noteNumber}.pdf`);
+    }
+
+    function generateAllNotesPdf() {
+        const doc = new window.jspdf.jsPDF();
+        doc.setFontSize(18);
+        doc.text('Listado de Notas de Mantenimiento', 105, 20, null, null, 'center');
+        
+        let finalY = 30;
+        state.notes.forEach((note, index) => {
+            if (index > 0) {
+                doc.addPage();
+                finalY = 20;
+            }
             
+            const logoBase64 = note.entity.includes('E.S.E') ? LOGO_ESE : LOGO_ALCALDIA;
+            if (logoBase64) {
+                doc.addImage(logoBase64, 'PNG', 10, 10, 25, 25);
+            }
+            doc.setFontSize(16);
+            doc.text(`Nota #${note.noteNumber} - ${note.entity}`, 105, 25, null, null, 'center');
+
             doc.autoTable({
-                startY: y,
-                body: tableData,
+                startY: 45,
+                head: [['Campo', 'Detalle']],
+                body: [
+                    ['Fecha', note.date],
+                    ['Hora de Inicio', note.time],
+                    ['Realizado por', note.performedBy],
+                    ['Área', note.area],
+                    ['Actividad', note.activity],
+                    ['Observación', note.observation],
+                    ['Conclusión', note.conclusion],
+                    ['Participantes', note.participants],
+                    ['Nombre de quien firma', note.presentName],
+                ],
                 theme: 'striped',
-                styles: { fontSize: 10, cellPadding: 2, overflow: 'linebreak', tableWidth: 'auto' },
+                styles: { fontSize: 10, cellPadding: 2, overflow: 'linebreak' },
                 columnStyles: { 0: { fontStyle: 'bold' } }
             });
 
-            y = doc.autoTable.previous.finalY + 10;
-
-            doc.setFontSize(12);
-            doc.setFont("helvetica", "bold");
-            doc.text("Firma:", margin, y);
-            y += 5;
-            doc.addImage(note.signature, 'PNG', margin, y, 50, 25);
-            y += 30;
-
-            if (note.photos && note.photos.length > 0) {
-                doc.setFontSize(12);
-                doc.setFont("helvetica", "bold");
-                doc.text("Fotos de Evidencia:", margin, y);
-                y += 5;
-
-                for (const photo of note.photos) {
-                    if (y > pageHeight - 50) {
-                        doc.addPage();
-                        y = 10;
-                    }
-                    
-                    const photoImg = new Image();
-                    photoImg.src = photo.src;
-                    
-                    await new Promise(resolve => photoImg.onload = resolve);
-                    
-                    const imgHeight = (photoImg.height * imgWidth) / photoImg.width;
-
-                    doc.addImage(photo.src, 'PNG', margin, y, imgWidth, imgHeight);
-                    y += imgHeight + 5;
-                    
-                    if (photo.date) {
-                        doc.setFontSize(10);
-                        doc.setFont("helvetica", "normal");
-                        doc.text(`Fecha y Hora: ${photo.date}`, margin, y);
-                        y += 10;
-                    }
-                }
+            finalY = doc.lastAutoTable.finalY + 10;
+            
+            doc.setFontSize(14);
+            doc.text('Firma:', 14, finalY);
+            if (note.signature) {
+                doc.addImage(note.signature, 'PNG', 14, finalY + 5, 50, 25);
             }
+        });
 
-            doc.save(`acta_${note.noteNumber}.pdf`);
-        }
-        
-        window.onload = async () => {
-            await openDatabase();
-            await loadNotesFromDB();
-            renderNotes();
-        };
+        doc.save('Todas_las_notas.pdf');
+    }
+
+    function generateImagesPdf() {
+        const doc = new window.jspdf.jsPDF();
+        doc.setFontSize(18);
+        doc.text('Fotos de Evidencia de Notas de Mantenimiento', 105, 20, null, null, 'center');
+
+        let currentY = 30;
+        state.notes.forEach((note) => {
+            doc.setFontSize(14);
+            doc.text(`Nota #${note.noteNumber} - ${note.date}`, 14, currentY);
+            currentY += 5;
+
+            note.photos.forEach(photo => {
+                if (photo.src) {
+                    const imgWidth = 100;
+                    const imgHeight = (imgWidth * doc.internal.pageSize.height) / doc.internal.pageSize.width;
+                    if (currentY + imgHeight > doc.internal.pageSize.height) {
+                        doc.addPage();
+                        currentY = 20;
+                    }
+                    doc.addImage(photo.src, 'JPEG', 50, currentY, imgWidth, imgHeight, null, 'SLOW');
+                    currentY += imgHeight + 5;
+                    doc.setFontSize(10);
+                    doc.text(photo.date, 50, currentY);
+                    currentY += 10;
+                }
+            });
+            currentY += 10;
+        });
+
+        doc.save('Fotos_Evidencia.pdf');
+    }
+
+    // Inicialización de la aplicación
+    window.onload = async () => {
+        await openDatabase();
+        await loadNotesFromDB();
+        renderNotes();
+    };
     </script>
 </body>
 </html>
