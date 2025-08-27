@@ -3,692 +3,458 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notas de Mantenimiento</title>
+    <title>Lista de Asistencia</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #e2e8f0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+        .form-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #4a5568;
+        }
+        input[type="text"], input[type="date"], textarea {
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, input[type="date"]:focus, textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        textarea {
+            resize: vertical;
+        }
+        #signature-pad-container {
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            background: #f7fafc;
+            margin-top: 5px;
+            position: relative;
+            width: 100%;
+            height: 200px; /* Default height */
+        }
+        #signature-pad {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button.primary {
+            background-color: #3b82f6;
+            color: white;
+        }
+        button.primary:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+        button.secondary {
+            background-color: #ef4444;
+            color: white;
+        }
+        button.secondary:hover {
+            background-color: #dc2626;
+            transform: translateY(-2px);
+        }
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            text-align: center;
+        }
+        .message-box button {
+            margin-top: 10px;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 5px;
+            padding: 8px 16px;
+        }
+        .table-section {
+            margin-top: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        thead th {
+            background-color: #4a5568;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f7fafc;
+        }
+        tbody td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .export-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .signature-img {
+            max-width: 100px;
+            height: auto;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+        }
+        .flex-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .flex-row .form-group {
+            flex: 1;
+        }
+        .flex-row .form-group.small {
+            flex: 0.5;
+        }
+        .flex-row .form-group.large {
+            flex: 2;
+        }
+    </style>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://unpkg.com/jspdf-autotable@3.5.25/dist/jspdf.plugin.autotable.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        /* Estilos CSS personalizados para la aplicación */
-        body { font-family: 'Inter', sans-serif; background-color: #f0f4f8; }
-        .container { max-width: 600px; }
-        .signature-canvas { border: 2px solid #3b82f6; background-color: #ffffff; touch-action: none; }
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
-        #signature-modal { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #f3f4f6; z-index: 2000; flex-direction: column; justify-content: center; align-items: center; }
-        #signature-modal-canvas { background-color: #ffffff; border: 2px solid #e5e7eb; touch-action: none; cursor: crosshair; }
-        .photo-preview-container { position: relative; background-color: #e2e8f0; border: 2px dashed #94a3b8; border-radius: 0.5rem; height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .photo-preview-container img { width: 100%; height: 100%; object-fit: contain; display: none; }
-        .photo-date { position: absolute; bottom: 4px; right: 4px; background-color: rgba(0, 0, 0, 0.6); color: white; padding: 2px 6px; font-size: 0.75rem; border-radius: 0.25rem; display: none; }
-        .photo-remove-btn { position: absolute; top: 4px; right: 4px; background-color: rgba(255, 0, 0, 0.6); color: white; width: 20px; height: 20px; font-size: 0.8rem; border-radius: 50%; display: none; }
-        .custom-alert { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background-color: #fca5a5; color: #7f1d1d; padding: 1rem 2rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); z-index: 1001; font-weight: bold; display: none; animation: fadeInOut 3s forwards; }
-        @keyframes fadeInOut { 0% { opacity: 0; transform: translate(-50%, -20px); } 10% { opacity: 1; transform: translate(-50%, 0); } 90% { opacity: 1; transform: translate(-50%, 0); } 100% { opacity: 0; transform: translate(-50%, -20px); } }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
 </head>
-<body class="bg-gray-100 p-4 min-h-screen flex items-center justify-center">
+<body>
 
-    <div id="customAlert" class="custom-alert"></div>
-
-    <div id="main-app" class="bg-white p-6 rounded-3xl shadow-2xl w-full container">
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">📝 Notas de Mantenimiento</h1>
-        
-        <div class="mb-6 text-center">
-            <h2 class="text-xl font-semibold text-gray-700 mb-2">Seleccione la Entidad</h2>
-            <div class="inline-flex rounded-lg shadow-sm" role="group">
-                <button type="button" id="eseBtn" class="entity-btn bg-blue-500 text-white font-bold py-2 px-4 rounded-l-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200">
-                    E.S.E 
-                </button>
-                <button type="button" id="alcaldiaBtn" class="entity-btn bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-r-lg hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-200">
-                    Alcaldía
-                </button>
+    <div class="container">
+        <h1>Registro de Asistencia de Mateo Lopez Mora</h1>
+        <form id="attendance-form" class="form-section">
+            <div class="form-group">
+                <label for="signer-name">Nombre del encargado de firmar:</label>
+                <input type="text" id="signer-name" name="signer-name" required>
             </div>
-        </div>
-
-        <form id="noteForm" class="space-y-4">
-            <div class="border-b border-gray-200 pb-2 mb-4">
-                <h2 class="text-xl font-semibold text-gray-700">Detalles de la Nota</h2>
+            <div class="form-group">
+                <label for="supervised-name">Nombre del encargado de las actividades:</label>
+                <input type="text" id="supervised-name" value="Mateo Lopez Mora" readonly class="bg-gray-100 cursor-not-allowed">
             </div>
-            
-            <div>
-                <label for="noteNumber" class="block text-sm font-medium text-gray-700">Número de Nota</label>
-                <input type="text" id="noteNumber" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+            <div class="form-group">
+                <label for="date">Fecha:</label>
+                <input type="date" id="date" name="date" required>
             </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                    <label for="date" class="block text-sm font-medium text-gray-700">Fecha</label>
-                    <input type="date" id="date" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
-                </div>
-                <div>
-                    <label for="time" class="block text-sm font-medium text-gray-700">Hora de Inicio</label>
-                    <input type="time" id="time" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+            <div class="form-group">
+                <label for="description">Descripción de las actividades:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Firma:</label>
+                <div id="signature-pad-container">
+                    <canvas id="signature-pad"></canvas>
                 </div>
             </div>
-
-            <div>
-                <label for="performedBy" class="block text-sm font-medium text-gray-700">Realizado por</label>
-                <input type="text" id="performedBy" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+            <div class="button-container">
+                <button type="button" id="clear-signature" class="secondary">Limpiar Firma</button>
+                <button type="submit" class="primary">Guardar Asistencia</button>
             </div>
-
-            <div>
-                <label for="area" class="block text-sm font-medium text-gray-700">Área donde se realizó la actividad</label>
-                <input type="text" id="area" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
-            </div>
-
-            <div>
-                <label for="activity" class="block text-sm font-medium text-gray-700">Actividad Realizada</label>
-                <textarea id="activity" rows="3" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"></textarea>
-            </div>
-
-            <div>
-                <label for="observation" class="block text-sm font-medium text-gray-700">Observación</label>
-                <textarea id="observation" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"></textarea>
-            </div>
-
-            <div>
-                <label for="conclusion" class="block text-sm font-medium text-gray-700">Conclusión</label>
-                <textarea id="conclusion" rows="3" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"></textarea>
-            </div>
-            
-            <div class="border-b border-gray-200 pb-2 pt-4 mb-4">
-                <h2 class="text-xl font-semibold text-gray-700">Fotos de Evidencia</h2>
-            </div>
-
-            <div class="photo-field">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Foto 1</label>
-                <div class="photo-preview-container">
-                    <img id="photo1-preview" src="#" alt="Photo Preview 1">
-                    <span id="photo1-date" class="photo-date"></span>
-                    <span id="photo1-placeholder" class="text-sm text-gray-500">No hay foto</span>
-                    <button type="button" id="photo1-remove-btn" class="photo-remove-btn">✖</button>
-                </div>
-                <button type="button" id="photo1-add-btn" class="w-full bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-md mt-2 hover:bg-gray-300 transition-colors">
-                    Añadir Foto 1
-                </button>
-                <input type="file" id="photo1-input" accept="image/*" capture="camera" class="sr-only">
-            </div>
-
-            <div class="photo-field">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Foto 2</label>
-                <div class="photo-preview-container">
-                    <img id="photo2-preview" src="#" alt="Photo Preview 2">
-                    <span id="photo2-date" class="photo-date"></span>
-                    <span id="photo2-placeholder" class="text-sm text-gray-500">No hay foto</span>
-                    <button type="button" id="photo2-remove-btn" class="photo-remove-btn">✖</button>
-                </div>
-                <button type="button" id="photo2-add-btn" class="w-full bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-md mt-2 hover:bg-gray-300 transition-colors">
-                    Añadir Foto 2
-                </button>
-                <input type="file" id="photo2-input" accept="image/*" capture="camera" class="sr-only">
-            </div>
-
-            <div class="photo-field">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Foto 3</label>
-                <div class="photo-preview-container">
-                    <img id="photo3-preview" src="#" alt="Photo Preview 3">
-                    <span id="photo3-date" class="photo-date"></span>
-                    <span id="photo3-placeholder" class="text-sm text-gray-500">No hay foto</span>
-                    <button type="button" id="photo3-remove-btn" class="photo-remove-btn">✖</button>
-                </div>
-                <button type="button" id="photo3-add-btn" class="w-full bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-md mt-2 hover:bg-gray-300 transition-colors">
-                    Añadir Foto 3
-                </button>
-                <input type="file" id="photo3-input" accept="image/*" capture="camera" class="sr-only">
-            </div>
-            
-            <div class="border-b border-gray-200 pb-2 pt-4 mb-4">
-                <h2 class="text-xl font-semibold text-gray-700">Detalles del Cliente</h2>
-            </div>
-
-            <div>
-                <label for="participants" class="block text-sm font-medium text-gray-700">Participantes</label>
-                <input type="text" id="participants" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
-            </div>
-            
-            <div>
-                <label for="presentName" class="block text-sm font-medium text-gray-700">Nombre de quién firma</label>
-                <input type="text" id="presentName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
-            </div>
-
-            <div class="relative bg-gray-50 p-4 rounded-lg border border-gray-200">
-                <label for="signatureCanvas" class="block text-sm font-medium text-gray-700 mb-2">Firma</label>
-                <canvas id="signatureCanvas" class="signature-canvas w-full h-40 rounded-md"></canvas>
-                <div class="flex justify-between mt-2">
-                    <button type="button" id="clearSignatureBtn" class="text-sm text-red-500 hover:text-red-700 font-semibold transition-colors duration-200">Limpiar Firma</button>
-                    <button type="button" id="fullscreenSignBtn" class="text-sm text-blue-500 hover:text-blue-700 font-semibold transition-colors duration-200">Firmar en Pantalla Completa</button>
-                </div>
-            </div>
-
-            <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform transform hover:scale-105">
-                Guardar Anotación
-            </button>
         </form>
 
-        <div class="mt-8 pt-6 border-t border-gray-200">
-            <h2 class="text-xl font-semibold text-gray-700 mb-4">Notas Guardadas</h2>
-            
-            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
-                <button id="exportPdfBtn" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-xl hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-transform transform hover:scale-105">
-                    Exportar a PDF
-                </button>
-                <button id="exportImagesPdfBtn" class="w-full bg-purple-600 text-white font-bold py-3 px-4 rounded-xl hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-transform transform hover:scale-105">
-                    Exportar Fotos a PDF
-                </button>
-            </div>
-            
-            <div id="notesList" class="space-y-4">
-                <p id="noNotesMessage" class="text-center text-gray-500 italic hidden">No hay notas guardadas aún.</p>
-            </div>
-        </div>
-    </div>
+        <hr class="my-8 border-t-2 border-gray-200">
 
-    <div id="signature-modal">
-        <div class="bg-white p-4 rounded-lg shadow-xl w-11/12 max-w-lg text-center">
-            <h3 class="text-xl font-bold text-gray-800 mb-4">Firmar aquí</h3>
-            <canvas id="signature-modal-canvas" class="w-full h-80 rounded-md"></canvas>
-            <div class="flex justify-center space-x-4">
-                <button id="save-modal-btn" class="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">Guardar Firma</button>
-                <button id="clear-modal-btn" class="px-6 py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition-colors">Limpiar</button>
-                <button id="cancel-modal-btn" class="px-6 py-2 bg-gray-300 text-gray-800 font-medium rounded-lg hover:bg-gray-400 transition-colors">Cancelar</button>
+        <div class="table-section">
+            <h2>Previsualización de Asistencias</h2>
+            <table id="attendance-table">
+                <thead>
+                    <tr>
+                        <th>Encargado de Firmar</th>
+                        <th>Encargado de Actividades</th>
+                        <th>Fecha</th>
+                        <th>Descripción</th>
+                        <th>Firma</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Attendance records will be dynamically added here -->
+                </tbody>
+            </table>
+
+            <div class="export-buttons">
+                <button id="export-pdf" class="primary">Exportar a PDF</button>
+                <button id="export-excel" class="primary">Exportar a Excel (CSV)</button>
             </div>
         </div>
     </div>
-
-    <div id="passwordModal" class="modal">
-        <div class="bg-white p-6 rounded-xl shadow-2xl max-w-sm w-full text-center">
-            <h3 class="text-xl font-bold text-gray-800 mb-4">Confirmar Eliminación</h3>
-            <p class="text-gray-700 mb-4">Introduce la contraseña para eliminar la nota:</p>
-            <input type="password" id="passwordInput" class="w-full p-2 border border-gray-300 rounded-md mb-2 focus:ring-blue-500 focus:border-blue-500">
-            <p id="passwordError" class="text-red-500 text-sm mb-4 hidden">Contraseña incorrecta. Por favor, inténtalo de nuevo.</p>
-            <div class="flex justify-center space-x-4">
-                <button id="confirmDeleteBtn" class="bg-red-500 text-white font-bold py-2 px-4 rounded-md hover:bg-red-600 transition-colors">Confirmar</button>
-                <button id="cancelDeleteBtn" class="bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-md hover:bg-gray-400 transition-colors">Cancelar</button>
-            </div>
-        </div>
-    </div>
-
-    ---
-    ### **Lógica JavaScript Detallada**
-
-    ```javascript
-    const CORRECT_PASSWORD = '1234';
-    // Logotipos codificados en Base64 para ser incrustados en el PDF
-    const LOGO_ESE = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAHr0lEQVR4nO2ce2wUVRzHd...'; // Reemplazar con el Base64 de la Alcaldía
-    const LOGO_ALCALDIA = 'data:image/png;base64,...'; // Reemplazar con el Base64 de la Alcaldía
     
-    let db;
-    const DB_NAME = 'MaintenanceNotesDB';
-    const STORE_NAME = 'notes';
+    <div id="message-box" class="message-box">
+        <p id="message-text"></p>
+        <button id="close-message-box">Cerrar</button>
+    </div>
 
-    // Función para inicializar la base de datos IndexedDB
-    function openDatabase() {
-        return new Promise((resolve, reject) => {
-            const request = indexedDB.open(DB_NAME, 1);
-            request.onupgradeneeded = (e) => {
-                const db = e.target.result;
-                if (!db.objectStoreNames.contains(STORE_NAME)) {
-                    db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
+    <script>
+        // Main application logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('attendance-form');
+            const tableBody = document.querySelector('#attendance-table tbody');
+            const clearSignatureBtn = document.getElementById('clear-signature');
+            const exportPdfBtn = document.getElementById('export-pdf');
+            const exportExcelBtn = document.getElementById('export-excel');
+            const signaturePadCanvas = document.getElementById('signature-pad');
+            const messageBox = document.getElementById('message-box');
+            const messageText = document.getElementById('message-text');
+            const closeMessageBoxBtn = document.getElementById('close-message-box');
+
+            let signaturePad = null;
+            
+            // Function to resize canvas
+            function resizeCanvas() {
+                const ratio = Math.max(window.devicePixelRatio || 1, 1);
+                signaturePadCanvas.width = signaturePadCanvas.offsetWidth * ratio;
+                signaturePadCanvas.height = signaturePadCanvas.offsetHeight * ratio;
+                signaturePadCanvas.getContext("2d").scale(ratio, ratio);
+                signaturePad = new SignaturePad(signaturePadCanvas);
+                loadData();
+            }
+
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            // Function to show custom alert message
+            function showMessage(message) {
+                messageText.textContent = message;
+                messageBox.style.display = 'block';
+            }
+
+            closeMessageBoxBtn.addEventListener('click', () => {
+                messageBox.style.display = 'none';
+            });
+
+            // Load data when the page loads
+            loadData();
+
+            // Clear the signature pad
+            clearSignatureBtn.addEventListener('click', () => {
+                signaturePad.clear();
+            });
+
+            // Handle form submission
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                if (signaturePad.isEmpty()) {
+                    showMessage("Por favor, firme en el recuadro.");
+                    return;
                 }
-            };
-            request.onsuccess = (e) => {
-                db = e.target.result;
-                resolve(db);
-            };
-            request.onerror = (e) => {
-                console.error('Error opening database:', e.target.error);
-                reject(e.target.error);
-            };
-        });
-    }
-    
-    // Funciones CRUD para interactuar con IndexedDB
-    async function saveNoteToDB(note) {
-        const transaction = db.transaction([STORE_NAME], 'readwrite');
-        const store = transaction.objectStore(STORE_NAME);
-        await store.add(note);
-        return new Promise(resolve => transaction.oncomplete = resolve);
-    }
 
-    async function loadNotesFromDB() {
-        const transaction = db.transaction([STORE_NAME], 'readonly');
-        const store = transaction.objectStore(STORE_NAME);
-        const request = store.getAll();
-        return new Promise((resolve, reject) => {
-            request.onsuccess = (e) => {
-                state.notes = e.target.result;
-                resolve();
-            };
-            request.onerror = (e) => {
-                console.error('Error loading notes:', e.target.error);
-                reject(e.target.error);
-            };
-        });
-    }
-
-    async function deleteNoteFromDB(id) {
-        const transaction = db.transaction([STORE_NAME], 'readwrite');
-        const store = transaction.objectStore(STORE_NAME);
-        await store.delete(id);
-        return new Promise(resolve => transaction.oncomplete = resolve);
-    }
-
-    // Referencias a los elementos del DOM
-    const noteForm = document.getElementById('noteForm');
-    const notesList = document.getElementById('notesList');
-    const exportPdfBtn = document.getElementById('exportPdfBtn');
-    const exportImagesPdfBtn = document.getElementById('exportImagesPdfBtn');
-    const noNotesMessage = document.getElementById('noNotesMessage');
-    const eseBtn = document.getElementById('eseBtn');
-    const alcaldiaBtn = document.getElementById('alcaldiaBtn');
-    const customAlert = document.getElementById('customAlert');
-    const signatureCanvas = document.getElementById('signatureCanvas');
-    const ctx = signatureCanvas.getContext('2d');
-    const signatureModal = document.getElementById('signature-modal');
-    const signatureModalCanvas = document.getElementById('signature-modal-canvas');
-    const modalCtx = signatureModalCanvas.getContext('2d');
-    const saveModalBtn = document.getElementById('save-modal-btn');
-    const clearModalBtn = document.getElementById('clear-modal-btn');
-    const cancelModalBtn = document.getElementById('cancel-modal-btn');
-    const passwordModal = document.getElementById('passwordModal');
-    const passwordInput = document.getElementById('passwordInput');
-    const passwordError = document.getElementById('passwordError');
-    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
-    
-    // Estado global de la aplicación
-    const state = {
-        notes: [],
-        isDrawing: false,
-        lastX: 0,
-        lastY: 0,
-        selectedEntity: 'E.S.E SaludYa Yacuanquer-Nariño',
-        noteToDeleteId: null,
-    };
-
-    // Referencias a los elementos de las fotos
-    const photoFields = [
-        { input: document.getElementById('photo1-input'), addBtn: document.getElementById('photo1-add-btn'), preview: document.getElementById('photo1-preview'), date: document.getElementById('photo1-date'), placeholder: document.getElementById('photo1-placeholder'), removeBtn: document.getElementById('photo1-remove-btn') },
-        { input: document.getElementById('photo2-input'), addBtn: document.getElementById('photo2-add-btn'), preview: document.getElementById('photo2-preview'), date: document.getElementById('photo2-date'), placeholder: document.getElementById('photo2-placeholder'), removeBtn: document.getElementById('photo2-remove-btn') },
-        { input: document.getElementById('photo3-input'), addBtn: document.getElementById('photo3-add-btn'), preview: document.getElementById('photo3-preview'), date: document.getElementById('photo3-date'), placeholder: document.getElementById('photo3-placeholder'), removeBtn: document.getElementById('photo3-remove-btn') }
-    ];
-
-    // Lógica para dibujar en el canvas de firma (mouse y táctil)
-    function getMousePos(canvas, evt) {
-        const rect = canvas.getBoundingClientRect();
-        return {
-            x: evt.clientX - rect.left,
-            y: evt.clientY - rect.top
-        };
-    }
-
-    function draw(canvas, context, x, y) {
-        if (!state.isDrawing) return;
-        context.beginPath();
-        context.moveTo(state.lastX, state.lastY);
-        context.lineTo(x, y);
-        context.stroke();
-        [state.lastX, state.lastY] = [x, y];
-    }
-
-    function setupCanvasListeners(canvas, context) {
-        // Eventos para mouse
-        canvas.addEventListener('mousedown', (e) => {
-            state.isDrawing = true;
-            [state.lastX, state.lastY] = [e.offsetX, e.offsetY];
-        });
-        canvas.addEventListener('mousemove', (e) => draw(canvas, context, e.offsetX, e.offsetY));
-        canvas.addEventListener('mouseup', () => state.isDrawing = false);
-        canvas.addEventListener('mouseout', () => state.isDrawing = false);
-
-        // Eventos para dispositivos táctiles
-        canvas.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            state.isDrawing = true;
-            const touch = e.touches[0];
-            const pos = getMousePos(canvas, touch);
-            [state.lastX, state.lastY] = [pos.x, pos.y];
-        });
-        canvas.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            const touch = e.touches[0];
-            const pos = getMousePos(canvas, touch);
-            draw(canvas, context, pos.x, pos.y);
-        });
-        canvas.addEventListener('touchend', () => state.isDrawing = false);
-    }
-
-    // Inicializar los listeners para ambos canvas
-    setupCanvasListeners(signatureCanvas, ctx);
-    setupCanvasListeners(signatureModalCanvas, modalCtx);
-
-    // Manejo de eventos de botones y modales
-    document.getElementById('clearSignatureBtn').addEventListener('click', () => {
-        ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
-    });
-
-    document.getElementById('fullscreenSignBtn').addEventListener('click', () => {
-        signatureModal.style.display = 'flex';
-        modalCtx.drawImage(signatureCanvas, 0, 0);
-    });
-
-    saveModalBtn.addEventListener('click', () => {
-        ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
-        ctx.drawImage(signatureModalCanvas, 0, 0, signatureCanvas.width, signatureCanvas.height);
-        signatureModal.style.display = 'none';
-    });
-
-    clearModalBtn.addEventListener('click', () => {
-        modalCtx.clearRect(0, 0, signatureModalCanvas.width, signatureModalCanvas.height);
-    });
-
-    cancelModalBtn.addEventListener('click', () => {
-        signatureModal.style.display = 'none';
-    });
-
-    eseBtn.addEventListener('click', () => {
-        state.selectedEntity = 'E.S.E SaludYa Yacuanquer-Nariño';
-        eseBtn.classList.remove('bg-gray-300', 'text-gray-800');
-        eseBtn.classList.add('bg-blue-500', 'text-white');
-        alcaldiaBtn.classList.remove('bg-blue-500', 'text-white');
-        alcaldiaBtn.classList.add('bg-gray-300', 'text-gray-800');
-    });
-
-    alcaldiaBtn.addEventListener('click', () => {
-        state.selectedEntity = 'Alcaldía de Yacuanquer-Nariño';
-        alcaldiaBtn.classList.remove('bg-gray-300', 'text-gray-800');
-        alcaldiaBtn.classList.add('bg-blue-500', 'text-white');
-        eseBtn.classList.remove('bg-blue-500', 'text-white');
-        eseBtn.classList.add('bg-gray-300', 'text-gray-800');
-    });
-
-    // Manejo de la subida de fotos y su visualización
-    photoFields.forEach(field => {
-        field.addBtn.addEventListener('click', () => field.input.click());
-        field.removeBtn.addEventListener('click', () => {
-            field.preview.src = '#';
-            field.preview.style.display = 'none';
-            field.date.textContent = '';
-            field.date.style.display = 'none';
-            field.placeholder.style.display = 'block';
-            field.addBtn.textContent = `Añadir Foto ${photoFields.indexOf(field) + 1}`;
-            field.removeBtn.style.display = 'none';
-            field.input.value = null;
-        });
-        field.input.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    field.preview.src = e.target.result;
-                    field.preview.style.display = 'block';
-                    field.placeholder.style.display = 'none';
-                    field.date.textContent = new Date().toLocaleString();
-                    field.date.style.display = 'block';
-                    field.addBtn.textContent = `Cambiar Foto ${photoFields.indexOf(field) + 1}`;
-                    field.removeBtn.style.display = 'block';
+                const newAttendance = {
+                    signerName: document.getElementById('signer-name').value,
+                    supervisedName: document.getElementById('supervised-name').value,
+                    date: document.getElementById('date').value,
+                    description: document.getElementById('description').value,
+                    signature: signaturePad.toDataURL()
                 };
-                reader.readAsDataURL(file);
+
+                saveData(newAttendance);
+                displayData(newAttendance);
+                
+                // Reset form and signature pad
+                form.reset();
+                signaturePad.clear();
+            });
+
+            // Function to save data to localStorage
+            function saveData(data) {
+                const attendances = JSON.parse(localStorage.getItem('attendances')) || [];
+                attendances.push(data);
+                localStorage.setItem('attendances', JSON.stringify(attendances));
             }
-        });
-    });
 
-    // Función para mostrar alertas personalizadas
-    function showCustomAlert(message) {
-        customAlert.textContent = message;
-        customAlert.style.display = 'block';
-        setTimeout(() => {
-            customAlert.style.display = 'none';
-        }, 3000);
-    }
+            // Function to load data from localStorage
+            function loadData() {
+                const attendances = JSON.parse(localStorage.getItem('attendances')) || [];
+                // Clear existing data to prevent duplicates on resize
+                tableBody.innerHTML = '';
+                // Sort by date in descending order
+                attendances.sort((a, b) => new Date(b.date) - new Date(a.date));
+                attendances.forEach(attendance => displayData(attendance, false));
+            }
 
-    // Renderizar las notas guardadas en la lista
-    function renderNotes() {
-        notesList.innerHTML = '';
-        if (state.notes.length === 0) {
-            noNotesMessage.style.display = 'block';
-        } else {
-            noNotesMessage.style.display = 'none';
-            state.notes.forEach((note) => {
-                const noteElement = document.createElement('div');
-                noteElement.className = 'bg-gray-50 p-4 rounded-lg shadow-sm flex items-center justify-between transition-transform transform hover:scale-[1.01]';
-                noteElement.innerHTML = `
-                    <div>
-                        <p class="text-sm font-semibold text-gray-800">Nota #${note.noteNumber}</p>
-                        <p class="text-xs text-gray-600">Fecha: ${note.date}</p>
-                        <p class="text-xs text-gray-600">Área: ${note.area}</p>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button class="view-btn bg-blue-500 text-white px-3 py-1 rounded-full text-sm hover:bg-blue-600 transition-colors" data-id="${note.id}">Ver</button>
-                        <button class="delete-btn bg-red-500 text-white px-3 py-1 rounded-full text-sm hover:bg-red-600 transition-colors" data-id="${note.id}">Eliminar</button>
-                    </div>
+            // Function to display data in the table
+            function displayData(data) {
+                const row = tableBody.insertRow(0); // Add to the top of the table
+                row.innerHTML = `
+                    <td>${data.signerName}</td>
+                    <td>${data.supervisedName}</td>
+                    <td>${data.date}</td>
+                    <td>${data.description}</td>
+                    <td><img src="${data.signature}" alt="Firma" class="signature-img"></td>
                 `;
-                notesList.appendChild(noteElement);
-            });
-        }
-    }
-
-    // Manejar el envío del formulario
-    noteForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const noteData = {
-            noteNumber: document.getElementById('noteNumber').value,
-            date: document.getElementById('date').value,
-            time: document.getElementById('time').value,
-            performedBy: document.getElementById('performedBy').value,
-            area: document.getElementById('area').value,
-            activity: document.getElementById('activity').value,
-            observation: document.getElementById('observation').value,
-            conclusion: document.getElementById('conclusion').value,
-            participants: document.getElementById('participants').value,
-            presentName: document.getElementById('presentName').value,
-            signature: signatureCanvas.toDataURL(),
-            entity: state.selectedEntity,
-            photos: photoFields.map(field => ({
-                src: field.preview.src !== '#' ? field.preview.src : null,
-                date: field.date.textContent || null
-            })).filter(p => p.src !== null)
-        };
-
-        await saveNoteToDB(noteData);
-        await loadNotesFromDB();
-        renderNotes();
-        showCustomAlert('¡Nota guardada con éxito!');
-        noteForm.reset();
-        ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
-        photoFields.forEach(field => {
-            field.preview.src = '#';
-            field.preview.style.display = 'none';
-            field.date.textContent = '';
-            field.date.style.display = 'none';
-            field.placeholder.style.display = 'block';
-            field.addBtn.textContent = `Añadir Foto ${photoFields.indexOf(field) + 1}`;
-            field.removeBtn.style.display = 'none';
-        });
-    });
-
-    // Delegación de eventos para los botones de la lista de notas
-    notesList.addEventListener('click', async (e) => {
-        if (e.target.classList.contains('view-btn')) {
-            const noteId = parseInt(e.target.dataset.id);
-            const note = state.notes.find(n => n.id === noteId);
-            if (note) {
-                generatePdf(note);
             }
-        } else if (e.target.classList.contains('delete-btn')) {
-            state.noteToDeleteId = parseInt(e.target.dataset.id);
-            passwordInput.value = '';
-            passwordError.style.display = 'none';
-            passwordModal.style.display = 'flex';
-        }
-    });
 
-    // Lógica para el modal de contraseña
-    confirmDeleteBtn.addEventListener('click', async () => {
-        if (passwordInput.value === CORRECT_PASSWORD) {
-            await deleteNoteFromDB(state.noteToDeleteId);
-            await loadNotesFromDB();
-            renderNotes();
-            passwordModal.style.display = 'none';
-            showCustomAlert('¡Nota eliminada con éxito!');
-        } else {
-            passwordError.style.display = 'block';
-        }
-    });
-
-    cancelDeleteBtn.addEventListener('click', () => {
-        passwordModal.style.display = 'none';
-        state.noteToDeleteId = null;
-    });
-
-    // Eventos para los botones de exportación
-    exportPdfBtn.addEventListener('click', () => {
-        if (state.notes.length === 0) {
-            showCustomAlert('¡No hay notas para exportar!');
-            return;
-        }
-        generateAllNotesPdf();
-    });
-
-    exportImagesPdfBtn.addEventListener('click', () => {
-        if (state.notes.length === 0) {
-            showCustomAlert('¡No hay notas para exportar!');
-            return;
-        }
-        generateImagesPdf();
-    });
-
-    // Funciones para generar PDFs usando jsPDF
-    function generatePdf(note) {
-        const doc = new window.jspdf.jsPDF();
-        const logoBase64 = note.entity.includes('E.S.E') ? LOGO_ESE : LOGO_ALCALDIA;
-        
-        if (logoBase64) {
-            doc.addImage(logoBase64, 'PNG', 10, 10, 25, 25);
-        }
-        doc.setFontSize(16);
-        doc.text(`Nota de Mantenimiento - ${note.entity}`, 105, 25, null, null, 'center');
-
-        doc.setFontSize(12);
-        doc.autoTable({
-            startY: 45,
-            head: [['Campo', 'Detalle']],
-            body: [
-                ['Número de Nota', note.noteNumber],
-                ['Fecha', note.date],
-                ['Hora de Inicio', note.time],
-                ['Realizado por', note.performedBy],
-                ['Área', note.area],
-                ['Actividad', note.activity],
-                ['Observación', note.observation],
-                ['Conclusión', note.conclusion],
-                ['Participantes', note.participants],
-                ['Nombre de quien firma', note.presentName],
-            ],
-            theme: 'striped',
-            styles: { fontSize: 10, cellPadding: 2, overflow: 'linebreak' },
-            columnStyles: { 0: { fontStyle: 'bold' } }
-        });
-
-        let finalY = doc.lastAutoTable.finalY + 10;
-        
-        doc.setFontSize(14);
-        doc.text('Firma:', 14, finalY);
-        if (note.signature) {
-            doc.addImage(note.signature, 'PNG', 14, finalY + 5, 50, 25);
-        }
-
-        doc.save(`Nota-${note.noteNumber}.pdf`);
-    }
-
-    function generateAllNotesPdf() {
-        const doc = new window.jspdf.jsPDF();
-        doc.setFontSize(18);
-        doc.text('Listado de Notas de Mantenimiento', 105, 20, null, null, 'center');
-        
-        let finalY = 30;
-        state.notes.forEach((note, index) => {
-            if (index > 0) {
-                doc.addPage();
-                finalY = 20;
-            }
-            
-            const logoBase64 = note.entity.includes('E.S.E') ? LOGO_ESE : LOGO_ALCALDIA;
-            if (logoBase64) {
-                doc.addImage(logoBase64, 'PNG', 10, 10, 25, 25);
-            }
-            doc.setFontSize(16);
-            doc.text(`Nota #${note.noteNumber} - ${note.entity}`, 105, 25, null, null, 'center');
-
-            doc.autoTable({
-                startY: 45,
-                head: [['Campo', 'Detalle']],
-                body: [
-                    ['Fecha', note.date],
-                    ['Hora de Inicio', note.time],
-                    ['Realizado por', note.performedBy],
-                    ['Área', note.area],
-                    ['Actividad', note.activity],
-                    ['Observación', note.observation],
-                    ['Conclusión', note.conclusion],
-                    ['Participantes', note.participants],
-                    ['Nombre de quien firma', note.presentName],
-                ],
-                theme: 'striped',
-                styles: { fontSize: 10, cellPadding: 2, overflow: 'linebreak' },
-                columnStyles: { 0: { fontStyle: 'bold' } }
-            });
-
-            finalY = doc.lastAutoTable.finalY + 10;
-            
-            doc.setFontSize(14);
-            doc.text('Firma:', 14, finalY);
-            if (note.signature) {
-                doc.addImage(note.signature, 'PNG', 14, finalY + 5, 50, 25);
-            }
-        });
-
-        doc.save('Todas_las_notas.pdf');
-    }
-
-    function generateImagesPdf() {
-        const doc = new window.jspdf.jsPDF();
-        doc.setFontSize(18);
-        doc.text('Fotos de Evidencia de Notas de Mantenimiento', 105, 20, null, null, 'center');
-
-        let currentY = 30;
-        state.notes.forEach((note) => {
-            doc.setFontSize(14);
-            doc.text(`Nota #${note.noteNumber} - ${note.date}`, 14, currentY);
-            currentY += 5;
-
-            note.photos.forEach(photo => {
-                if (photo.src) {
-                    const imgWidth = 100;
-                    const imgHeight = (imgWidth * doc.internal.pageSize.height) / doc.internal.pageSize.width;
-                    if (currentY + imgHeight > doc.internal.pageSize.height) {
-                        doc.addPage();
-                        currentY = 20;
-                    }
-                    doc.addImage(photo.src, 'JPEG', 50, currentY, imgWidth, imgHeight, null, 'SLOW');
-                    currentY += imgHeight + 5;
-                    doc.setFontSize(10);
-                    doc.text(photo.date, 50, currentY);
-                    currentY += 10;
+            // Export to PDF
+            exportPdfBtn.addEventListener('click', () => {
+                const attendances = JSON.parse(localStorage.getItem('attendances')) || [];
+                if (attendances.length === 0) {
+                    showMessage('No hay datos para exportar.');
+                    return;
                 }
+
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                // Add header content similar to the image
+                doc.setFontSize(14);
+                doc.text("FORMATO DE REGISTRO DE ACTIVIDADES DEL CONTRATISTA", 105, 15, null, null, "center");
+                doc.line(10, 18, 200, 18); // Horizontal line
+
+                doc.setFontSize(10);
+                doc.text("MUNICIPIO/DTO:", 10, 25);
+                doc.text("YACUANQUER NARIÑO", 50, 25);
+                doc.text("EMPRESA:", 110, 25);
+                doc.text("ESE SALUDYA", 140, 25);
+                
+                doc.text("RESPONSABLE DE LA ACTIVIDAD:", 10, 32);
+                doc.text("WILSON MATEO LOPEZ MORA", 65, 32);
+                doc.text("IDENTIFICACIÓN No.", 110, 32);
+                doc.text("1127080365", 155, 32);
+
+                doc.setFillColor(198, 246, 213); // Light green background
+                doc.rect(10, 35, 190, 8, 'F'); // Green bar
+
+                const tableData = attendances.map(item => [
+                    item.date,
+                    item.signerName,
+                    {
+                        content: '',
+                        styles: { cellHeight: 20 },
+                    },
+                    item.description
+                ]);
+                
+                const tableOptions = {
+                    startY: 50,
+                    head: [['FECHA', 'NOMBRE/APELLIDO (ENCARGADO DE FIRMAR)', 'FIRMA', 'OBSERVACIÓN']],
+                    body: tableData,
+                    styles: {
+                        cellPadding: 2,
+                        fontSize: 8,
+                        valign: 'middle',
+                        halign: 'center',
+                    },
+                    headStyles: {
+                        fillColor: [198, 246, 213],
+                        textColor: [0, 0, 0]
+                    },
+                    columnStyles: {
+                        0: { cellWidth: 20 },
+                        1: { cellWidth: 70 },
+                        2: { cellWidth: 40 },
+                        3: { cellWidth: 'auto' }
+                    }
+                };
+                
+                // Generar la tabla primero
+                doc.autoTable(tableOptions);
+                
+                // Añadir las firmas manualmente
+                const rows = doc.autoTable.previous.body;
+                rows.forEach((row, index) => {
+                    const signature = attendances[index].signature;
+                    const x = row.cells[2].x + row.cells[2].width / 2;
+                    const y = row.cells[2].y + row.cells[2].height / 2;
+                    doc.addImage(signature, 'PNG', x - 15, y - 7.5, 30, 15);
+                });
+
+                doc.save('asistencia.pdf');
             });
-            currentY += 10;
+
+            // Export to Excel (CSV)
+            exportExcelBtn.addEventListener('click', () => {
+                const attendances = JSON.parse(localStorage.getItem('attendances')) || [];
+                if (attendances.length === 0) {
+                    showMessage('No hay datos para exportar.');
+                    return;
+                }
+
+                let csvContent = "data:text/csv;charset=utf-8,";
+                csvContent += "FECHA,ENCARGADO DE FIRMAR,FIRMA (DATA URL),DESCRIPCIÓN DE ACTIVIDADES\r\n";
+                
+                attendances.forEach(item => {
+                    let row = [
+                        `"${item.date}"`,
+                        `"${item.signerName.replace(/"/g, '""')}"`,
+                        `"${item.signature.replace(/"/g, '""')}"`,
+                        `"${item.description.replace(/"/g, '""')}"`
+                    ].join(",");
+                    csvContent += row + "\r\n";
+                });
+
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", "asistencia.csv");
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
         });
-
-        doc.save('Fotos_Evidencia.pdf');
-    }
-
-    // Inicialización de la aplicación
-    window.onload = async () => {
-        await openDatabase();
-        await loadNotesFromDB();
-        renderNotes();
-    };
     </script>
 </body>
 </html>
