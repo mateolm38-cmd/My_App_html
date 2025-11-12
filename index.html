@@ -125,9 +125,30 @@
         // --- Configuración y Constantes ---
         
         // Estas variables ( __app_id, __firebase_config, __initial_auth_token ) 
-        // serán inyectadas automáticamente por el entorno.
+        // son inyectadas por el entorno Canvas.
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : { apiKey: "DEMO", authDomain: "DEMO", projectId: "DEMO" };
+        
+        // Intentar cargar la configuración de Firebase del entorno Canvas o usar el fallback.
+        const firebaseConfig = (function() {
+            if (typeof __firebase_config !== 'undefined') {
+                try {
+                    // Usar la configuración inyectada por el entorno (si estamos aquí)
+                    return JSON.parse(__firebase_config);
+                } catch (e) {
+                    console.error("Error parsing __firebase_config:", e);
+                }
+            }
+            // Fallback para GitHub Pages/deploy. 
+            // **DEBES** reemplazar estos valores con tu configuración de Firebase.
+            return { 
+                apiKey: "TU_API_KEY_AQUI", // REEMPLAZAR ESTO
+                authDomain: "TU_AUTH_DOMAIN_AQUI", 
+                projectId: "TU_PROJECT_ID_AQUI", 
+                // Añadir otros campos si es necesario (storageBucket, messagingSenderId, etc.)
+            };
+        })();
+
+        // Esta variable será 'null' si no está en el entorno Canvas.
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
         const PRODUCTOS = {
@@ -280,16 +301,24 @@
                 } else {
                     console.log("Sin usuario, intentando autenticación...");
                     try {
+                        // Usar custom token si está disponible (entorno Canvas)
                         if (initialAuthToken) {
                             await signInWithCustomToken(auth, initialAuthToken);
                             console.log("Autenticado con token custom.");
                         } else {
+                            // Usar autenticación anónima (requiere API Key válida para funcionar en GitHub)
                             await signInAnonymously(auth);
                             console.log("Autenticado anónimamente.");
                         }
                     } catch (err) {
                         console.error("Error de autenticación:", err);
-                        showError("Error al conectar con el servicio de autenticación.");
+                        
+                        // Nuevo manejo de error específico para API Key
+                        let errorMsg = "Error al conectar con el servicio de autenticación.";
+                        if (err.code === 'auth/api-key-not-valid') {
+                            errorMsg = "¡ERROR DE CONFIGURACIÓN! Necesitas reemplazar los marcadores de posición (p. ej., 'TU_API_KEY_AQUI') con tus claves reales de Firebase.";
+                        }
+                        showError(errorMsg);
                     }
                 }
             });
