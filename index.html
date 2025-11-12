@@ -3,458 +3,475 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Asistencia</title>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #e2e8f0;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 900px;
-            width: 100%;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2 {
-            text-align: center;
-            color: #2d3748;
-            margin-bottom: 20px;
-        }
-        .form-section {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        label {
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #4a5568;
-        }
-        input[type="text"], input[type="date"], textarea {
-            padding: 10px;
-            border: 1px solid #cbd5e0;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-        input[type="text"]:focus, input[type="date"]:focus, textarea:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-        }
-        textarea {
-            resize: vertical;
-        }
-        #signature-pad-container {
-            border: 2px solid #cbd5e0;
-            border-radius: 8px;
-            background: #f7fafc;
-            margin-top: 5px;
-            position: relative;
-            width: 100%;
-            height: 200px; /* Default height */
-        }
-        #signature-pad {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            cursor: crosshair;
-        }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 25px;
-        }
-        button {
-            padding: 12px 24px;
-            font-size: 16px;
-            font-weight: 600;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        button.primary {
-            background-color: #3b82f6;
-            color: white;
-        }
-        button.primary:hover {
-            background-color: #2563eb;
-            transform: translateY(-2px);
-        }
-        button.secondary {
-            background-color: #ef4444;
-            color: white;
-        }
-        button.secondary:hover {
-            background-color: #dc2626;
-            transform: translateY(-2px);
-        }
-        .message-box {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            display: none;
-            text-align: center;
-        }
-        .message-box button {
-            margin-top: 10px;
-            background-color: #3b82f6;
-            color: white;
-            border-radius: 5px;
-            padding: 8px 16px;
-        }
-        .table-section {
-            margin-top: 40px;
-        }
-        table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin-top: 20px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        thead th {
-            background-color: #4a5568;
-            color: white;
-            padding: 12px 15px;
-            text-align: left;
-        }
-        tbody tr:nth-child(even) {
-            background-color: #f7fafc;
-        }
-        tbody td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .export-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .signature-img {
-            max-width: 100px;
-            height: auto;
-            border: 1px solid #cbd5e0;
-            border-radius: 4px;
-        }
-        .flex-row {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .flex-row .form-group {
-            flex: 1;
-        }
-        .flex-row .form-group.small {
-            flex: 0.5;
-        }
-        .flex-row .form-group.large {
-            flex: 2;
-        }
-    </style>
+    <title>Gestor de Pedidos de Velitas</title>
+    <!-- Cargar Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+    <style>
+        /* Fuente Inter (similar a la de React) */
+        @import url('https://rsms.me/inter/inter.css');
+        html { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
-<body>
+<body class="bg-pink-50">
 
-    <div class="container">
-        <h1>Registro de Asistencia de Mateo Lopez Mora</h1>
-        <form id="attendance-form" class="form-section">
-            <div class="form-group">
-                <label for="signer-name">Nombre del encargado de firmar:</label>
-                <input type="text" id="signer-name" name="signer-name" required>
-            </div>
-            <div class="form-group">
-                <label for="supervised-name">Nombre del encargado de las actividades:</label>
-                <input type="text" id="supervised-name" value="Mateo Lopez Mora" readonly class="bg-gray-100 cursor-not-allowed">
-            </div>
-            <div class="form-group">
-                <label for="date">Fecha:</label>
-                <input type="date" id="date" name="date" required>
-            </div>
-            <div class="form-group">
-                <label for="description">Descripción de las actividades:</label>
-                <textarea id="description" name="description" rows="4" required></textarea>
-            </div>
-            <div class="form-group">
-                <label>Firma:</label>
-                <div id="signature-pad-container">
-                    <canvas id="signature-pad"></canvas>
+    <div class="min-h-screen p-4 md:p-8 font-sans">
+        <header class="mb-8">
+            <h1 class="text-4xl font-extrabold text-center text-pink-700">
+                Gestor de Pedidos ✨ Velitas
+            </h1>
+            <p class="text-center text-gray-600 text-sm mt-2">
+                ID de Usuario: <code id="user-id-display" class="bg-gray-200 p-1 rounded-md">Cargando...</code>
+            </p>
+        </header>
+
+        <main>
+            <!-- Formulario para agregar pedidos -->
+            <form id="order-form" class="bg-white p-6 rounded-lg shadow-lg mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-pink-600">Agregar Nuevo Pedido</h2>
+                <div id="form-error" class="text-red-500 bg-red-100 p-2 rounded-md mb-4 hidden"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Nombre del Cliente -->
+                    <div>
+                        <label for="clientName" class="block text-sm font-medium text-gray-700">Nombre del Cliente</label>
+                        <input type="text" id="clientName" name="clientName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500" placeholder="Ej: Ana Pérez" required>
+                    </div>
+
+                    <!-- Tipo de Producto -->
+                    <div>
+                        <label for="productType" class="block text-sm font-medium text-gray-700">Tipo de Velita</label>
+                        <select id="productType" name="productType" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500">
+                            <!-- Opciones se añadirán con JS -->
+                        </select>
+                    </div>
+
+                    <!-- Detalles (Nombre, Deseo, Inicial) -->
+                    <div>
+                        <label id="details-label" for="details" class="block text-sm font-medium text-gray-700">Nombre (para personalizar)</label>
+                        <input type="text" id="details" name="details" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500" placeholder="Ej: 'Sofía'" required>
+                    </div>
+
+                    <!-- Cantidad -->
+                    <div>
+                        <label id="quantity-label" for="quantity" class="block text-sm font-medium text-gray-700">Cantidad (Paquetes de 5u)</label>
+                        <input type="number" id="quantity" name="quantity" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500" min="1" value="1" required>
+                    </div>
                 </div>
-            </div>
-            <div class="button-container">
-                <button type="button" id="clear-signature" class="secondary">Limpiar Firma</button>
-                <button type="submit" class="primary">Guardar Asistencia</button>
-            </div>
-        </form>
 
-        <hr class="my-8 border-t-2 border-gray-200">
+                <!-- Total y Botón -->
+                <div class="mt-6 flex items-center justify-between">
+                    <p class="text-lg font-bold text-gray-800">
+                        Total: $<span id="total-price">10,000</span>
+                    </p>
+                    <button id="submit-button" type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 disabled:bg-gray-400">
+                        Agregar Pedido
+                    </button>
+                </div>
+            </form>
 
-        <div class="table-section">
-            <h2>Previsualización de Asistencias</h2>
-            <table id="attendance-table">
-                <thead>
-                    <tr>
-                        <th>Encargado de Firmar</th>
-                        <th>Encargado de Actividades</th>
-                        <th>Fecha</th>
-                        <th>Descripción</th>
-                        <th>Firma</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Attendance records will be dynamically added here -->
-                </tbody>
-            </table>
-
-            <div class="export-buttons">
-                <button id="export-pdf" class="primary">Exportar a PDF</button>
-                <button id="export-excel" class="primary">Exportar a Excel (CSV)</button>
-            </div>
-        </div>
-    </div>
-    
-    <div id="message-box" class="message-box">
-        <p id="message-text"></p>
-        <button id="close-message-box">Cerrar</button>
-    </div>
-
-    <script>
-        // Main application logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('attendance-form');
-            const tableBody = document.querySelector('#attendance-table tbody');
-            const clearSignatureBtn = document.getElementById('clear-signature');
-            const exportPdfBtn = document.getElementById('export-pdf');
-            const exportExcelBtn = document.getElementById('export-excel');
-            const signaturePadCanvas = document.getElementById('signature-pad');
-            const messageBox = document.getElementById('message-box');
-            const messageText = document.getElementById('message-text');
-            const closeMessageBoxBtn = document.getElementById('close-message-box');
-
-            let signaturePad = null;
+            <!-- Contenedor de las listas de pedidos -->
+            <div id="loading-indicator" class="text-center text-lg text-pink-600">Cargando pedidos...</div>
+            <div id="error-message" class="text-center text-lg text-red-600 hidden"></div>
             
-            // Function to resize canvas
-            function resizeCanvas() {
-                const ratio = Math.max(window.devicePixelRatio || 1, 1);
-                signaturePadCanvas.width = signaturePadCanvas.offsetWidth * ratio;
-                signaturePadCanvas.height = signaturePadCanvas.offsetHeight * ratio;
-                signaturePadCanvas.getContext("2d").scale(ratio, ratio);
-                signaturePad = new SignaturePad(signaturePadCanvas);
-                loadData();
-            }
+            <div id="orders-container" class="grid grid-cols-1 lg:grid-cols-3 gap-8 hidden">
+                <!-- Columna: Pendientes por Hacer (Rojo) -->
+                <section>
+                    <h2 id="pending-make-title" class="text-2xl font-bold mb-4 text-red-600">
+                        Pendientes por Hacer (0)
+                    </h2>
+                    <div id="pending-make-list" class="space-y-4">
+                        <p class="text-gray-500 empty-list-msg">¡Nada por hacer! 🎉</p>
+                    </div>
+                </section>
 
-            window.addEventListener('resize', resizeCanvas);
-            resizeCanvas();
+                <!-- Columna: Pendientes por Entregar (Naranja) -->
+                <section>
+                    <h2 id="pending-deliver-title" class="text-2xl font-bold mb-4 text-orange-600">
+                        Pendientes por Entregar (0)
+                    </h2>
+                    <div id="pending-deliver-list" class="space-y-4">
+                        <p class="text-gray-500 empty-list-msg">Nada pendiente de entrega.</p>
+                    </div>
+                </section>
 
-            // Function to show custom alert message
-            function showMessage(message) {
-                messageText.textContent = message;
-                messageBox.style.display = 'block';
-            }
+                <!-- Columna: Entregados (Verde) -->
+                <section>
+                    <h2 id="delivered-title" class="text-2xl font-bold mb-4 text-green-600">
+                        Entregados (0)
+                    </h2>
+                    <div id="delivered-list" class="space-y-4">
+                        <p class="text-gray-500 empty-list-msg">Aún no hay pedidos entregados.</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
 
-            closeMessageBoxBtn.addEventListener('click', () => {
-                messageBox.style.display = 'none';
+    <!-- Cargar SDKs de Firebase -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { 
+            getFirestore, 
+            collection, 
+            addDoc, 
+            doc, 
+            updateDoc, 
+            deleteDoc, 
+            onSnapshot,
+            setLogLevel
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- Configuración y Constantes ---
+        
+        // Estas variables ( __app_id, __firebase_config, __initial_auth_token ) 
+        // serán inyectadas automáticamente por el entorno.
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : { apiKey: "DEMO", authDomain: "DEMO", projectId: "DEMO" };
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        const PRODUCTOS = {
+            'star-name': { label: 'Estrellita (con Nombre)', precio: 10000, por: 'paquete' },
+            'star-wish': { label: 'Estrellita (con Deseo)', precio: 10000, por: 'paquete' },
+            'tree-wish': { label: 'Arbolito (con Deseo)', precio: 10000, por: 'paquete' },
+            'paw-initial': { label: 'Huellita (con Inicial)', precio: 3000, por: 'unidad' }
+        };
+
+        // --- Inicializar Firebase ---
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        setLogLevel('Debug');
+
+        // --- Estado Global ---
+        let userId = null;
+        let isAuthReady = false;
+        let firestoreUnsubscribe = null; // Para limpiar el listener
+        let collectionPath = '';
+
+        // --- Referencias a Elementos DOM ---
+        const $ = (selector) => document.querySelector(selector);
+        const $form = $('#order-form');
+        const $formError = $('#form-error');
+        const $clientName = $('#clientName');
+        const $productType = $('#productType');
+        const $details = $('#details');
+        const $detailsLabel = $('#details-label');
+        const $quantity = $('#quantity');
+        const $quantityLabel = $('#quantity-label');
+        const $totalPrice = $('#total-price');
+        const $submitButton = $('#submit-button');
+        
+        const $loading = $('#loading-indicator');
+        const $errorMsg = $('#error-message');
+        const $ordersContainer = $('#orders-container');
+        const $userIdDisplay = $('#user-id-display');
+
+        const $listMake = $('#pending-make-list');
+        const $listDeliver = $('#pending-deliver-list');
+        const $listDelivered = $('#delivered-list');
+        
+        const $titleMake = $('#pending-make-title');
+        const $titleDeliver = $('#pending-deliver-title');
+        const $titleDelivered = $('#delivered-title');
+
+        // --- Lógica de la Aplicación ---
+
+        /** Inicializar el formulario de productos */
+        function initProductForm() {
+            Object.keys(PRODUCTOS).forEach(key => {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = PRODUCTOS[key].label;
+                $productType.appendChild(option);
             });
 
-            // Load data when the page loads
-            loadData();
+            $productType.addEventListener('change', updateFormUI);
+            $quantity.addEventListener('input', updateFormUI);
+            updateFormUI(); // Llamada inicial
+        }
 
-            // Clear the signature pad
-            clearSignatureBtn.addEventListener('click', () => {
-                signaturePad.clear();
-            });
+        /** Actualizar UI del formulario (precio, labels) */
+        function updateFormUI() {
+            const productKey = $productType.value;
+            const product = PRODUCTOS[productKey];
+            const quant = parseInt($quantity.value) || 1;
 
-            // Handle form submission
-            form.addEventListener('submit', (event) => {
-                event.preventDefault();
-
-                if (signaturePad.isEmpty()) {
-                    showMessage("Por favor, firme en el recuadro.");
-                    return;
-                }
-
-                const newAttendance = {
-                    signerName: document.getElementById('signer-name').value,
-                    supervisedName: document.getElementById('supervised-name').value,
-                    date: document.getElementById('date').value,
-                    description: document.getElementById('description').value,
-                    signature: signaturePad.toDataURL()
-                };
-
-                saveData(newAttendance);
-                displayData(newAttendance);
-                
-                // Reset form and signature pad
-                form.reset();
-                signaturePad.clear();
-            });
-
-            // Function to save data to localStorage
-            function saveData(data) {
-                const attendances = JSON.parse(localStorage.getItem('attendances')) || [];
-                attendances.push(data);
-                localStorage.setItem('attendances', JSON.stringify(attendances));
+            // Actualizar etiquetas y placeholders
+            if (productKey === 'star-name') {
+                $detailsLabel.textContent = 'Nombre (para personalizar)';
+                $details.placeholder = 'Ej: "Sofía"';
+            } else if (productKey === 'paw-initial') {
+                $detailsLabel.textContent = 'Inicial de la Mascota';
+                $details.placeholder = 'Ej: "L"';
+            } else {
+                $detailsLabel.textContent = 'Deseo';
+                $details.placeholder = 'Ej: "Salud"';
             }
 
-            // Function to load data from localStorage
-            function loadData() {
-                const attendances = JSON.parse(localStorage.getItem('attendances')) || [];
-                // Clear existing data to prevent duplicates on resize
-                tableBody.innerHTML = '';
-                // Sort by date in descending order
-                attendances.sort((a, b) => new Date(b.date) - new Date(a.date));
-                attendances.forEach(attendance => displayData(attendance, false));
+            // Actualizar etiqueta de cantidad
+            $quantityLabel.textContent = `Cantidad (${product.por === 'paquete' ? 'Paquetes de 5u' : 'Unidades'})`;
+            
+            // Calcular y mostrar precio
+            const total = product.precio * quant;
+            $totalPrice.textContent = total.toLocaleString('es-CO');
+        }
+
+        /** Manejar envío del formulario */
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            if (!userId) {
+                showFormError("Espera a que la autenticación esté lista.");
+                return;
             }
 
-            // Function to display data in the table
-            function displayData(data) {
-                const row = tableBody.insertRow(0); // Add to the top of the table
-                row.innerHTML = `
-                    <td>${data.signerName}</td>
-                    <td>${data.supervisedName}</td>
-                    <td>${data.date}</td>
-                    <td>${data.description}</td>
-                    <td><img src="${data.signature}" alt="Firma" class="signature-img"></td>
-                `;
+            $submitButton.disabled = true;
+            $submitButton.textContent = 'Agregando...';
+            showFormError(null);
+
+            try {
+                const product = PRODUCTOS[$productType.value];
+                const quant = parseInt($quantity.value);
+                const totalPrice = product.precio * quant;
+
+                await addDoc(collection(db, collectionPath), {
+                    clientName: $clientName.value,
+                    productType: $productType.value,
+                    details: $details.value,
+                    quantity: quant,
+                    totalPrice: totalPrice,
+                    status: 'pending-make',
+                    createdAt: new Date()
+                });
+
+                // Resetear formulario
+                $form.reset();
+                updateFormUI();
+
+            } catch (err) {
+                console.error("Error al añadir documento: ", err);
+                showFormError('Error al guardar el pedido. Inténtalo de nuevo.');
             }
+            
+            $submitButton.disabled = false;
+            $submitButton.textContent = 'Agregar Pedido';
+        }
 
-            // Export to PDF
-            exportPdfBtn.addEventListener('click', () => {
-                const attendances = JSON.parse(localStorage.getItem('attendances')) || [];
-                if (attendances.length === 0) {
-                    showMessage('No hay datos para exportar.');
-                    return;
-                }
-
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-                
-                // Add header content similar to the image
-                doc.setFontSize(14);
-                doc.text("FORMATO DE REGISTRO DE ACTIVIDADES DEL CONTRATISTA", 105, 15, null, null, "center");
-                doc.line(10, 18, 200, 18); // Horizontal line
-
-                doc.setFontSize(10);
-                doc.text("MUNICIPIO/DTO:", 10, 25);
-                doc.text("YACUANQUER NARIÑO", 50, 25);
-                doc.text("EMPRESA:", 110, 25);
-                doc.text("ESE SALUDYA", 140, 25);
-                
-                doc.text("RESPONSABLE:", 10, 32);
-                doc.text("WILSON MATEO LOPEZ MORA", 45, 32);
-                doc.text("IDENTIFICACIÓN No.", 110, 32);
-                doc.text("1127080365", 155, 32);
-
-                doc.setFillColor(198, 246, 213); // Light green background
-                doc.rect(10, 35, 190, 8, 'F'); // Green bar
-
-                const tableData = attendances.map(item => [
-                    item.date,
-                    item.signerName,
-                    {
-                        content: '',
-                        styles: { cellHeight: 20 },
-                    },
-                    item.description
-                ]);
-                
-                const tableOptions = {
-                    startY: 50,
-                    head: [['FECHA', 'NOMBRE/APELLIDO (ENCARGADO DE FIRMAR)', 'FIRMA', 'OBSERVACIÓN']],
-                    body: tableData,
-                    styles: {
-                        cellPadding: 2,
-                        fontSize: 8,
-                        valign: 'middle',
-                        halign: 'center',
-                    },
-                    headStyles: {
-                        fillColor: [198, 246, 213],
-                        textColor: [0, 0, 0]
-                    },
-                    columnStyles: {
-                        0: { cellWidth: 20 },
-                        1: { cellWidth: 70 },
-                        2: { cellWidth: 40 },
-                        3: { cellWidth: 'auto' }
+        /** Mostrar/Ocultar error del formulario */
+        function showFormError(message) {
+            if (message) {
+                $formError.textContent = message;
+                $formError.classList.remove('hidden');
+            } else {
+                $formError.classList.add('hidden');
+            }
+        }
+        
+        /** Autenticación de Firebase */
+        function setupAuth() {
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    console.log("Usuario autenticado:", user.uid);
+                    userId = user.uid;
+                    isAuthReady = true;
+                    $userIdDisplay.textContent = userId;
+                    collectionPath = `artifacts/${appId}/users/${userId}/pedidos`;
+                    listenToOrders(); // Empezar a escuchar pedidos
+                } else {
+                    console.log("Sin usuario, intentando autenticación...");
+                    try {
+                        if (initialAuthToken) {
+                            await signInWithCustomToken(auth, initialAuthToken);
+                            console.log("Autenticado con token custom.");
+                        } else {
+                            await signInAnonymously(auth);
+                            console.log("Autenticado anónimamente.");
+                        }
+                    } catch (err) {
+                        console.error("Error de autenticación:", err);
+                        showError("Error al conectar con el servicio de autenticación.");
                     }
-                };
-                
-                // Generar la tabla primero
-                doc.autoTable(tableOptions);
-                
-                // Añadir las firmas manualmente
-                const rows = doc.autoTable.previous.body;
-                rows.forEach((row, index) => {
-                    const signature = attendances[index].signature;
-                    const x = row.cells[2].x + row.cells[2].width / 2;
-                    const y = row.cells[2].y + row.cells[2].height / 2;
-                    doc.addImage(signature, 'PNG', x - 15, y - 7.5, 30, 15);
-                });
-
-                doc.save('asistencia.pdf');
-            });
-
-            // Export to Excel (CSV)
-            exportExcelBtn.addEventListener('click', () => {
-                const attendances = JSON.parse(localStorage.getItem('attendances')) || [];
-                if (attendances.length === 0) {
-                    showMessage('No hay datos para exportar.');
-                    return;
                 }
-
-                let csvContent = "data:text/csv;charset=utf-8,";
-                csvContent += "FECHA,ENCARGADO DE FIRMAR,FIRMA (DATA URL),DESCRIPCIÓN DE ACTIVIDADES\r\n";
-                
-                attendances.forEach(item => {
-                    let row = [
-                        `"${item.date}"`,
-                        `"${item.signerName.replace(/"/g, '""')}"`,
-                        `"${item.signature.replace(/"/g, '""')}"`,
-                        `"${item.description.replace(/"/g, '""')}"`
-                    ].join(",");
-                    csvContent += row + "\r\n";
-                });
-
-                const encodedUri = encodeURI(csvContent);
-                const link = document.createElement("a");
-                link.setAttribute("href", encodedUri);
-                link.setAttribute("download", "asistencia.csv");
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
             });
+        }
+
+        /** Escuchar pedidos de Firestore en tiempo real */
+        function listenToOrders() {
+            if (!isAuthReady || !userId) return;
+
+            console.log("Escuchando en la colección:", collectionPath);
+            $loading.classList.remove('hidden');
+            $ordersContainer.classList.add('hidden');
+
+            const q = collection(db, collectionPath);
+
+            if (firestoreUnsubscribe) firestoreUnsubscribe(); // Limpiar listener anterior si existe
+
+            firestoreUnsubscribe = onSnapshot(q, (querySnapshot) => {
+                const ordersData = [];
+                querySnapshot.forEach((doc) => {
+                    ordersData.push({ ...doc.data(), id: doc.id });
+                });
+                
+                // Ordenar por fecha de creación (los más nuevos primero)
+                ordersData.sort((a, b) => b.createdAt.toDate() - a.createdAt.toDate());
+                
+                renderOrders(ordersData);
+                $loading.classList.add('hidden');
+                $ordersContainer.classList.remove('hidden');
+
+            }, (err) => {
+                console.error("Error al obtener pedidos: ", err);
+                showError("Error al cargar los pedidos. Revisa la consola.");
+                $loading.classList.add('hidden');
+            });
+        }
+
+        /** Renderizar las listas de pedidos */
+        function renderOrders(orders) {
+            const lists = {
+                pendingMake: [],
+                pendingDeliver: [],
+                delivered: []
+            };
+
+            orders.forEach(order => {
+                if (order.status === 'pending-make') lists.pendingMake.push(order);
+                else if (order.status === 'pending-deliver') lists.pendingDeliver.push(order);
+                else if (order.status === 'delivered') lists.delivered.push(order);
+            });
+
+            // Limpiar listas y títulos
+            $listMake.innerHTML = '';
+            $listDeliver.innerHTML = '';
+            $listDelivered.innerHTML = '';
+            
+            $titleMake.textContent = `Pendientes por Hacer (${lists.pendingMake.length})`;
+            $titleDeliver.textContent = `Pendientes por Entregar (${lists.pendingDeliver.length})`;
+            $titleDelivered.textContent = `Entregados (${lists.delivered.length})`;
+
+            // Renderizar "Pendientes por Hacer"
+            if (lists.pendingMake.length === 0) {
+                $listMake.innerHTML = '<p class="text-gray-500 empty-list-msg">¡Nada por hacer! 🎉</p>';
+            } else {
+                lists.pendingMake.forEach(order => $listMake.innerHTML += createOrderCardHTML(order));
+            }
+
+            // Renderizar "Pendientes por Entregar"
+            if (lists.pendingDeliver.length === 0) {
+                $listDeliver.innerHTML = '<p class="text-gray-500 empty-list-msg">Nada pendiente de entrega.</p>';
+            } else {
+                lists.pendingDeliver.forEach(order => $listDeliver.innerHTML += createOrderCardHTML(order));
+            }
+
+            // Renderizar "Entregados"
+            if (lists.delivered.length === 0) {
+                $listDelivered.innerHTML = '<p class="text-gray-500 empty-list-msg">Aún no hay pedidos entregados.</p>';
+            } else {
+                lists.delivered.forEach(order => $listDelivered.innerHTML += createOrderCardHTML(order));
+            }
+        }
+        
+        /** Generar el HTML para una tarjeta de pedido */
+        function createOrderCardHTML(order) {
+            const productInfo = PRODUCTOS[order.productType] || { label: 'Desconocido', por: 'unidad' };
+            const { id, clientName, details, quantity, totalPrice, status } = order;
+
+            const statusClasses = {
+                'pending-make': 'border-red-500 bg-red-50',
+                'pending-deliver': 'border-orange-500 bg-orange-50',
+                'delivered': 'border-green-500 bg-green-50'
+            }[status] || 'border-gray-300 bg-white';
+
+            let actionButton = '';
+            if (status === 'pending-make') {
+                actionButton = `<button data-action="update" data-id="${id}" data-status="pending-deliver" class="text-xs font-medium bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-600">Marcar como Hecho</button>`;
+            } else if (status === 'pending-deliver') {
+                actionButton = `<button data-action="update" data-id="${id}" data-status="delivered" class="text-xs font-medium bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-600">Marcar como Entregado</button>`;
+            } else if (status === 'delivered') {
+                actionButton = `<button data-action="update" data-id="${id}" data-status="pending-deliver" class="text-xs font-medium bg-gray-400 text-white px-3 py-1 rounded-full hover:bg-gray-500">Mover a Pendiente</button>`;
+            }
+
+            return `
+                <div class="p-4 rounded-lg shadow-md border-t-4 ${statusClasses} transition-all">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold text-gray-900">${clientName}</h3>
+                        <span class="text-sm font-medium text-gray-600">
+                            Total: <span class="font-bold text-black">$${totalPrice.toLocaleString('es-CO')}</span>
+                        </span>
+                    </div>
+                    
+                    <p class="text-sm text-gray-700"><strong>Producto:</strong> ${productInfo.label}</p>
+                    <p class="text-sm text-gray-700"><strong>Detalle:</strong> ${details}</p>
+                    <p class="text-sm text-gray-700"><strong>Cantidad:</strong> ${quantity} ${productInfo.por === 'paquete' ? 'paquete(s)' : 'unidad(es)'}</p>
+                    
+                    <div class="mt-4 pt-4 border-t border-gray-200 flex flex-wrap gap-2 justify-between items-center">
+                        <div class="flex flex-wrap gap-2">${actionButton}</div>
+                        <button data-action="delete" data-id="${id}" class="text-xs font-medium text-red-600 hover:text-red-800" title="Eliminar pedido">&#10005; Eliminar</button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        /** Manejar clics en los botones de acción (delegación de eventos) */
+        function handleCardActions(e) {
+            const target = e.target;
+            const action = target.dataset.action;
+            const id = target.dataset.id;
+            
+            if (!action || !id) return; // No es un botón de acción
+
+            if (action === 'update') {
+                const newStatus = target.dataset.status;
+                updateOrderStatus(id, newStatus);
+            } else if (action === 'delete') {
+                deleteOrder(id);
+            }
+        }
+
+        /** Actualizar estado de un pedido */
+        async function updateOrderStatus(id, newStatus) {
+            if (!userId) return;
+            const docRef = doc(db, collectionPath, id);
+            try {
+                await updateDoc(docRef, { status: newStatus });
+            } catch (err) {
+                console.error("Error al actualizar estado: ", err);
+                showError("Error al actualizar el pedido.");
+            }
+        }
+
+        /** Eliminar un pedido */
+        async function deleteOrder(id) {
+            if (!userId) return;
+            // No usamos confirm()
+            const docRef = doc(db, collectionPath, id);
+            try {
+                await deleteDoc(docRef);
+            } catch (err) {
+                console.error("Error al eliminar pedido: ", err);
+                showError("Error al eliminar el pedido.");
+            }
+        }
+
+        /** Mostrar error global */
+        function showError(message) {
+            $errorMsg.textContent = message;
+            $errorMsg.classList.remove('hidden');
+        }
+
+        // --- Iniciar la aplicación ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initProductForm();
+            setupAuth();
+            $form.addEventListener('submit', handleFormSubmit);
+            
+            // Delegación de eventos para las tarjetas
+            $listMake.addEventListener('click', handleCardActions);
+            $listDeliver.addEventListener('click', handleCardActions);
+            $listDelivered.addEventListener('click', handleCardActions);
         });
+
     </script>
 </body>
 </html>
