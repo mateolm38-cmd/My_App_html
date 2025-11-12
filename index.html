@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestor de Pedidos de Velitas</title>
+    <title>Gestor de Pedidos Simple</title>
     <!-- Cargar Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Fuente Inter (similar a la de React) */
+        /* Fuente Inter */
         @import url('https://rsms.me/inter/inter.css');
         html { font-family: 'Inter', sans-serif; }
     </style>
@@ -17,11 +17,9 @@
     <div class="min-h-screen p-4 md:p-8 font-sans">
         <header class="mb-8">
             <h1 class="text-4xl font-extrabold text-center text-pink-700">
-                Gestor de Pedidos ✨ Velitas
+                Gestor de Pedidos ✨ Velitas (Local)
             </h1>
-            <p class="text-center text-gray-600 text-sm mt-2">
-                ID de Usuario: <code id="user-id-display" class="bg-gray-200 p-1 rounded-md">Cargando...</code>
-            </p>
+            <p class="text-center text-sm text-gray-500 mt-1">Los pedidos se guardan solo en tu navegador.</p>
         </header>
 
         <main>
@@ -63,24 +61,23 @@
                     <p class="text-lg font-bold text-gray-800">
                         Total: $<span id="total-price">10,000</span>
                     </p>
-                    <button id="submit-button" type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 disabled:bg-gray-400">
+                    <button id="submit-button" type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
                         Agregar Pedido
                     </button>
                 </div>
             </form>
 
             <!-- Contenedor de las listas de pedidos -->
-            <div id="loading-indicator" class="text-center text-lg text-pink-600">Cargando pedidos...</div>
             <div id="error-message" class="text-center text-lg text-red-600 hidden"></div>
             
-            <div id="orders-container" class="grid grid-cols-1 lg:grid-cols-3 gap-8 hidden">
+            <div id="orders-container" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Columna: Pendientes por Hacer (Rojo) -->
                 <section>
                     <h2 id="pending-make-title" class="text-2xl font-bold mb-4 text-red-600">
                         Pendientes por Hacer (0)
                     </h2>
                     <div id="pending-make-list" class="space-y-4">
-                        <p class="text-gray-500 empty-list-msg">¡Nada por hacer! 🎉</p>
+                        <!-- Pedidos se renderizarán aquí -->
                     </div>
                 </section>
 
@@ -90,7 +87,7 @@
                         Pendientes por Entregar (0)
                     </h2>
                     <div id="pending-deliver-list" class="space-y-4">
-                        <p class="text-gray-500 empty-list-msg">Nada pendiente de entrega.</p>
+                        <!-- Pedidos se renderizarán aquí -->
                     </div>
                 </section>
 
@@ -100,75 +97,23 @@
                         Entregados (0)
                     </h2>
                     <div id="delivered-list" class="space-y-4">
-                        <p class="text-gray-500 empty-list-msg">Aún no hay pedidos entregados.</p>
+                        <!-- Pedidos se renderizarán aquí -->
                     </div>
                 </section>
             </div>
         </main>
     </div>
 
-    <!-- Cargar SDKs de Firebase -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { 
-            getFirestore, 
-            collection, 
-            addDoc, 
-            doc, 
-            updateDoc, 
-            deleteDoc, 
-            onSnapshot,
-            setLogLevel
-        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // --- Configuración y Constantes ---
-        
-        // Estas variables ( __app_id, __firebase_config, __initial_auth_token ) 
-        // son inyectadas por el entorno Canvas.
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        
-        // Intentar cargar la configuración de Firebase del entorno Canvas o usar el fallback.
-        const firebaseConfig = (function() {
-            if (typeof __firebase_config !== 'undefined') {
-                try {
-                    // Usar la configuración inyectada por el entorno (si estamos aquí)
-                    return JSON.parse(__firebase_config);
-                } catch (e) {
-                    console.error("Error parsing __firebase_config:", e);
-                }
-            }
-            // Fallback para GitHub Pages/deploy. 
-            // **DEBES** reemplazar estos valores con tu configuración de Firebase.
-            return { 
-                apiKey: "TU_API_KEY_AQUI", // REEMPLAZAR ESTO
-                authDomain: "TU_AUTH_DOMAIN_AQUI", 
-                projectId: "TU_PROJECT_ID_AQUI", 
-                // Añadir otros campos si es necesario (storageBucket, messagingSenderId, etc.)
-            };
-        })();
-
-        // Esta variable será 'null' si no está en el entorno Canvas.
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
+    <!-- Script de Lógica Local -->
+    <script>
+        // --- Constantes de Productos ---
         const PRODUCTOS = {
             'star-name': { label: 'Estrellita (con Nombre)', precio: 10000, por: 'paquete' },
             'star-wish': { label: 'Estrellita (con Deseo)', precio: 10000, por: 'paquete' },
             'tree-wish': { label: 'Arbolito (con Deseo)', precio: 10000, por: 'paquete' },
             'paw-initial': { label: 'Huellita (con Inicial)', precio: 3000, por: 'unidad' }
         };
-
-        // --- Inicializar Firebase ---
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        setLogLevel('Debug');
-
-        // --- Estado Global ---
-        let userId = null;
-        let isAuthReady = false;
-        let firestoreUnsubscribe = null; // Para limpiar el listener
-        let collectionPath = '';
+        const LOCAL_STORAGE_KEY = 'velitas_pedidos_locales';
 
         // --- Referencias a Elementos DOM ---
         const $ = (selector) => document.querySelector(selector);
@@ -183,10 +128,7 @@
         const $totalPrice = $('#total-price');
         const $submitButton = $('#submit-button');
         
-        const $loading = $('#loading-indicator');
         const $errorMsg = $('#error-message');
-        const $ordersContainer = $('#orders-container');
-        const $userIdDisplay = $('#user-id-display');
 
         const $listMake = $('#pending-make-list');
         const $listDeliver = $('#pending-deliver-list');
@@ -195,6 +137,30 @@
         const $titleMake = $('#pending-make-title');
         const $titleDeliver = $('#pending-deliver-title');
         const $titleDelivered = $('#delivered-title');
+        
+        // --- Funciones de LocalStorage ---
+
+        /** Obtiene los pedidos del LocalStorage. */
+        function getOrdersFromLocalStorage() {
+            try {
+                const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+                // Asegura que los objetos tengan un id único y que la fecha de creación sea manejable (timestamp o cadena).
+                return stored ? JSON.parse(stored) : [];
+            } catch (e) {
+                console.error("Error al leer localStorage:", e);
+                return [];
+            }
+        }
+
+        /** Guarda la lista completa de pedidos en el LocalStorage. */
+        function saveOrdersToLocalStorage(orders) {
+            try {
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(orders));
+            } catch (e) {
+                console.error("Error al escribir en localStorage:", e);
+                showError("Error al guardar los pedidos en el navegador.");
+            }
+        }
 
         // --- Lógica de la Aplicación ---
 
@@ -235,16 +201,13 @@
             
             // Calcular y mostrar precio
             const total = product.precio * quant;
+            // Usar 'es-CO' para formato de pesos colombianos (moneda de ejemplo)
             $totalPrice.textContent = total.toLocaleString('es-CO');
         }
 
         /** Manejar envío del formulario */
-        async function handleFormSubmit(e) {
+        function handleFormSubmit(e) {
             e.preventDefault();
-            if (!userId) {
-                showFormError("Espera a que la autenticación esté lista.");
-                return;
-            }
 
             $submitButton.disabled = true;
             $submitButton.textContent = 'Agregando...';
@@ -254,110 +217,45 @@
                 const product = PRODUCTOS[$productType.value];
                 const quant = parseInt($quantity.value);
                 const totalPrice = product.precio * quant;
-
-                await addDoc(collection(db, collectionPath), {
+                
+                const newOrder = {
+                    id: crypto.randomUUID(), // Generar ID único
                     clientName: $clientName.value,
                     productType: $productType.value,
                     details: $details.value,
                     quantity: quant,
                     totalPrice: totalPrice,
                     status: 'pending-make',
-                    createdAt: new Date()
-                });
+                    createdAt: new Date().getTime() // Usar timestamp para ordenar
+                };
+
+                const orders = getOrdersFromLocalStorage();
+                orders.push(newOrder);
+                saveOrdersToLocalStorage(orders);
+
+                // Re-renderizar
+                loadAndRenderOrders();
 
                 // Resetear formulario
                 $form.reset();
                 updateFormUI();
 
             } catch (err) {
-                console.error("Error al añadir documento: ", err);
-                showFormError('Error al guardar el pedido. Inténtalo de nuevo.');
+                console.error("Error al añadir pedido local: ", err);
+                showFormError('Error al guardar el pedido localmente.');
             }
             
             $submitButton.disabled = false;
             $submitButton.textContent = 'Agregar Pedido';
         }
-
-        /** Mostrar/Ocultar error del formulario */
-        function showFormError(message) {
-            if (message) {
-                $formError.textContent = message;
-                $formError.classList.remove('hidden');
-            } else {
-                $formError.classList.add('hidden');
-            }
-        }
         
-        /** Autenticación de Firebase */
-        function setupAuth() {
-            onAuthStateChanged(auth, async (user) => {
-                if (user) {
-                    console.log("Usuario autenticado:", user.uid);
-                    userId = user.uid;
-                    isAuthReady = true;
-                    $userIdDisplay.textContent = userId;
-                    collectionPath = `artifacts/${appId}/users/${userId}/pedidos`;
-                    listenToOrders(); // Empezar a escuchar pedidos
-                } else {
-                    console.log("Sin usuario, intentando autenticación...");
-                    try {
-                        // Usar custom token si está disponible (entorno Canvas)
-                        if (initialAuthToken) {
-                            await signInWithCustomToken(auth, initialAuthToken);
-                            console.log("Autenticado con token custom.");
-                        } else {
-                            // Usar autenticación anónima (requiere API Key válida para funcionar en GitHub)
-                            await signInAnonymously(auth);
-                            console.log("Autenticado anónimamente.");
-                        }
-                    } catch (err) {
-                        console.error("Error de autenticación:", err);
-                        
-                        // Nuevo manejo de error específico para API Key
-                        let errorMsg = "Error al conectar con el servicio de autenticación.";
-                        if (err.code === 'auth/api-key-not-valid') {
-                            errorMsg = "¡ERROR DE CONFIGURACIÓN! Necesitas reemplazar los marcadores de posición (p. ej., 'TU_API_KEY_AQUI') con tus claves reales de Firebase.";
-                        }
-                        showError(errorMsg);
-                    }
-                }
-            });
-        }
+        /** Carga y renderiza los pedidos desde LocalStorage */
+        function loadAndRenderOrders() {
+            const orders = getOrdersFromLocalStorage();
+            
+            // Ordenar por fecha de creación (los más nuevos primero)
+            orders.sort((a, b) => b.createdAt - a.createdAt);
 
-        /** Escuchar pedidos de Firestore en tiempo real */
-        function listenToOrders() {
-            if (!isAuthReady || !userId) return;
-
-            console.log("Escuchando en la colección:", collectionPath);
-            $loading.classList.remove('hidden');
-            $ordersContainer.classList.add('hidden');
-
-            const q = collection(db, collectionPath);
-
-            if (firestoreUnsubscribe) firestoreUnsubscribe(); // Limpiar listener anterior si existe
-
-            firestoreUnsubscribe = onSnapshot(q, (querySnapshot) => {
-                const ordersData = [];
-                querySnapshot.forEach((doc) => {
-                    ordersData.push({ ...doc.data(), id: doc.id });
-                });
-                
-                // Ordenar por fecha de creación (los más nuevos primero)
-                ordersData.sort((a, b) => b.createdAt.toDate() - a.createdAt.toDate());
-                
-                renderOrders(ordersData);
-                $loading.classList.add('hidden');
-                $ordersContainer.classList.remove('hidden');
-
-            }, (err) => {
-                console.error("Error al obtener pedidos: ", err);
-                showError("Error al cargar los pedidos. Revisa la consola.");
-                $loading.classList.add('hidden');
-            });
-        }
-
-        /** Renderizar las listas de pedidos */
-        function renderOrders(orders) {
             const lists = {
                 pendingMake: [],
                 pendingDeliver: [],
@@ -448,7 +346,7 @@
             const action = target.dataset.action;
             const id = target.dataset.id;
             
-            if (!action || !id) return; // No es un botón de acción
+            if (!action || !id) return; 
 
             if (action === 'update') {
                 const newStatus = target.dataset.status;
@@ -458,47 +356,52 @@
             }
         }
 
-        /** Actualizar estado de un pedido */
-        async function updateOrderStatus(id, newStatus) {
-            if (!userId) return;
-            const docRef = doc(db, collectionPath, id);
-            try {
-                await updateDoc(docRef, { status: newStatus });
-            } catch (err) {
-                console.error("Error al actualizar estado: ", err);
-                showError("Error al actualizar el pedido.");
+        /** Actualizar estado de un pedido en LocalStorage */
+        function updateOrderStatus(id, newStatus) {
+            const orders = getOrdersFromLocalStorage();
+            const index = orders.findIndex(order => order.id === id);
+
+            if (index !== -1) {
+                orders[index].status = newStatus;
+                saveOrdersToLocalStorage(orders);
+                loadAndRenderOrders();
             }
         }
 
-        /** Eliminar un pedido */
-        async function deleteOrder(id) {
-            if (!userId) return;
-            // No usamos confirm()
-            const docRef = doc(db, collectionPath, id);
-            try {
-                await deleteDoc(docRef);
-            } catch (err) {
-                console.error("Error al eliminar pedido: ", err);
-                showError("Error al eliminar el pedido.");
+        /** Eliminar un pedido de LocalStorage */
+        function deleteOrder(id) {
+            let orders = getOrdersFromLocalStorage();
+            orders = orders.filter(order => order.id !== id);
+            saveOrdersToLocalStorage(orders);
+            loadAndRenderOrders();
+        }
+        
+        /** Mostrar/Ocultar error del formulario */
+        function showFormError(message) {
+            if (message) {
+                $formError.textContent = message;
+                $formError.classList.remove('hidden');
+            } else {
+                $formError.classList.add('hidden');
             }
         }
 
-        /** Mostrar error global */
+        /** Mostrar error global (actualmente no se usa mucho en LocalStorage, pero se mantiene) */
         function showError(message) {
             $errorMsg.textContent = message;
             $errorMsg.classList.remove('hidden');
         }
 
+
         // --- Iniciar la aplicación ---
         document.addEventListener('DOMContentLoaded', () => {
             initProductForm();
-            setupAuth();
+            loadAndRenderOrders(); 
+            
             $form.addEventListener('submit', handleFormSubmit);
             
             // Delegación de eventos para las tarjetas
-            $listMake.addEventListener('click', handleCardActions);
-            $listDeliver.addEventListener('click', handleCardActions);
-            $listDelivered.addEventListener('click', handleCardActions);
+            document.getElementById('orders-container').addEventListener('click', handleCardActions);
         });
 
     </script>
